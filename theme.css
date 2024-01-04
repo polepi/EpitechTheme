@@ -1,0 +1,714 @@
+body {
+	background-color: rgb(54, 57, 62) !important;
+}
+
+#sidebar {
+	background-color: #1e2124 !important;
+}
+
+#header .intra {
+	background: none !important;
+	background-color: #2d366e !important;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+.wall {
+	background-color: #36393e !important;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #333;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 3px;
+}
+
+#sidebar>.title {
+	display: none !important;
+}
+
+#wall #sidebar ul {
+	margin: 0 !important;
+}
+
+#wall #sidebar li {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#wall #sidebar a {
+	padding: 12px 16px !important;
+	text-decoration: none !important;
+}
+
+#wall #sidebar li a .icon {
+	padding: 0 !important;
+	margin: 0 !important;
+	margin-right: 16px !important;
+	width: 24px !important;
+	height: 24px !important;
+	filter: brightness(0) invert(1);
+	background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: bottom center, 50%, 50% !important;
+}
+
+#wall #sidebar .trombi {
+	display: none;
+}
+
+#wall #sidebar .module a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/dashboard/default/24px.svg') !important;
+}
+
+#wall #sidebar .mark a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/school/default/24px.svg') !important;
+}
+
+#wall #sidebar .planning a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calendar_month/default/24px.svg') !important;
+}
+
+#wall #sidebar .trombi a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/menu_book/default/24px.svg') !important;
+}
+
+#wall #sidebar .stage a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/business_center/default/24px.svg') !important;
+}
+
+#wall #sidebar .document a .icon {
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/folder_open/default/24px.svg') !important;
+}
+
+#wall #sidebar .rzone .info span, #wall #sidebar .rzone .msg-alert {
+	padding: 8px 16px !important;
+	background-color: #353535;
+	margin-bottom: 5px;
+	border-radius: 3px;
+}
+
+#wall #sidebar .rzone .info > span:first-child {
+	background-repeat: no-repeat !important;
+    background-position: 10px, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/star/round.png?raw=true') !important;
+}
+
+.rzone hr {
+    display: none !important;
+}
+
+.rzone>span {
+    display: none !important;
+}
+
+.understand-alerts {
+	display: none !important;
+}
+
+#homeboard section {
+    background-color: #1e2124 !important;
+	color: rgb(240, 240, 240);
+	border-radius: 3px !important;
+	box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+#homeboard section .articles {
+    overflow-y: auto !important;
+}
+
+#homeboard section .view_more {
+    display: none;
+}
+
+#homeboard section a {
+	color: rgb(220, 220, 220);
+}
+
+#homeboard section article {
+    background: #424549 !important;
+	border-radius: 3px !important;
+}
+
+.barre>span {
+    background-color: #bbb !important;
+}
+
+.barre>span>span {
+    background-color: #3D4A93 !important;
+}
+
+#homeboard .final_render .projet>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/category/round.png?raw=true') !important;
+}
+
+#homeboard .final_render .activite>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/date_range/round.png?raw=true') !important;
+}
+
+#homeboard .final_render .module>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/view_list/round.png?raw=true') !important;
+}
+
+#homeboard .final_render .susie>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/record_voice_over/round.png?raw=true') !important;
+}
+
+
+#homeboard .final_render .note>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/school/round.png?raw=true') !important;
+}
+
+#language {
+	display: none !important;
+}
+
+#homeboard section h2 {
+    margin: 10px 0 15px 15px;
+}
+
+#homeboard section a.expend {
+    background: transparent !important;
+	background-repeat: no-repeat !important;
+    background-position: 90%, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/expand_more/round.png?raw=true') !important;
+    display: inline !important;
+	color: transparent !important;
+}
+
+.header-wrapper #notification {
+	float: right !important;
+	background: none !important;
+}
+
+.header-wrapper #notification a {
+	background: none !important;
+}
+
+#notification>.pedago>a>.logo {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chat_bubble_outline/outline.png?raw=true') !important;
+}
+
+#notification>.message>a>.logo {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications/outline.png?raw=true') !important;
+}
+
+#notification>.news>a>.logo {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications_active/outline.png?raw=true') !important;
+}
+
+#notification>.rdv>a>.logo {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/schedule/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation .planning>a>.icon {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/event/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation .module>a>.icon {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/dashboard/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation .user>a>.icon {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/account_circle/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation .e-learning>a>.icon {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/cast_for_education/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation .administration>a>.icon {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/tune/round.png?raw=true') !important;
+}
+
+.header-wrapper>.navigation>table {
+	height: 75px !important;
+}
+
+.header-wrapper>.navigation td>a>.icon {
+	line-height: 57px !important;
+}
+
+.header-wrapper>.navigation td>a>.icon {
+	display: inline-block !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 24px !important;
+	height: 45px !important;
+}
+
+.header-wrapper>.navigation td>a>.label {
+	display: inline-block !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	margin-left: 6px !important;
+	background-color: transparent !important;
+	text-align: left !important;
+	position: static !important;
+}
+
+.header-wrapper>.navigation {
+    margin-left: 230px !important;
+	max-width: 650px !important;
+}
+
+#header>.intra {
+	height: 75px !important;
+}
+
+.second-column>.infos {
+	background: none !important;
+}
+
+
+.second-column>.infos>.picture {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/log_out/round.png?raw=true') !important;
+}
+
+.second-column>.infos>.title {
+	display: none !important;
+}
+
+#breadcrumb>ul {
+	color: rgb(240, 240, 240) !important;
+}
+
+#breadcrumb>ul>li {
+	background-color: #1e2124 !important;
+	border-radius: 0px !important;
+	box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+#breadcrumb ul li:first-child {
+    background: #1e2124 !important;
+}
+
+#breadcrumb ul li a {
+    color: rgb(240, 240, 240) !important;
+}
+
+#breadcrumb ul li a>.icon {
+    background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	margin-right: 5px;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/home/round.png?raw=true') !important;
+}
+
+#content {
+	background-color: rgb(54, 57, 62) !important;
+	color: #fff !important;
+}
+
+#content h1 {
+	color: #fff !important;
+}
+
+#project a {
+	color: rgb(45, 154, 200) !important;
+}
+
+#timeline.item.message.register .timeline {
+    border: 1px solid #111 !important;
+    border-radius: 3px !important;
+	box-shadow: none;
+}
+
+#timeline.item.message.register .timeline .time_dead {
+    border: none !important;
+	background: none !important;
+    border-radius: 3px 0px 0px 3px !important;
+	background-color: rgb(45, 54, 110) !important;
+	box-shadow: none;
+}
+
+#timeline.item.message.register .timeline .wrapper-timeleft {
+    border: none !important;
+	background: none !important;
+    border-radius: 4px !important;
+	background-color: #D8D8D8 !important;
+	box-shadow: none !important;
+}
+
+.end_reg {
+	width: 1px !important;
+	background-color: #000 !important;;
+}
+
+.date_start {
+	opacity: 1 !important;
+	box-shadow: none !important;
+	color: #fff !important;
+}
+
+.date_end {
+	opacity: 1 !important;
+	box-shadow: none !important;
+	color: #fff !important;
+}
+
+.tabulation>.tabs {
+	height: 36px !important;
+	line-height: 36px !important;
+	font-size: 16px !important;
+	margin-bottom: 5px !important;
+}
+
+.tabulation>.tabs>li>a>span {
+	margin: 0 !important;
+	padding: 0px !important;
+}
+
+ul.tabs li a span {
+    height: 36px !important;
+    background-position: left -50px !important;
+    padding: 11px 2px 2px 12px !important;
+    text-shadow: none !important;
+    margin-left: 11px !important;
+}
+
+.tabulation ul.tabs li {
+    float: left !important;
+}
+
+#content .bloc.tabulation {
+	color: rgb(240, 240, 240) !important;
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px 0px !important;
+    background-color: rgb(30, 33, 36) !important;
+    border-radius: 3px !important;
+}
+
+.tabulation>.tabs>li>a {
+	border: none !important;
+	background: none !important;
+	margin-top: 4px !important;
+    border-radius: 3px !important;
+	color: #fff !important;
+	padding: 0px 12px !important;
+	padding-left: 38px !important;
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/group/round.png?raw=true') !important;
+	background-color: rgb(66, 69, 73) !important;
+	text-shadow: none !important;
+}
+
+ul.tabs, ul.tabs li a, ul.tabs li a span {
+    background: none !important;
+    display: block;
+}
+
+.notallowed {
+	background-color: #d1a056 !important;
+	color: #fff;
+	text-align: left !important;
+}
+
+#tab-group {
+    margin: 0 !important;
+	padding: 8px 12px !important;
+}
+
+#tab-group>h2 {
+    display: none;
+}
+
+#project a {
+    color: #fff !important;
+}
+
+.group {
+	margin: 5px !important;
+	padding: 8px 12px !important;
+	border-radius: 3px !important;
+	box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px 0px !important;
+	background: rgb(66, 69, 73) !important;
+}
+
+.actions>.callwithteams {
+	margin: 0 !important;
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions a .icon {
+    display: none !important;
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions a {
+    display: block !important;
+    width: 10px !important;
+	cursor: pointer !important;
+	border-radius: 3px;
+    height: 26px !important;
+	margin-bottom: 3px !important;
+	padding: 8px 16px !important;
+	line-height: 26px !important;
+    background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+	background-color: rgb(55, 56, 58) !important;
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions > .callwithteams {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/call/round.png?raw=true') !important;
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions > .destroy {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/delete/round.png?raw=true') !important;
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions > .manage {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/tune/round.png?raw=true') !important;
+}
+
+.groupinfo > .title {
+	color: #fff !important;
+}
+
+.buttons > a {
+	background: none !important;
+}
+
+.buttons > a:hover {
+	opacity: 0.6;
+}
+
+.buttons > a > span {
+	border-radius: 3px !important;
+	background: none !important;
+	background-color: #111 !important;
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+	padding: 6px 12px !important;
+}
+
+.buttons > a > span > .label {
+	margin-left: 20px !important;
+}
+
+.buttons > a > span > .icon {
+	display: none !important;
+}
+
+.buttons > .manage > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/tune/round.png?raw=true') !important;
+}
+
+.buttons > .destroy > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/delete/round.png?raw=true') !important;
+}
+
+.buttons > .register > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/check_box/round.png?raw=true') !important;
+	background-color: rgb(45, 54, 110) !important;
+}
+
+.buttons > .confirm > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/check_circle/round.png?raw=true') !important;
+	background-color: rgb(45, 54, 110) !important;
+}
+
+.data > .resume {
+	display: none !important;
+}
+
+div.datagrid tbody {
+	color: #f1f1f1 !important;
+}
+
+div.datagrid tbody a {
+	color: #f1f1f1 !important;
+}
+
+div.datagrid tbody tr {
+    background-color: rgb(42, 43, 46) !important;
+}
+
+div.datagrid tbody tr:nth-child(even) {
+    background-color: rgb(52, 53, 56) !important;
+}
+
+div.datagrid table thead th>div {
+    border: none !important;
+}
+
+#sidebar form.filter.course .button.expand-filters > span .icon {
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/sort/round.png?raw=true') !important;
+}
+
+#sidebar form.filter.course .button.expand-filters > span .label {
+	color: white !important;
+}
+
+#sidebar form.filter.course .log {
+	display: none !important;
+}
+
+.navigation .switch .button {
+	background: none !important;
+	margin-left: 3px !important;
+}
+
+div.datagrid .overflow {
+    background-color: transparent !important;
+}
+
+.navigation .switch .button > span {
+    border-radius: 4px !important;
+	background: none !important;
+	background-color: rgb(30, 33, 36) !important;
+	color: white !important;
+	padding: 0px 4px !important;
+	margin: 0px !important;
+	background-repeat: no-repeat !important;
+    background-position: 2px, 50% !important;
+}
+
+.navigation .switch .prev > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_left/round.png?raw=true') !important;
+}
+
+.navigation .switch .next > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_right/round.png?raw=true') !important;
+}
+
+.transparency {
+	display: none !important;
+}
+
+td > .bargraph > span {
+	background-color: rgb(45, 54, 110) !important;
+	border-radius: 3px !important;
+}
+
+#board #content .datagrid td>span.bargraph {
+	border: none !important;
+	background-color: #a7a7a7 !important;
+	border-radius: 3px !important;
+}
+
+.actions > .contextmenu {
+	display: none !important;
+}
+
+.buttons > .decline > span {
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/cancel/round.png?raw=true') !important;
+}
+
+
+#project #tab-group.tab li.group > .wrapper > .actions a .label {
+    display: none !important;
+	width: calc(100% - 30px);
+	text-overflow: ellipsis;
+	margin-left: 30px;
+	line-height: 26px !important;
+	text-align: left !important;
+	height: 26px;
+}
+
+.group>.wrapper {
+	border: none !important;
+}
+
+.tab>ul>li>.title {
+	box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px 0px !important;
+	background: none !important;
+	border: none !important;
+	border-bottom: 1px solid #444 !important;
+	color: #fff !important;
+}
+
+.links {
+	border-radius: 0px !important;
+	box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px 0px !important;
+	background: rgb(66, 69, 73) !important;
+	color: #fff !important;
+}
+
+.links a {
+	color: #fff !important;
+}
+
+div.datagrid table thead th div div {
+	background: none !important;
+	color: #fff !important;
+	background-color: rgb(30, 33, 36) !important;
+}
+
+div.datagrid {
+	border: none !important;
+}
+
+#homeboard section article a.link_delete {
+	display: inline-block !important;
+	position: absolute !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	top: 5px !important;
+	right: 5px;
+	width: 20px !important;
+	height: 20px !important;
+    background: transparent !important;
+	border-radius: 3px !important;
+	background: rgb(30, 33, 36) !important;
+	color: #fff !important;
+	background-repeat: no-repeat !important;
+    background-position: -2px, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/close/round.png?raw=true') !important;
+	color: transparent !important;
+}
+
+#header #notification .dropdown .layer {
+    right: 10px !important;
+}
+
+.btn_add {
+	position: absolute;
+	top: 5px !important;
+	right: 30px;
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 3px !important;
+	background: rgb(30, 33, 36) !important;
+	color: #fff !important;
+	background-repeat: no-repeat !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/add/round.png?raw=true') !important;
+    background-position: -2px, 50% !important;
+}

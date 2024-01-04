@@ -1,0 +1,1 @@
+Replace the manifest.json at the root for the one you desire.

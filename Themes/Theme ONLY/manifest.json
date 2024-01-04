@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "EpiTheme",
+  "version": "1.0",
+  "description": "Loads themes for your Epitech Intra.",
+  "host_permissions": [
+    "https://intra.epitech.eu/*"
+  ],
+  "permissions": [
+    "tabs"
+  ],
+"content_scripts": [
+    {
+      "matches": ["https://intra.epitech.eu/*"], 
+      "css" : ["theme.css"]
+    }
+],
+  "icons": {
+    "16": "icons/ico16.png",
+    "32": "icons/ico32.png"
+  }
+}

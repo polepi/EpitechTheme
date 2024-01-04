@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "EpiTheme",
+  "version": "1.0",
+  "description": "Loads themes for your Epitech Intra.",
+  "host_permissions": [
+    "https://intra.epitech.eu/*"
+  ],
+  "permissions": [
+    "storage",
+    "background",
+    "tabs",
+    "webRequest"
+  ],
+"background": {
+    "service_worker": "background.js"
+},
+"content_scripts": [
+    {
+      "matches": ["https://intra.epitech.eu/*"], 
+      "js": ["script.js"],
+    }
+],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/ico16.png",
+    "32": "icons/ico32.png"
+  }
+}
