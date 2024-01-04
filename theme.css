@@ -702,15 +702,15 @@ div.datagrid {
 	position: absolute;
 	top: 5px !important;
 	right: 30px;
-	width: 20px;
+	width: 30px;
 	height: 20px;
 	border: none;
 	border-radius: 3px !important;
 	background: rgb(30, 33, 36) !important;
 	color: #fff !important;
 	background-repeat: no-repeat !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/add/round.png?raw=true') !important;
-    background-position: -2px, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/playlist_add/round.png?raw=true') !important;
+    background-position: 5px, 50% !important;
 }
 
 .btn_add2 {
@@ -724,8 +724,8 @@ div.datagrid {
 	background: rgb(27, 29, 31) !important;
 	color: #fff !important;
 	background-repeat: no-repeat !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/add/round.png?raw=true') !important;
-    background-position: 7px, 50% !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/playlist_add/round.png?raw=true') !important;
+    background-position: 8px, 50% !important;
 }
 
 .btn_add2:hover {
