@@ -1,7 +1,6 @@
 # EpitechTheme
 <h2>Features:</h2>
 1. Adds a custom dark theme the Epitech's Intranet.
-
 2. Adds a utility to help you manage your projects. From `intra.epitech.eu > Projects` press the `+` on your desired project
    it will be added to your personal project list (access it by pressing the extension icon).
 
