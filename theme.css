@@ -698,6 +698,10 @@ div.datagrid {
     right: 10px !important;
 }
 
+#module .tab > ul li.activite > .title h2 a {
+    color: white !important;
+}
+
 .btn_add {
 	position: absolute;
 	top: 5px !important;

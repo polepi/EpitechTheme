@@ -6,15 +6,44 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <i class="material-icons searchIco">search</i>
-    <a href="https://intra.epitech.eu/" target="_blank" title="Intranet" class="material-icons homeIco">home</a>
-    <a href="https://my.epitech.eu/" target="_blank" title="Stupid wanker thing that enjoys pissing everyone over" class="shiteIco"></a>
-    <a href="https://github.com/EpitechPromo2028" target="_blank" title="Github" class="gitIco"></a>
-    <a href="https://github.https://teams.microsoft.com/go" target="_blank" title="Teams" class="teamsIco"></a>
-    <input type="text" id="filter_input" placeholder="Filter by name.." title="Type in a name">
-	<table id ="taskTable">
-	
-	</table>
+    <div id="tab_table">
+        <i class="material-icons searchIco">search</i>
+        <a href="https://intra.epitech.eu/" target="_blank" title="Intranet" class="material-icons homeIco">home</a>
+        <a href="https://my.epitech.eu/" target="_blank" title="Stupid wanker thing that enjoys pissing everyone over" class="shiteIco"></a>
+        <a href="https://github.com/EpitechPromo2028" target="_blank" title="Github" class="gitIco"></a>
+        <a href="https://github.https://teams.microsoft.com/go" target="_blank" title="Teams" class="teamsIco"></a>
+        <input type="text" id="filter_input" placeholder="Filter by name.." title="Type in a name">
+        <div class="navbar noselect">
+            <div id="s_add_btn">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>playlist_add</span></span>
+            </div>
+            <div id="s_completed_btn">
+                <span style='font-size: 18px;margin-top: 0px;' id="s_completed_icon" class='material-icons'>visibility</span>&nbsp;&nbsp;<span>Completed&nbsp;<span id="s_completed_badge"></span></span>
+            </div>
+        </div>
+        <table id ="taskTable">
+        
+        </table>
+    </div>
+    <div id="tab_addevent">
+        <h3>Create an event</h3>
+        <div class="navbar">
+            <div id="s_canelEvent_btn">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>dashboard</span>&nbsp;&nbsp;<span>Dashboard</span>
+            </div>
+        </div>
+        <form id="createTask_form">
+            <input type="text" id="in_addtask_name" autocomplete="off" placeholder="Event name.." required minlength="3" maxlength="50">
+            <input type="url" id="in_addtask_url" autocomplete="off" placeholder="Event URL..">
+            <input type="datetime-local" id="in_addtask_due" placeholder="Due time" required>
+            <div class="navbar">
+                <button id="s_addEvent_btn">
+                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>add_circle_outline</span>&nbsp;&nbsp;<span>Create</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    
     <script src="popup.js"></script>
 </body>
 </html>

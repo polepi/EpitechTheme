@@ -128,3 +128,68 @@ td:has(> .btn_del) {
     padding-right: 10px;
     max-width: 200px;
 }
+
+.isComp {
+    display: none;
+}
+
+.navbar {
+    display: block;
+    line-height: 16px;
+    padding: 5px;
+}
+
+.navbar>div, .navbar>button {
+    display: inline-block;
+    padding: 4px 8px;
+    color: #444;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#s_completed_badge {
+    color: #fff;
+    padding: 0px 3px;
+    margin-top: 3px;
+    border-radius: 5px;
+    background-color: rgb(45, 54, 110);
+}
+
+#tab_addevent {
+    display: none;
+}
+
+#tab_addevent>form {
+    padding: 4px 8px;
+}
+
+#tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local] {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 8px 16px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+#tab_addevent>h3 {
+    width: 100%;
+    background-color: #fff;
+    margin: 0px;
+    font-size: 16px;
+    padding: 11px 20px 11px 12px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}

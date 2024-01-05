@@ -17,7 +17,6 @@ function add_to_calendar2(event) {
     const title = document.querySelector('#project .bloc.top .data .item.title h1').textContent;
     const endDate = document.querySelector('.date_end.bulle').textContent;
     const link = window.location.href;
-
     chrome.runtime.sendMessage({
         action: 'addEventToCalendar',
         title: title,
@@ -49,4 +48,3 @@ articles.forEach(article => {
     button.addEventListener('click', add_to_calendar);
     article.appendChild(button);
 });
-

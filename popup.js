@@ -1,4 +1,5 @@
 var storedData = {};
+var showCompletedTable = false
 const millisecondsInDay = 1000 * 60 * 60 * 24;
 const millisecondsInHour = 1000 * 60 * 60;
 
@@ -37,25 +38,27 @@ function createTaskList() {
     }
 
     taskTable.innerHTML = '';
-
+    let completed_count = 0;
     chrome.storage.local.get("TaskListing", function(data) {
         const storedData = data["TaskListing"];
-        console.log("Opening", storedData);
         if (storedData) {
             Object.keys(storedData).forEach(title => {
                 const date = new Date(storedData[title].d);
                 const dateString = date.toDateString();
                 const currentDate = new Date();
                 const timeDifference = date.getTime() - currentDate.getTime();
-
                 const row = document.createElement('tr');
-
                 row.setAttribute('data-index', storedData[title].d);
+                row.setAttribute('data-comp', storedData[title].c);
                 let remainingTime;
                 let color;
                 let icon = "radio_button_checked";
+                let icon2 = "check_box_outline_blank";
                 let daysLeft = Math.floor(timeDifference / millisecondsInDay);
-                
+
+                if (showCompletedTable == 0 && storedData[title].c == 1) {
+                    row.style.display = "none";
+                }
                 if (daysLeft <= 1) {
                     color = '#a61e0c';
                     icon = "error_outline";
@@ -68,7 +71,12 @@ function createTaskList() {
                 } else {
                     color = '#3b8000';
                 }
-
+                if (storedData[title].c == 1) {
+                    color = '#3b8000';
+                    icon = 'event_available';
+                    icon2 = 'check_box';
+                    completed_count = completed_count + 1;
+                }
                 if (Math.ceil(timeDifference / (1000 * 60)) <= 0) {
                     color = '#aaa';
                     icon = 'history_toggle_off';
@@ -80,9 +88,23 @@ function createTaskList() {
                 } else {
                     remainingTime = daysLeft + ' day(s)';
                 }
-
+                const checkCell = document.createElement('td');
+                checkCell.innerHTML = "<span style='font-size: 18px;margin-top: 1px;' class='material-icons'> "+icon2+"</span>";
+                checkCell.addEventListener('click', () => {
+                    if (storedData[title].c == 1) {
+                        storedData[title].c = 0;
+                    } else {
+                        storedData[title].c = 1;
+                    }
+                    chrome.storage.local.set({ 'TaskListing': storedData }, () => {
+                        createTaskList();
+                    });
+                });
                 const titleCell = document.createElement('td');
                 titleCell.textContent = title;
+                if (storedData[title].c == 1) {
+                    titleCell.style.textDecoration = "line-through";
+                }
                 titleCell.addEventListener('click', () => {
                     window.open(storedData[title].u, '_blank');
                 });
@@ -96,7 +118,6 @@ function createTaskList() {
                 button2.addEventListener('click', () => {
                     delete storedData[title];
                     chrome.storage.local.set({ 'TaskListing': storedData }, () => {
-                        console.log('storedData updated after removal', storedData);
                         const row = button2.parentNode.parentNode;
                         row.parentNode.removeChild(row);
                     });
@@ -104,12 +125,19 @@ function createTaskList() {
                 button2.innerHTML = '<i class="material-icons" style="font-size: 16px;">delete</i>';
                 button2.classList.add('btn_del');
                 button2Cell.appendChild(button2);
+                row.appendChild(checkCell);
                 row.appendChild(titleCell);
                 row.appendChild(dateCell);
                 row.appendChild(button1Cell);
                 row.appendChild(button2Cell);
                 taskTable.appendChild(row);
             });
+            if (completed_count > 0) {
+                document.getElementById("s_completed_badge").textContent = completed_count;
+                document.getElementById("s_completed_badge").style.display = "inline";
+            } else {
+                document.getElementById("s_completed_badge").style.display = "none";
+            }
             sortTable();
         } else {
             const noDataItem = document.createElement('tr');
@@ -143,6 +171,77 @@ function filterTableNames() {
     sortTable();
 }
 
+function update_showCompleted(toggle) {
+    chrome.storage.local.get("showCompleted", function(data) {
+        showCompletedTable = data.showCompleted;
+        if (!showCompletedTable || showCompletedTable == 0) {
+            document.getElementById('s_completed_icon').textContent = "visibility";
+            showCompletedTable = 0;
+        } else {
+            document.getElementById('s_completed_icon').textContent = "visibility_off";
+        }
+        if (toggle) {
+            if (!showCompletedTable || showCompletedTable == 0) {
+                showCompletedTable = 1;
+            } else {
+                showCompletedTable = 0;
+            }
+            chrome.storage.local.set({'showCompleted': showCompletedTable}, () => {
+                update_showCompleted(false);
+                createTaskList();
+            });
+        }
+    });
+}
+
+document.getElementById('s_completed_btn').addEventListener('click', () => {
+    update_showCompleted(true);
+});
+
+document.getElementById('s_add_btn').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "none";
+    document.getElementById('tab_addevent').style.display = "block";
+});
+
+document.getElementById('s_canelEvent_btn').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "block";
+    document.getElementById('tab_addevent').style.display = "none";
+});
+
+
+document.getElementById('s_add_btn').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "none";
+    document.getElementById('tab_addevent').style.display = "block";
+});
+
+document.getElementById('createTask_form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    let t_name = document.getElementById('in_addtask_name').value;
+    let t_url =  document.getElementById('in_addtask_url').value;
+    let t_date =  document.getElementById('in_addtask_due').value;
+    const epochTime = new Date(t_date).getTime();
+    console.log(t_date, epochTime)
+
+    chrome.storage.local.get("TaskListing", function(data) {
+        let newData = data["TaskListing"] || {};
+        
+        newData[t_name] = {
+            d: epochTime,
+            u: t_url,
+            c: 0
+          };
+
+        chrome.storage.local.set({ "TaskListing": newData }, function() {
+            createTaskList();
+            document.getElementById('tab_table').style.display = "block";
+            document.getElementById('tab_addevent').style.display = "none"
+        });
+    });
+});
+
+
+
 window.onload = function() {
+    update_showCompleted(false);
     createTaskList();
 };
