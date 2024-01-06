@@ -15,13 +15,11 @@ function convertToEpoch(dateString) {
 function add_to_calendar(title, endDate, link) {
     chrome.storage.local.get("TaskListing", function(data) {
         let storedData = data["TaskListing"] || {};
-
         storedData[title] = {
             d: convertToEpoch(endDate),
             u: link,
             c: 0
         };
-
         chrome.storage.local.set({ "TaskListing": storedData }, function() {
             console.log("Data stored in local storage");
         });

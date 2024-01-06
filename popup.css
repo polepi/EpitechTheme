@@ -77,7 +77,7 @@ body {
 }
 
 td:has(> .btn_del) {
-    background-color:crimson;
+    background-color: #B04632;
 }
 
 .material-icons, .material-icons-outlined {
@@ -183,7 +183,7 @@ td:has(> .btn_del) {
 }
 
 #tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local], 
-#tab_options input[type=password] {
+#tab_options input[type=password], select {
     display: block;
     width: 100%;
     margin-bottom: 5px;

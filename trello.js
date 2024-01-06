@@ -191,6 +191,7 @@ function merge_from_trello() {
       })
       .then(cards => {
         cards.forEach(card => {
+            console.log("Card: ", card);
             let iscomp = 0;
             const dateObject = new Date(card.due);
             const epochTime = dateObject.getTime();
@@ -201,6 +202,13 @@ function merge_from_trello() {
               d: epochTime,
               c: card.dueComplete,
               u: "https://intra.epitech.eu/"
+            }
+            if (card && card.labels && card.labels[0]) {
+              storedData[card.name].l = {
+                c: card.labels[0].color,
+                n: card.labels[0].name,
+                i: card.labels[0].id
+              }
             }
             fetch(`https://api.trello.com/1/cards/${card.id}/attachments?key=${tData.apiKey}&token=${tData.token}`)
             .then(response => {

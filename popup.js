@@ -3,6 +3,39 @@ var showCompletedTable = false
 const millisecondsInDay = 1000 * 60 * 60 * 24;
 const millisecondsInHour = 1000 * 60 * 60;
 
+const labelColours = {
+    "green": "#61BD4F",
+    "yellow": "#F2D600",
+    "orange": "#FF9F1A",
+    "red": "#EB5A46",
+    "purple": "#C377E0",
+    "blue": "#0079BF",
+    "sky": "#00C2E0",
+    "lime": "#51E898",
+    "pink": "#FF78CB",
+    "black": "#344563",
+    "green_dark": "#519839",
+    "yellow_dark": "#D9B51C",
+    "orange_dark": "#D29034",
+    "red_dark": "#B04632",
+    "purple_dark": "#89609E",
+    "blue_dark": "#055A8C",
+    "sky_dark": "#096FAB",
+    "lime_dark": "#4BBF6B",
+    "pink_dark": "#FF7588",
+    "black_dark": "#2F3E4E",
+    "green_light": "#84CF96",
+    "yellow_light": "#F7D038",
+    "orange_light": "#FFAF5F",
+    "red_light": "#FF8888",
+    "purple_light": "#D8A4E2",
+    "blue_light": "#4FB8F0",
+    "sky_light": "#4AC3E0",
+    "lime_light": "#7BE1BB",
+    "pink_light": "#FF9CCB",
+    "black_light": "#505F79"
+};
+
 function sortTable() {
     let table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById('taskTable');
@@ -108,7 +141,15 @@ function createTaskList() {
                 titleCell.addEventListener('click', () => {
                     window.open(storedData[title].u, '_blank');
                 });
+                const labelCell = document.createElement('td');
+                
+                if (storedData[title].l && storedData[title].l.c) {
+                    labelCell.style.width = "12px"
+                    labelCell.style.backgroundColor = labelColours[storedData[title].l.c];
+                    labelCell.title = storedData[title].l.n;
+                }
                 const dateCell = document.createElement('td');
+                dateCell.style.paddingLeft = "12px";
                 dateCell.textContent = dateString;
                 const button1Cell = document.createElement('td');
                 button1Cell.innerHTML = "<span style='font-size: 18px;margin-top: 1px;' class='material-icons'> "+icon+"</span> "+remainingTime;
@@ -127,6 +168,7 @@ function createTaskList() {
                 button2Cell.appendChild(button2);
                 row.appendChild(checkCell);
                 row.appendChild(titleCell);
+                row.appendChild(labelCell);
                 row.appendChild(dateCell);
                 row.appendChild(button1Cell);
                 row.appendChild(button2Cell);
