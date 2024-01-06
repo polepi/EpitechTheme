@@ -208,10 +208,28 @@ document.getElementById('s_canelEvent_btn').addEventListener('click', () => {
     document.getElementById('tab_addevent').style.display = "none";
 });
 
+document.getElementById('s_config_btn').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "none";
+    document.getElementById('tab_options').style.display = "block";
+});
+
+document.getElementById('s_canelEvent_btn2').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "block";
+    document.getElementById('tab_options').style.display = "none";
+});
 
 document.getElementById('s_add_btn').addEventListener('click', () => {
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('tab_addevent').style.display = "block";
+});
+
+document.getElementById('e_opsett_trello').addEventListener('click', () => {
+    var x = document.getElementById("subtab_trellosett");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 });
 
 document.getElementById('createTask_form').addEventListener('submit', (event) => {
@@ -238,8 +256,6 @@ document.getElementById('createTask_form').addEventListener('submit', (event) =>
         });
     });
 });
-
-
 
 window.onload = function() {
     update_showCompleted(false);

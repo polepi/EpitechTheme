@@ -20,7 +20,7 @@ function add_to_calendar(title, endDate, link) {
             d: convertToEpoch(endDate),
             u: link,
             c: 0
-          };
+        };
 
         chrome.storage.local.set({ "TaskListing": storedData }, function() {
             console.log("Data stored in local storage");

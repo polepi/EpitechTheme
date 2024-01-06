@@ -80,7 +80,7 @@ td:has(> .btn_del) {
     background-color:crimson;
 }
 
-.material-icons{
+.material-icons, .material-icons-outlined {
     display: inline-flex;
     vertical-align: top;
 }
@@ -139,7 +139,7 @@ td:has(> .btn_del) {
     padding: 5px;
 }
 
-.navbar>div, .navbar>button {
+.navbar>div, button {
     display: inline-block;
     padding: 4px 8px;
     color: #444;
@@ -147,6 +147,10 @@ td:has(> .btn_del) {
     border: 1px solid #ccc;
     background-color: #ddd;
     cursor: pointer;
+}
+
+.navbar>div:hover, button:hover {
+    opacity: 0.6;
 }
 
 .noselect {
@@ -170,11 +174,16 @@ td:has(> .btn_del) {
     display: none;
 }
 
+#tab_options {
+    display: none;
+}
+
 #tab_addevent>form {
     padding: 4px 8px;
 }
 
-#tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local] {
+#tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local], 
+#tab_options input[type=password] {
     display: block;
     width: 100%;
     margin-bottom: 5px;
@@ -183,7 +192,7 @@ td:has(> .btn_del) {
     border: 1px solid #ccc;
 }
 
-#tab_addevent>h3 {
+#tab_addevent>h3, #tab_options>h3 {
     width: 100%;
     background-color: #fff;
     margin: 0px;
@@ -192,4 +201,39 @@ td:has(> .btn_del) {
     border: none;
     border-bottom: 1px solid #ddd;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+#subtab_trello>.cont>table button {
+    width: 100%;
+}
+
+.subtab_cont {
+    background-color: #fff;
+    margin: 5px;
+    margin-top: 0px;
+}
+
+.subtab_cont>h3 {
+    width: 100%;
+    background-color: #fff;
+    margin: 0px;
+    margin-bottom: 0px;
+    font-size: 16px;
+    padding: 11px 20px 11px 12px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.cont {
+    padding: 10px 6px;
+}
+
+.warn-badge {
+    padding: 6px 10px;
+    background-color: orange;
+    border-radius: 3px;
+}
+
+.t_row_hide {
+    display: none;
 }
