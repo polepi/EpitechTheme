@@ -42,6 +42,50 @@ body {
 	color: white !important;
 }
 
+.notices .item {
+	background-color: rgb(30, 33, 36) !important;
+	border-radius: 3px !important;
+}
+
+.notices .item:hover {
+	background-color: rgb(30, 33, 36) !important;
+}
+
+.notices .html {
+	background: none !important;
+}
+
+.notices .links {
+	background: none !important;
+	box-shadow: none !important;
+}
+
+.arrow.picture {
+	display: none !important;
+}
+
+.info_articles_hidden a {
+	color: #ccc !important;
+	font-style: none !important;
+}
+
+.info_articles_hidden {
+	border: none !important;
+}
+
+.notices .links span {
+	color: #bbb !important;
+	font-style: none !important;
+}
+
+.notices a {
+	color: #aaa !important;
+}
+
+#wall #content .item .first .data {
+	border: none !important;
+}
+
 #sidebar .planning.miniview table {
 	margin: 0 !important;
 	margin-top: 5px !important;
@@ -190,6 +234,10 @@ body {
 	display: none !important;
 }
 
+#homeboard {
+    border-bottom: none !important;
+}
+
 #homeboard section {
     background-color: #1e2124 !important;
 	color: rgb(240, 240, 240);
@@ -210,6 +258,7 @@ body {
 }
 
 #homeboard section article {
+	border: none !important;
     background: #424549 !important;
 	border-radius: 3px !important;
 }
@@ -232,6 +281,10 @@ body {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
 	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/date_range/round.png?raw=true') !important;
+}
+
+#homeboard .final_render .module .articles {
+	height: 613px !important;
 }
 
 #homeboard .final_render .module>h2>span {
@@ -383,6 +436,12 @@ body {
 	display: none !important;
 }
 
+#breadcrumb {
+	margin-top: 11px !important;
+	margin-bottom: 5px !important;
+	padding-left: 11px !important;
+}
+
 #breadcrumb>ul {
 	color: rgb(240, 240, 240) !important;
 }
@@ -390,7 +449,18 @@ body {
 #breadcrumb>ul>li {
 	background-color: #1e2124 !important;
 	border-radius: 0px !important;
+	padding-right: 10px !important;
 	box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.sep {
+	color: transparent !important;
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-size: 16px 16px;
+	width: 16px !important;
+	display: inline-block !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_right/round.png?raw=true') !important;
 }
 
 #breadcrumb ul li:first-child {
@@ -403,9 +473,19 @@ body {
 
 #breadcrumb ul li a>.icon {
     background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
+    background-position: 6px, 50% !important;
 	margin-right: 5px;
+	background-size: 18px 18px !important;
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/home/round.png?raw=true') !important;
+}
+
+div.datagrid table tfoot {
+	background-color: #222 !important;
+	color: white !important;
+}
+
+div.datagrid div:last-child table tfoot tr {
+	background: none !important;
 }
 
 #content {
@@ -486,9 +566,26 @@ ul.tabs li a span {
 
 #content .bloc.tabulation {
 	color: rgb(240, 240, 240) !important;
-    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px 0px !important;
-    background-color: rgb(30, 33, 36) !important;
-    border-radius: 3px !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.datagrid table {
+    width: 100% !important;
+}
+
+.datagrid table td {
+    padding: 6px 3px !important;
+}
+
+#footer {
+	background: none !important;
+	background-color: #111 !important;
+	color: white !important;
+}
+
+#footer a {
+	color: white !important;
 }
 
 .tabulation>.tabs>li>a {
@@ -777,6 +874,16 @@ div.datagrid {
 
 #module .tab > ul li.activite > .title h2 a {
     color: white !important;
+}
+
+.sub_list {
+	background: rgb(66, 69, 73) !important;
+	border: none !important;
+	border-radius: 3px;
+}
+
+.item img {
+	border-radius: 3px;
 }
 
 .has-registered:hover {
