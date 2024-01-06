@@ -30,6 +30,83 @@ body {
 	border-radius: 3px;
 }
 
+#sidebar .planning.miniview {
+	width: 100% !important;
+    margin: 0px !important;
+	max-width: 260px !important;
+	background-color: #222 !important;
+	color: white !important;
+}
+
+#sidebar .planning.miniview a {
+	color: white !important;
+}
+
+#sidebar .planning.miniview table {
+	margin: 0 !important;
+	margin-top: 5px !important;
+	width: 100% !important;
+	background-color: #444 !important;
+}
+
+#sidebar .planning.miniview table .weekend {
+	background-color: #666 !important;
+}
+
+#sidebar .planning.miniview table td:hover {
+	background-color: #272727 !important;
+}
+
+#sidebar .planning.miniview table td {
+	padding: 5px !important;
+	border: 1px solid #333 !important;
+	color: white !important;
+}
+
+.planner .top {
+    background-color: rgb(30, 33, 36) !important;
+    border-radius: 3px 3px 0 0 !important;
+}
+
+.top table tbody tr {
+	display: none !important;
+}
+
+.planner .scroll {
+    border: none !important;
+    border-radius: 0 0 3px 3px !important;
+}
+
+.planner .v-header {
+    color: white !important;
+    background-color: rgb(30, 33, 36) !important;
+    border: none !important;
+}
+
+.planner .v-header div {
+    border-bottom: 2px solid rgb(54, 57, 62) !important;
+}
+
+.planner.daysview > .days .scroll .events .quarter {
+    border-bottom: 1px dashed #666 !important;
+}
+
+.planner.daysview > .days .scroll .events {
+    border-bottom: 1px solid rgb(54, 57, 62) !important;
+    border-top: 1px solid rgb(54, 57, 62) !important;
+}
+
+#sidebar .planning.miniview table th {
+	padding: 5px !important;
+	background-color: #333 !important;
+	border: none !important;
+}
+
+#sidebar .planning.miniview table .today {
+	background-color: rgb(45, 54, 110) !important;
+	border: none !important;
+}
+
 #sidebar>.title {
 	display: none !important;
 }
@@ -700,6 +777,87 @@ div.datagrid {
 
 #module .tab > ul li.activite > .title h2 a {
     color: white !important;
+}
+
+.has-registered:hover {
+	background-color: #333 !important;
+}
+
+.slide>.eventzone a {
+	color: #cccccc !important;
+}
+
+.data>.num>.buttons>span>.count {
+	margin-top: 8px;
+}
+
+.data>.num>.buttons>span>a {
+	padding: 6px 10px !important;
+	background: none !important;
+	background-color: rgb(45, 54, 110) !important;
+	text-decoration: none !important;
+	cursor: pointer;
+}
+
+.data>.num>.buttons>span>a:hover {
+	opacity: 0.8;
+}
+
+.event:hover {
+	background-color: #333 !important;
+}
+
+.access>.item {
+	margin-left: 0px !important;
+}
+
+.access>.item>h3 {
+	background-color: rgb(45, 54, 110) !important;
+	border-radius: 3px 3px 0 0 !important;
+}
+
+.access>.item>.links {
+	height: 70px !important;
+	border-radius: 0px 0px 3px 3px !important;
+}
+
+.data>.num>.buttons>span>.register>span {
+	background-repeat: no-repeat !important;
+    background-position: 0px, 50% !important;
+	background-size: 18px 18px !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/add_circle/round.png?raw=true') !important;
+}
+
+.data>.num>.buttons>span>.register>span>.label {
+	margin: 0 !important;
+}
+
+.data>.num>.buttons>span>.unregister>span {
+	background-repeat: no-repeat !important;
+    background-position: 0px, 50% !important;
+	background-size: 18px 18px !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/check/round.png?raw=true') !important;
+} 
+
+.data>.num>.buttons>span>.registered {
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/group/round.png?raw=true') !important;
+}
+
+.data>.num>.buttons>span>.register>span, .data>.num>.buttons>span>.registered>span {
+	margin-left: 0 !important;
+}
+
+.data>.num>.buttons>span>.register>span>.icon, .data>.num>.buttons>span>.registered>span>.icon {
+	background: none !important;
+	padding-left: -15px !important;
+	margin-right: 12px;
+}
+
+rect {
+    fill: rgb(30, 30, 30);
+    color: white;
 }
 
 .btn_add {
