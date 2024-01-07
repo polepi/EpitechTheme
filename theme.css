@@ -571,7 +571,7 @@ ul.tabs li a span {
 }
 
 .datagrid table {
-    width: 100% !important;
+    border-spacing: 1px !important;
 }
 
 .datagrid table td {
