@@ -178,6 +178,10 @@ td:has(> .btn_del) {
     display: none;
 }
 
+#tab_taskdesc {
+    display: none;
+}
+
 #tab_addevent>form {
     padding: 4px 8px;
 }
@@ -192,7 +196,7 @@ td:has(> .btn_del) {
     border: 1px solid #ccc;
 }
 
-#tab_addevent>h3, #tab_options>h3 {
+#tab_addevent>h3, #tab_options>h3, #tab_taskdesc>h3 {
     width: 100%;
     background-color: #fff;
     margin: 0px;
@@ -236,4 +240,101 @@ td:has(> .btn_del) {
 
 .t_row_hide {
     display: none;
+}
+
+#in_edittask_due {
+    border: none;
+    box-sizing: border-box;
+    outline: 0;
+    margin-right: -10px;
+    position: relative;
+}
+
+#in_edittask_due::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+#info_taskDesc {
+    width: 100%;
+    resize: none;
+    display: block;
+    padding: 8px 12px;
+    min-height: 100px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+    margin-top: 9px;
+}
+
+.date_calendar_e {
+    cursor: pointer;
+}
+
+.date_calendar_e:hover {
+    opacity: 0.6;
+}
+
+#info_taskLab>span {
+    display: inline-block;
+    padding: 8px 12px;
+    min-width: 1px;
+    border-radius: 3px;
+    margin-top: 14px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #fff;
+    text-shadow: 1px 1px 1px #333;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+#info_taskUrl>span {
+    display: block;
+    width: 100%;
+    border-radius: 3px;
+    margin-top: 8px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+#info_taskUrl>span>a {
+    text-decoration: none;
+    background-color: #ddd;
+    color: #333;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#info_taskUrl>span>input {
+    color: #555;
+    padding: 7px 12px;
+    border: none;
+    outline: none;
+    width: 480px;
+    margin-top: 3px;
+}
+
+#info_taskUrl>span>a:hover {
+    opacity: 0.6;
+}
+
+.date_infoEvent {
+    padding: 8px 12px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }

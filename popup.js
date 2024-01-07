@@ -61,8 +61,113 @@ function sortTable() {
         switching = true;
       }
     }
-  }
-  
+}
+
+function openDescList(event) {
+    const clickedElement = event.target.parentNode;
+    const dataTitle = clickedElement.getAttribute('data-title');
+    chrome.storage.local.get("TaskListing", function(data) {
+        storedData = data["TaskListing"];
+    });
+    console.log(storedData);
+
+    let remainingTime;
+    let color;
+    let icon = "radio_button_checked";
+    let icon2 = "check_box_outline_blank";
+
+    const date = new Date(storedData[dataTitle].d + 3600000);
+    const currentDate = new Date();
+    const timeDifference = date.getTime() - currentDate.getTime();
+    const formattedDateTime = date.toISOString().slice(0, 16);
+    let daysLeft = Math.floor(timeDifference / millisecondsInDay);
+
+    if (daysLeft <= 1) {
+        color = '#a61e0c';
+        icon = "error_outline";
+    } else if (daysLeft <= 3) {
+        color = '#ffa600';
+        icon = "running_with_errors";
+    } else if (daysLeft <= 7) {
+        color = '#3b8000';
+        icon = "timelapse";
+    } else {
+        color = '#3b8000';
+    }
+    if (storedData[dataTitle].c == 1) {
+        color = '#3b8000';
+        icon = 'event_available';
+        icon2 = 'check_box';
+        completed_count = completed_count + 1;
+    }
+    if (Math.ceil(timeDifference / (1000 * 60)) <= 0) {
+        color = '#aaa';
+        icon = 'history_toggle_off';
+        remainingTime = "Expired"
+    } else if (timeDifference < millisecondsInHour) {
+        remainingTime = Math.ceil(timeDifference / (1000 * 60)) + ' minutes';
+    } else if (timeDifference < millisecondsInDay) {
+        remainingTime = Math.floor(timeDifference / millisecondsInHour) + ' hours';
+    } else {
+        remainingTime = daysLeft + ' day(s)';
+    }
+
+    document.getElementById('info_taskLab').style.display = "none";
+    document.getElementById('info_taskLab').innerHTML = "";
+    if (storedData[dataTitle] && storedData[dataTitle].l) {
+        const row = document.createElement('span');
+        row.innerHTML = storedData[dataTitle].l.n;
+        document.getElementById('info_taskLab').appendChild(row);
+        row.style.backgroundColor = labelColours[storedData[dataTitle].l.c];
+        document.getElementById('info_taskLab').style.display = "block";
+    }
+    
+    document.getElementById('info_taskDaysIcon').innerHTML = "<span style='font-size: 18px;margin-top: 0px;' class='material-icons' >"+icon+"</span>&nbsp;&nbsp;"+remainingTime;
+    document.getElementById('info_taskDaysIcon').style.color = color;
+    document.getElementById('tab_table').style.display = "none";
+    document.getElementById('info_taskName').textContent = dataTitle;
+
+    document.getElementById('info_taskDesc').style.display = "none";
+    if (storedData[dataTitle].desc) {
+        document.getElementById('info_taskDesc').textContent = storedData[dataTitle].desc;
+        document.getElementById('info_taskDesc').style.display = "block";
+    }
+
+    document.getElementById('in_edittask_due').value = formattedDateTime;
+    document.getElementById('tab_taskdesc').style.display = "block";
+
+    document.getElementById('info_taskUrl').style.display = "none";
+    document.getElementById('info_taskUrl').innerHTML = "";
+    if (storedData[dataTitle] && storedData[dataTitle].u) {
+        const row = document.createElement('span');
+        row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;' class='material-icons'>link</a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
+        document.getElementById('info_taskUrl').appendChild(row);
+        document.getElementById('info_taskUrl').style.display = "block";
+    }
+}
+
+function apply_card_save_changes() {
+    document.getElementById('s_descEvent_save').style.display = "none";
+    const taskname = document.getElementById('info_taskName').textContent;
+    const tasktime = document.getElementById('in_edittask_due').value;
+    const etask_url = document.getElementById('etask_url').value;
+    const epochTime = new Date(tasktime).getTime();
+    chrome.storage.local.get("TaskListing", function(data) {
+        storedData = data["TaskListing"];
+    });
+    if (storedData[taskname]) {
+        storedData[taskname].desc = document.getElementById('info_taskDesc').value;
+    }
+    if (tasktime && epochTime) {
+        storedData[taskname].d = epochTime;
+    }
+    if (etask_url) {
+        storedData[taskname].u = etask_url;
+    }
+    chrome.storage.local.set({'TaskListing': storedData}, () => {
+        document.getElementById('s_descEvent_save').style.display = "inline-block";
+    });
+}
 
 function createTaskList() {
     const taskTable = document.getElementById('taskTable');
@@ -73,7 +178,7 @@ function createTaskList() {
     taskTable.innerHTML = '';
     let completed_count = 0;
     chrome.storage.local.get("TaskListing", function(data) {
-        const storedData = data["TaskListing"];
+        storedData = data["TaskListing"];
         if (storedData) {
             Object.keys(storedData).forEach(title => {
                 const date = new Date(storedData[title].d);
@@ -83,6 +188,8 @@ function createTaskList() {
                 const row = document.createElement('tr');
                 row.setAttribute('data-index', storedData[title].d);
                 row.setAttribute('data-comp', storedData[title].c);
+                row.setAttribute('data-title', title);
+                row.setAttribute('data-desc', storedData[title].desc);
                 let remainingTime;
                 let color;
                 let icon = "radio_button_checked";
@@ -154,6 +261,11 @@ function createTaskList() {
                 const button1Cell = document.createElement('td');
                 button1Cell.innerHTML = "<span style='font-size: 18px;margin-top: 1px;' class='material-icons'> "+icon+"</span> "+remainingTime;
                 button1Cell.style.color = color;
+
+                dateCell.addEventListener('click', openDescList);
+                button1Cell.addEventListener('click', openDescList);
+                labelCell.addEventListener('click', openDescList);
+
                 const button2Cell = document.createElement('td');
                 const button2 = document.createElement('button');
                 button2.addEventListener('click', () => {
@@ -236,6 +348,8 @@ function update_showCompleted(toggle) {
     });
 }
 
+document.getElementById('s_descEvent_save').addEventListener('click', apply_card_save_changes);
+
 document.getElementById('s_completed_btn').addEventListener('click', () => {
     update_showCompleted(true);
 });
@@ -260,6 +374,11 @@ document.getElementById('s_canelEvent_btn2').addEventListener('click', () => {
     document.getElementById('tab_options').style.display = "none";
 });
 
+document.getElementById('s_canelEvent_btn3').addEventListener('click', () => {
+    document.getElementById('tab_table').style.display = "block";
+    document.getElementById('tab_taskdesc').style.display = "none";
+});
+
 document.getElementById('s_add_btn').addEventListener('click', () => {
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('tab_addevent').style.display = "block";
@@ -280,7 +399,6 @@ document.getElementById('createTask_form').addEventListener('submit', (event) =>
     let t_url =  document.getElementById('in_addtask_url').value;
     let t_date =  document.getElementById('in_addtask_due').value;
     const epochTime = new Date(t_date).getTime();
-    console.log(t_date, epochTime)
 
     chrome.storage.local.get("TaskListing", function(data) {
         let newData = data["TaskListing"] || {};

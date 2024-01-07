@@ -4,7 +4,6 @@ var isTrelloSet = false;
 function load_trelloData() {
   chrome.storage.local.get("TrelloData", function(data) {
     tData = data["TrelloData"] || {};
-    console.log("Trello > ", tData);
     if (tData.apiKey && tData.token && tData.listId) {
       isTrelloSet = true;
       document.getElementById('t_notset_warn').style.display = "none";
@@ -79,7 +78,7 @@ function trello_set_attributes(id, url) {
   });
 }
 
-function trello_update_card(id, title, iscomp, due, url) {
+function trello_update_card(id, title, iscomp, due, url, desc) {
   if (iscomp == 0) {
     iscomp = false;
   } else {
@@ -89,6 +88,7 @@ function trello_update_card(id, title, iscomp, due, url) {
   var cardData = {
     name: title,
     dueComplete: iscomp,
+    desc: desc,
     due: due,
     idList: tData.listId
   };
@@ -114,7 +114,7 @@ function trello_update_card(id, title, iscomp, due, url) {
   });
 }
 
-function trello_new_card(title, iscomp, due, url) {
+function trello_new_card(title, iscomp, due, url, desc) {
     if (iscomp == 0) {
       iscomp = false;
     } else {
@@ -125,6 +125,7 @@ function trello_new_card(title, iscomp, due, url) {
       name: title,
       dueComplete: iscomp,
       due: due,
+      desc: desc,
       idList: tData.listId
     };
   fetch(`https://api.trello.com/1/cards?key=${tData.apiKey}&token=${tData.token}`, {
@@ -164,9 +165,9 @@ function export_to_trello() {
         .then(cards => {
           const existingCard = cards.find(card => card.name === title);
           if (existingCard) {
-            trello_update_card(existingCard.id, title, storedData[title].c, storedData[title].d, storedData[title].u);
+            trello_update_card(existingCard.id, title, storedData[title].c, storedData[title].d, storedData[title].u, storedData[title].desc);
           } else {
-            trello_new_card(title, storedData[title].c, storedData[title].d, storedData[title].u);
+            trello_new_card(title, storedData[title].c, storedData[title].d, storedData[title].u, storedData[title].desc);
           }
         })
         .catch(error => {
@@ -201,7 +202,8 @@ function merge_from_trello() {
             storedData[card.name] = {
               d: epochTime,
               c: card.dueComplete,
-              u: "https://intra.epitech.eu/"
+              u: "https://intra.epitech.eu/",
+              desc: card.desc
             }
             if (card && card.labels && card.labels[0]) {
               storedData[card.name].l = {

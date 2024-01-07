@@ -18,7 +18,9 @@ function add_to_calendar(title, endDate, link) {
         storedData[title] = {
             d: convertToEpoch(endDate),
             u: link,
-            c: 0
+            c: 0,
+            desc: "No description set.",
+            label: {}
         };
         chrome.storage.local.set({ "TaskListing": storedData }, function() {
             console.log("Data stored in local storage");

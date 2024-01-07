@@ -598,7 +598,7 @@ ul.tabs li a span {
 	padding-left: 38px !important;
 	background-repeat: no-repeat !important;
     background-position: 8px, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/group/round.png?raw=true') !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/flip_to_front/round.png?raw=true') !important;
 	background-color: rgb(66, 69, 73) !important;
 	text-shadow: none !important;
 }
@@ -805,6 +805,13 @@ td > .bargraph > span {
 	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/cancel/round.png?raw=true') !important;
 }
 
+#tab-soutenance>h2, #tab-note>h2 {
+	color: #fff !important;
+}
+
+#tab-note>.listing>.data:hover, #tab-soutenance>.listing>.data:hover {
+	background: rgb(66, 69, 73) !important;
+}
 
 #project #tab-group.tab li.group > .wrapper > .actions a .label {
     display: none !important;
