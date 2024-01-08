@@ -48,3 +48,28 @@ articles.forEach(article => {
     button.addEventListener('click', add_to_calendar);
     article.appendChild(button);
 });
+
+const spanElement2 = document.querySelector('.item.message.pedagogic span');
+if (spanElement2) {
+    console.log(spanElement2.textContent)
+    if (spanElement2.textContent == "Unit in progress")
+        spanElement2.innerHTML = "<span class='traffic_orange'></span><span style='margin-left:18px;'>"+ spanElement2.textContent+"</span>";
+    if (spanElement2.textContent == "Unit acquired with grade Acquis.")
+        spanElement2.innerHTML = "<span class='traffic_green'></span><span style='margin-left:18px;'>Unit passed</span>";
+    if (spanElement2.textContent.includes("Unit acquired with grade "))
+        spanElement2.innerHTML = "<span class='traffic_green'></span><span style='margin-left:18px;'>Grade <b>"+spanElement2.textContent.replace('Unit acquired with grade ','')+"</b></span>";
+}
+
+const spanElement = document.querySelector('div.nbcredits span');
+if (spanElement) {
+    var originalText = spanElement.textContent;
+    originalText = originalText.replace('(','');
+    originalText = originalText.replace(' credit(s)s)','');
+    originalText = originalText.replace(' credit(s))','');
+    if (Number(originalText) == 0)
+        spanElement.textContent = "No credits";
+    else if (Number(originalText) == 1)
+        spanElement.textContent = originalText + "credit";
+    else if (Number(originalText) > 1)
+        spanElement.textContent = originalText + " credits";
+}

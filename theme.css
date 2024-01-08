@@ -16,6 +16,20 @@ body {
 	background-color: #36393e !important;
 }
 
+a {
+    color: #ddd !important;
+}
+
+.item.buttons .button.export {
+	background-repeat: no-repeat !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/playlist_add/round.png?raw=true') !important;
+    background-position: 0px, 50% !important;
+}
+
+#sidebar form.filter.course .datatree > dl dd {
+    background: #333 !important;
+}
+
 ::-webkit-scrollbar {
 	width: 6px;
 }
@@ -347,7 +361,7 @@ body {
 #notification>.news>a>.logo {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications_active/outline.png?raw=true') !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications_active/round.png?raw=true') !important;
 }
 
 #notification>.rdv>a>.logo {
@@ -1007,4 +1021,203 @@ rect {
 .btn_add2:hover {
 	opacity: 0.6;
 	cursor: pointer;
+}
+
+#module .bloc.top a.registered span.icon {
+    display: none !important;
+}
+
+#module .bloc.top a.registered {
+    padding: 6px 12px;
+	background-color: #222;
+	border-radius: 3px;
+	cursor: pointer;
+	background-repeat: no-repeat !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/visibility/round.png?raw=true') !important;
+    background-position: 8px, 50% !important;
+	background-size: 18px 18px !important;
+	padding-left: 34px !important;
+	margin-right: 4px !important;
+}
+
+#module .bloc.top a.registered:hover {
+    opacity: 0.6;
+}
+
+.colour-indigo {
+	background-color: rgb(45, 54, 110) !important;
+}
+
+.colour-red-transp {
+	background-color: rgb(127 92 86) !important;
+}
+
+.nbcredits {
+	padding: 6px 12px;
+	background-color: #222;
+	border-radius: 3px;
+	background-repeat: no-repeat !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/star/round.png?raw=true') !important;
+    background-position: 8px, 50% !important;
+	background-size: 18px 18px !important;
+	padding-left: 34px !important;
+}
+
+#module .bloc.top .item.title .code-module span, #module .bloc.top .item.title .code-instance span, #module .bloc.top .item.title .nbcredits span {
+    font-style: normal !important;
+    color: #dbdbdb !important;
+}
+
+.rzone .item.message.pedagogic>span {
+	padding: 6px 10px 6px 6px;
+	background-color: #222;
+	border-radius: 3px;
+	display: block;
+	margin-bottom: 3px;
+}
+
+#content .rzone .item.message.register {
+	margin-top: 6px;
+}
+
+.sep.ui-active {
+	color: #f1f1f1 !important;
+	display: block !important;
+}
+
+#content .rzone .item.message.register>div {
+	padding: 6px 10px 6px 6px;
+	background-color: #222;
+	border-radius: 3px;
+	display: block;
+	margin-top: 3px;
+}
+
+.traffic_green {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 0px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-top: 5px;
+	display: inline-block;
+	background-color: rgb(88, 172, 99);
+}
+
+.traffic_orange {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 0px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-top: 5px;
+	display: inline-block;
+	background-color: darkorange;
+}
+
+#module .bloc.top .rzone .item.icon.fire {
+	display: none !important;
+}
+
+.rzone .nb_session>span {
+	padding: 6px 12px;
+	background-color: #222;
+	border-radius: 3px;
+}
+
+.button.registerdisabled {
+	margin-top: 10px !important;
+	background: none !important;
+}
+
+.button.registerdisabled>span {
+	background: none !important;
+	background-color: #696969 !important;
+	padding: 3px 12px;
+	cursor: not-allowed !important;
+	border-radius: 3px;
+}
+
+.button.unregister {
+	background: none !important;
+}
+
+.button.unregister>span {
+	background: none !important;
+	background-color: #8b5454 !important;
+	padding: 3px 12px;
+	cursor: pointer !important;
+	border-radius: 3px;
+}
+
+.button.unregister>span>.icon {
+	display: none;
+}
+
+.button.unregister>span>.label {
+	margin-left: 0 !important;
+}
+
+.user.info.box {
+	border-radius: 3px !important;
+	background-color: #1e2124 !important;
+	color: white !important;
+	border: 1px solid #151618 !important;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25) !important;
+}
+
+.user.info.box .picture {
+	border-radius: 3px !important;
+}
+
+.user.info.box .left {
+	border-radius: 3px !important;
+}
+
+div.datagrid table tbody tr:hover {
+    color: #ddd!;
+}
+
+fieldset.filters.location, fieldset.filters.student, fieldset.filters.semester, fieldset.filters.perso, form.filters.instance>fieldset {
+	border: none !important;
+	border-top: 1px solid #555 !important;
+}
+
+#sidebar .filters.instance .input input {
+	padding: 6px 8px !important;
+	border: 1px solid #222 !important;
+	background-color: #333 !important;
+	color: #f1f1f1 !important;
+	border-radius: 3px !important;
+	outline: #555;
+}
+
+#sidebar .filters.instance .submit input {
+	padding: 6px 8px !important;
+	border: 1px solid #333 !important;
+	background-color: #444 !important;
+	color: #f1f1f1 !important;
+	border-radius: 3px !important;
+	outline: none;
+	cursor: pointer;
+}
+
+#sidebar .filters.perso .buttons.calendar .button>span {
+	padding: 6px 8px !important;
+	border: 1px solid #222 !important;
+	background-color: #333 !important;
+	color: #f1f1f1 !important;
+	border-radius: 3px !important;
+	outline: #555;
+}
+
+#sidebar .filters.perso .buttons.calendar .button > span .label {
+	color: #f1f1f1 !important;
+	margin: none !important;
+}
+
+#sidebar .filters.perso .buttons.calendar .button > span .icon {
+	display: none !important;
 }
