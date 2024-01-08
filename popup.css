@@ -12,6 +12,20 @@ body {
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #aaa;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 3px;
+}
+
 .searchIco {
     position: absolute;
     margin-top: 8px;

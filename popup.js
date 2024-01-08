@@ -385,6 +385,8 @@ document.getElementById('s_add_btn').addEventListener('click', () => {
 });
 
 document.getElementById('e_opsett_trello').addEventListener('click', () => {
+    window.open("trello.html", '_blank');
+    return;
     var x = document.getElementById("subtab_trellosett");
     if (x.style.display === "none") {
         x.style.display = "block";

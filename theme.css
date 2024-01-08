@@ -1063,6 +1063,18 @@ rect {
 	padding-left: 34px !important;
 }
 
+#project .bloc.notallowed {
+	line-height: 26px !important;
+	padding: 4px 10px !important;
+	margin-bottom: 0px !important;
+	padding-left: 36px !important;
+	border-radius: 3px !important;
+	background-repeat: no-repeat !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/info/outline.png?raw=true') !important;
+    background-position: 8px, 50% !important;
+	background-size: 18px 18px !important;
+}
+
 #module .bloc.top .item.title .code-module span, #module .bloc.top .item.title .code-instance span, #module .bloc.top .item.title .nbcredits span {
     font-style: normal !important;
     color: #dbdbdb !important;
