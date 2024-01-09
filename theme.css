@@ -1233,3 +1233,121 @@ fieldset.filters.location, fieldset.filters.student, fieldset.filters.semester, 
 #sidebar .filters.perso .buttons.calendar .button > span .icon {
 	display: none !important;
 }
+
+.dropdown.rdv.ui-expanded>.layer, .dropdown.message.ui-expanded>.layer, #header #notification .dropdown .layer,
+#header #identification.expanded .menu {
+	color: white !important;
+    background: #333 !important;
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #111 !important;
+}
+
+#header #notification .dropdown .layer .item {
+    border-bottom: 1px solid #222 !important;
+}
+
+#header #notification .dropdown .layer .item a {
+    text-decoration: underline !important;
+}
+
+#header #notification .dropdown .layer .item:hover {
+    background: #333 !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable {
+	background: #333 !important;
+	color: white !important;
+	box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #111 !important;
+	padding: 0 !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable h1 {
+	background: #222 !important;
+	color: white !important;
+    border-bottom: 1px solid #111 !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable .data.manage.group {
+	background: none !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable #managegroup-groupname {
+	background: #444 !important;
+	border: none !important;
+	box-shadow: none !important;
+	color: white !important;
+    border: 1px solid #222 !important;
+	padding: 6px 8px !important;
+	width: 95% !important;
+	border-radius: 3px !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable #managegroup-addmember {
+	background: #444 !important;
+	border: none !important;
+	box-shadow: none !important;
+	color: white !important;
+    border: 1px solid #222 !important;
+	padding: 8px 10px !important;
+	width: 95% !important;
+	border-radius: 3px !important;
+	outline: none !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable .item.master {
+	border: none !important;
+	background: none !important;
+}
+
+.popup.custom .item.buttons {
+	background: none !important;
+	height: 40px !important;
+	background: #222 !important;
+	border-top: 1px solid #111 !important;
+}
+
+.popup.custom .item.buttons a {
+	margin: 0 !important;
+	margin-top: 5px !important;
+}
+
+.popup.custom .item.buttons .label {
+	margin-left: 0 !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable .wrapper {
+	background: #444 !important;
+	border: none !important;
+	box-shadow: none !important;
+	color: white !important;
+    border: 1px solid #222 !important;
+	padding: 6px 8px !important;
+	width: 95% !important;
+	border-radius: 3px !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable .list {
+	background: #444 !important;
+	border: none !important;
+	box-shadow: none !important;
+	color: white !important;
+    border: 1px solid #222 !important;
+	padding: 6px 8px !important;
+	width: 95% !important;
+	border-radius: 3px !important;
+}
+
+.modal.popup.custom.manage.group.ui-draggable .help {
+	display: none !important;
+}
+
+a.log-out {
+	padding: 6px 8px !important;
+	background-color: brown !important;
+	border-radius: 3px !important;
+	color: white !important;
+	cursor: pointer;
+}
