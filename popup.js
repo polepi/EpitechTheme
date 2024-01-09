@@ -69,7 +69,7 @@ function openDescList(event) {
     chrome.storage.local.get("TaskListing", function(data) {
         storedData = data["TaskListing"];
     });
-    console.log(storedData);
+    console.log("CARD INFO: ", storedData);
 
     let remainingTime;
     let color;
@@ -115,17 +115,26 @@ function openDescList(event) {
     document.getElementById('info_taskLab').style.display = "none";
     document.getElementById('info_taskLab').innerHTML = "";
     if (storedData[dataTitle] && storedData[dataTitle].l) {
-        const row = document.createElement('span');
-        row.innerHTML = storedData[dataTitle].l.n;
-        document.getElementById('info_taskLab').appendChild(row);
-        row.style.backgroundColor = labelColours[storedData[dataTitle].l.c];
-        document.getElementById('info_taskLab').style.display = "block";
+        const info_taskLab = document.getElementById('info_taskLab');
+        storedData[dataTitle].l.forEach((item) => {
+          const row = document.createElement('span');
+          row.innerHTML = item.n;
+          row.style.backgroundColor = labelColours[item.c];
+          info_taskLab.appendChild(row);
+        });
+        info_taskLab.style.display = "block";
     }
     
     document.getElementById('info_taskDaysIcon').innerHTML = "<span style='font-size: 18px;margin-top: 0px;' class='material-icons' >"+icon+"</span>&nbsp;&nbsp;"+remainingTime;
     document.getElementById('info_taskDaysIcon').style.color = color;
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('info_taskName').textContent = dataTitle;
+
+    document.getElementById('info_taskCardUrl').style.display = "none";
+    if (storedData[dataTitle] && storedData[dataTitle].tu) {
+        document.getElementById('info_taskCardUrl').href = storedData[dataTitle].tu;
+        document.getElementById('info_taskCardUrl').style.display = "inline";
+    }
 
     document.getElementById('info_taskDesc').style.display = "none";
     if (storedData[dataTitle].desc) {
@@ -143,6 +152,32 @@ function openDescList(event) {
         row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;' class='material-icons'>link</a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
         document.getElementById('info_taskUrl').appendChild(row);
         document.getElementById('info_taskUrl').style.display = "block";
+    }
+    document.getElementById("info_taskChecks").innerHTML = "";
+
+    if (storedData[dataTitle] && storedData[dataTitle].checks) {
+        
+        storedData[dataTitle].checks.forEach((item) => {
+            const checkTable_div = document.createElement('div');
+            checkTable_div.innerHTML = "<h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>checklist</span>&nbsp;&nbsp;"+item.name+"</h3>";
+            const checkTable_table = document.createElement('table');
+            item.checkItems.forEach((itemCheck) => {
+                const checkTable_tr = document.createElement('tr');
+                const checkTable_td = document.createElement('td');
+                const checkTable_td2 = document.createElement('td');
+                checkTable_td.innerHTML = itemCheck.name
+                if (itemCheck.state == "complete") {
+                    checkTable_td2.innerHTML = "<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check_box</span>";
+                } else {
+                    checkTable_td2.innerHTML = "<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check_box_outline_blank</span>"
+                }
+                checkTable_tr.appendChild(checkTable_td2);
+                checkTable_tr.appendChild(checkTable_td);
+                checkTable_table.appendChild(checkTable_tr);
+            });
+            checkTable_div.appendChild(checkTable_table);
+            document.getElementById('info_taskChecks').appendChild(checkTable_div);
+        });
     }
 }
 
@@ -164,6 +199,22 @@ function apply_card_save_changes() {
     if (etask_url) {
         storedData[taskname].u = etask_url;
     }
+
+    const divsInInfoTaskChecks = document.querySelectorAll('#info_taskChecks div');
+    var i_taskcheck = 0;
+    divsInInfoTaskChecks.forEach(div => {
+        var i_taskcheck2 = 0;
+        div.querySelectorAll('tr').forEach(div2 => {
+            const checkbox = div2.querySelector('input[type=checkbox]');
+            if (checkbox && checkbox.checked) {
+                storedData[taskname].checks[i_taskcheck].checkItems[i_taskcheck2].state = "complete";
+            } else {
+                storedData[taskname].checks[i_taskcheck].checkItems[i_taskcheck2].state = "incomplete";
+            }
+            i_taskcheck2 += 1;
+        });
+        i_taskcheck += 1;
+    });
     chrome.storage.local.set({'TaskListing': storedData}, () => {
         document.getElementById('s_descEvent_save').style.display = "inline-block";
     });
@@ -180,6 +231,7 @@ function createTaskList() {
     chrome.storage.local.get("TaskListing", function(data) {
         storedData = data["TaskListing"];
         if (storedData) {
+            console.log("CARDS: ", storedData);
             Object.keys(storedData).forEach(title => {
                 const date = new Date(storedData[title].d);
                 const dateString = date.toDateString();
@@ -250,10 +302,10 @@ function createTaskList() {
                 });
                 const labelCell = document.createElement('td');
                 
-                if (storedData[title].l && storedData[title].l.c) {
+                if (storedData[title].l && storedData[title].l[0]) {
                     labelCell.style.width = "12px"
-                    labelCell.style.backgroundColor = labelColours[storedData[title].l.c];
-                    labelCell.title = storedData[title].l.n;
+                    labelCell.style.backgroundColor = labelColours[storedData[title].l[0].c];
+                    labelCell.title = storedData[title].l[0].n;
                 }
                 const dateCell = document.createElement('td');
                 dateCell.style.paddingLeft = "12px";

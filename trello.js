@@ -78,7 +78,7 @@ function trello_set_attributes(id, url) {
   });
 }
 
-function trello_update_card(id, title, iscomp, due, url, desc) {
+function trello_update_card(id, title, iscomp, due, url, desc, idchecks, checks) {
   if (iscomp == 0) {
     iscomp = false;
   } else {
@@ -90,8 +90,11 @@ function trello_update_card(id, title, iscomp, due, url, desc) {
     dueComplete: iscomp,
     desc: desc,
     due: due,
-    idList: tData.listId
+    idList: tData.listId,
   };
+  if (idchecks) {
+    cardData.idChecklists = idchecks;
+  }
   fetch(`https://api.trello.com/1/cards/${id}?key=${tData.apiKey}&token=${tData.token}`, {
     method: 'PUT',
     headers: {
@@ -165,7 +168,7 @@ function export_to_trello() {
         .then(cards => {
           const existingCard = cards.find(card => card.name === title);
           if (existingCard) {
-            trello_update_card(existingCard.id, title, storedData[title].c, storedData[title].d, storedData[title].u, storedData[title].desc);
+            trello_update_card(existingCard.id, title, storedData[title].c, storedData[title].d, storedData[title].u, storedData[title].desc, storedData[title].idChecklists);
           } else {
             trello_new_card(title, storedData[title].c, storedData[title].d, storedData[title].u, storedData[title].desc);
           }
@@ -202,16 +205,41 @@ function merge_from_trello() {
             storedData[card.name] = {
               d: epochTime,
               c: card.dueComplete,
-              u: "https://intra.epitech.eu/",
-              desc: card.desc
+              tu: card.url,
+              bu: card.shortUrl,
+              u: card.url,
+              desc: card.desc,
+              idChecklists: card.idChecklists,
+              checks: {}
             }
-            if (card && card.labels && card.labels[0]) {
-              storedData[card.name].l = {
-                c: card.labels[0].color,
-                n: card.labels[0].name,
-                i: card.labels[0].id
+            if (card && card.labels) {
+              storedData[card.name].l = [];
+              card.labels.forEach((label) => {
+                storedData[card.name].l.push({
+                  c: label.color,
+                  n: label.name,
+                  i: label.id
+                });
+              });
+            }
+            
+            fetch(`https://api.trello.com/1/cards/${card.id}/checklists?key=${tData.apiKey}&token=${tData.token}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
               }
-            }
+              return response.json();
+            })
+            .then(lists => {
+              storedData[card.name].checks = lists;
+              chrome.storage.local.set({"TaskListing": storedData}, function() {
+                
+              });
+            })
+            .catch(error => {
+              console.error('There was a problem fetching the checklists:', error);
+            });
+
             fetch(`https://api.trello.com/1/cards/${card.id}/attachments?key=${tData.apiKey}&token=${tData.token}`)
             .then(response => {
                 if (!response.ok) {
@@ -225,7 +253,7 @@ function merge_from_trello() {
                   storedData[card.name].u = att.url;
                 }
               });
-            })
+            });
         });
         chrome.storage.local.set({"TaskListing": storedData}, function() {
           console.log("(+) Merged data from Trello ", storedData);
@@ -250,6 +278,7 @@ function replace_from_trello() {
       })
       .then(cards => {
         cards.forEach(card => {
+          console.log("Card: ", card);
             let iscomp = 0;
             const dateObject = new Date(card.due);
             const epochTime = dateObject.getTime();
@@ -259,7 +288,9 @@ function replace_from_trello() {
             storedData[card.name] = {
               d: epochTime,
               c: card.dueComplete,
-              u: "https://intra.epitech.eu/"
+              tu: card.url,
+              u: card.url,
+              desc: card.desc
             }
             fetch(`https://api.trello.com/1/cards/${card.id}/attachments?key=${tData.apiKey}&token=${tData.token}`)
             .then(response => {
@@ -376,6 +407,11 @@ document.getElementById('e_export_trello').addEventListener('click', () => {
 document.getElementById('s_tupload_btn').addEventListener('click', () => {
   document.getElementById('s_tupload_btn').style.display = "none";
   export_to_trello();
+});
+
+document.getElementById('e_replace_trello').addEventListener('click', () => {
+  document.getElementById('e_replace_trello').style.display = "none";
+  replace_from_trello();
 });
 
 document.getElementById('e_removeall_trello').addEventListener('click', () => {
