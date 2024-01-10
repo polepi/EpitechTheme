@@ -336,7 +336,7 @@ td:has(> .btn_del) {
     color: #000;
     display: inline-block;
     line-height: 32px;
-    height: 32px;
+    height: 32.5px;
     border-right: 1px solid #c5c5c5;
     width: 100px;
     cursor: pointer;
