@@ -25,7 +25,7 @@ const labelColours = {
     "pink_dark": "#FF7588",
     "black_dark": "#2F3E4E",
     "green_light": "#84CF96",
-    "yellow_light": "#F7D038",
+    "yellow_light": "#cda71b",
     "orange_light": "#FFAF5F",
     "red_light": "#FF8888",
     "purple_light": "#D8A4E2",
@@ -149,7 +149,7 @@ function openDescList(event) {
     document.getElementById('info_taskUrl').innerHTML = "";
     if (storedData[dataTitle] && storedData[dataTitle].u) {
         const row = document.createElement('span');
-        row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;' class='material-icons'>link</a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
+        row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;'><i class='material-icons'>link</i> <span>Project</span></a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
         document.getElementById('info_taskUrl').appendChild(row);
         document.getElementById('info_taskUrl').style.display = "block";
     }

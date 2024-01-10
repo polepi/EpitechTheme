@@ -313,37 +313,58 @@ td:has(> .btn_del) {
     background-color: #fff;
     border: 1px solid #ddd;
     color: #fff;
-    text-shadow: 1px 1px 1px #333;
+    text-shadow: 1px 1px 2px #111;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 #info_taskUrl>span {
     display: block;
     width: 100%;
+    max-height: 34px;
     border-radius: 3px;
     margin-top: 8px;
     margin-right: 10px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    color: #333;
+    border: 1px solid #c5c5c5;
+    color: #000;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 #info_taskUrl>span>a {
     text-decoration: none;
     background-color: #ddd;
-    color: #333;
-    padding: 8px 12px;
+    color: #000;
+    display: inline-block;
+    line-height: 32px;
+    height: 32px;
+    border-right: 1px solid #c5c5c5;
+    width: 100px;
     cursor: pointer;
 }
 
+#info_taskUrl>span>a>span {
+    font-size: 14px;
+    margin-top: -1px;
+    margin-left: 42px;
+    position: absolute;
+}
+
+#info_taskUrl>span>a>i {
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+
 #info_taskUrl>span>input {
-    color: #555;
-    padding: 7px 12px;
+    color: #444;
+    line-height: 30px;
+    height: 32px;
+    margin-top: 0px;
+    padding-left: 10px;
+    position: absolute;
     border: none;
     outline: none;
-    width: auto;
-    margin-top: 3px;
+    width: 70%;
 }
 
 #info_taskUrl>span>a:hover {

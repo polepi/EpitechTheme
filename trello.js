@@ -78,7 +78,7 @@ function trello_set_attributes(id, url) {
   });
 }
 
-function trello_update_card(id, title, iscomp, due, url, desc, idchecks, checks) {
+function trello_update_card(id, title, iscomp, due, url, desc, idchecks) {
   if (iscomp == 0) {
     iscomp = false;
   } else {
