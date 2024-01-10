@@ -1156,6 +1156,15 @@ rect {
 	background: none !important;
 }
 
+td>.button.unregister {
+	background-color: rgb(139, 84, 84) !important;
+	border-radius: 3px !important;
+}
+
+td>.button.unregister:hover {
+	opacity: 0.6;
+}
+
 .button.unregister>span {
 	background: none !important;
 	background-color: #8b5454 !important;
