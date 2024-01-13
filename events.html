@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="events.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+</head>
+<body>
+    <div id="nv_main_bar">
+        <a href="popup.html"><span class="material-icons-outlined">category</span> Projects</a>
+        <a class="active" href="events.html"><span class="material-icons-outlined">event</span> Events</a>
+        <a href="profile.html"><span class="material-icons-outlined">bar_chart</span> Profile</a>
+        <a class="navbar-tune" href="preferences.html"><span class="material-icons-outlined">tune</span></a>
+        <!--<span id="navbar-expand"><span class="material-icons-outlined">more_horiz</span></span>--> 
+    </div>
+    <div>
+        <div class="topbar">
+            <div class="btn br">
+                <span class="material-icons-outlined">view_agenda</span><span>Schedule</span>
+            </div>
+            <div class="inp">
+                <span class="material-icons-outlined">search</span><input id="inp_text_filter" type="text" placeholder="Filter name..">
+            </div>
+            <div style="float:right;" class="btn">
+                <span class="material-icons-outlined">update</span><span>7 days</span>
+            </div>
+            <div style="float:right;" id="btn_show_reg" class="btn br" title="Show/Hide Non-registered tasks">
+                <span class="material-icons-outlined">visibility</span><span>Registered</span>
+            </div>
+        </div>
+        <div>
+            <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+            <table id="table_event_list"></table>
+            <table style="display: none;" id="table_proj_event_list"></table>
+        </div>
+    </div>
+    <script src="events.js"></script>
+</body>
+</html>

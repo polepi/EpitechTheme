@@ -1,0 +1,148 @@
+body {
+    width: 100%;
+    margin: 0;
+    min-width: 600px;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    background-color: #f1f1f1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #aaa;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 3px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9 !important;
+}
+
+table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+table tr td {
+    padding: 12px 6px;
+}
+
+table tr:nth-child(even){
+    background-color: #f1f1f1 !important;
+}
+
+table tr td:first-child {
+    padding-left: 15px;
+    padding-right: 10px;
+    max-width: 200px;
+}
+
+tr td span:nth-child(1) {
+    width: 100%;
+    display: block;
+}
+
+tr td span:nth-child(2) {
+    width: 100%;
+    color: #555;
+    display: block;
+}
+
+#table_event_list tr:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.topbar {
+    color: #222;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+.topbar>.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    padding-right: 14px;
+}
+
+.topbar>.inp {
+    width: 35%;
+    display: inline-block;
+    padding: 0;
+}
+
+.topbar>.inp>.material-icons-outlined {
+    display: inline-block;
+    font-size: 18px;
+    color: #444;
+    margin-top: 4px;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.topbar>.inp>input[type=text] {
+    width: 80%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 6px 12px;
+}
+
+.topbar>.btn>.material-icons-outlined {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.topbar>.btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.topbar>.btn.br {
+    border-right: 1px solid #ccc;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: #222;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-bottom: 1px dashed #ccc;
+    display: block;
+}
+  
+.dropdown .drop_option:hover {background-color: #ddd;}
+  
+.show {display: block;}

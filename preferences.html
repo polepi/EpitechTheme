@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preferences - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="preferences.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+</head>
+<body>
+    <div id="nv_main_bar" class="noselect">
+        <a href="popup.html"><span class="material-icons-outlined">category</span> Projects</a>
+        <a href="events.html"><span class="material-icons-outlined">event</span> Events</a>
+        <a href="profile.html"><span class="material-icons-outlined">bar_chart</span> Profile</a>
+        <a class="navbar-tune active" href="preferences.html"><span class="material-icons-outlined">tune</span></a>
+    </div>
+    <div id="subtab_trello" class="subtab_cont">
+        <h3>Trello</h3>
+        <div class="cont">
+            <div id="t_notset_warn">
+                <span style="display: block;"  class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Trello API not configured.</span>
+                <br>
+            </div>
+            <table id="t_infoTable">
+                <tr class="t_row_hide">
+                    <td>
+                        <button id="e_export_trello">
+                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_upload</span><span>Export</span>
+                        </button>
+                    </td>
+                    <td>Export your projects to your desired Trello list as individual cards. Existing cards will be updated.</td>
+                </tr>
+                <tr class="t_row_hide">
+                    <td>
+                        <button id="e_merge_trello">
+                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_download</span><span>Merge</span>
+                        </button>
+                    </td>
+                    <td>Imports cards from trello. Existing cards will be updated.</td>
+                </tr>
+                <tr class="t_row_hide">
+                    <td>
+                        <button id="e_replace_trello" class="danger">
+                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sync_problem</span><span>Replace</span>
+                        </button>
+                    </td>
+                    <td>Replaces all your local projects with the ones in the Trello list.</td>
+                </tr>
+                <tr class="t_row_hide">
+                    <td>
+                        <button id="e_removeall_trello" class="danger">
+                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>delete</span><span>Delete</span>
+                        </button>
+                    </td>
+                    <td>Removes all the cards from the Trello List.</td>
+                </tr>
+                <tr class="t_row_hide" style="display: none;">
+                    <td style="text-align: right;">
+                        <input type="checkbox" id="t_pull_onstartup">
+                    </td>
+                    <td>Export to Trello onStartUp</td>
+                </tr>
+                <tr class="t_row_hide" style="display: none;">
+                    <td style="text-align: right;">
+                        <input type="checkbox" id="t_merge_onstartup">
+                    </td>
+                    <td>Merge from Trello onStartUp</td>
+                </tr>
+                
+            </table>
+            <div style="display: block;border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px;">
+                <button id="e_opsett_trello" style="width:100%">
+                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>webhook</span>&nbsp;&nbsp;<span>Configurate Trello</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="trello_pref.js"></script>
+</body>
+</html>

@@ -6,6 +6,13 @@ function load_trelloData() {
     tData = data["TrelloData"] || {};
     if (tData.apiKey && tData.token && tData.listId) {
       isTrelloSet = true;
+      document.getElementById('t_notset_warn').style.display = "none";
+      const rows = document.getElementById('t_infoTable').getElementsByTagName('tr');
+      for (let i = 0; i < rows.length; i++) {
+        rows[i].classList.remove('t_row_hide');
+      }
+    } else {
+      document.getElementById('t_notset_warn').style.display = "inline-block";
     }
     if (tData && tData.mergestart) {
       document.getElementById('t_merge_onstartup').checked = tData.mergestart;
@@ -339,24 +346,26 @@ function remove_trello_cards() {
   });
 }
 
-function saveAPIInput() {
-  chrome.storage.local.get("TrelloData", function(data) {
-    tData = data["TrelloData"] || {};
-    console.log(document.getElementById('t_merge_onstartup').checked, document.getElementById('t_pull_onstartup').checked);
-    tData.mergestart = document.getElementById('t_merge_onstartup').checked;
-    tData.pushstart = document.getElementById('t_pull_onstartup').checked;
-    chrome.storage.local.set({"TrelloData": tData}, function() {
-      console.log("(!) Updated", tData);
-    });
-  });
-}
-
-document.getElementById('s_tdownload_btn').addEventListener('click', () => {
-  document.getElementById('s_tdownload_btn').style.display = "none";
+document.getElementById('e_merge_trello').addEventListener('click', () => {
+  document.getElementById('e_merge_trello').style.display = "none";
   merge_from_trello();
 });
 
-document.getElementById('s_tupload_btn').addEventListener('click', () => {
-  document.getElementById('s_tupload_btn').style.display = "none";
+document.getElementById('e_export_trello').addEventListener('click', () => {
+  document.getElementById('e_export_trello').style.display = "none";
   export_to_trello();
+});
+
+document.getElementById('e_replace_trello').addEventListener('click', () => {
+  document.getElementById('e_replace_trello').style.display = "none";
+  replace_from_trello();
+});
+
+document.getElementById('e_removeall_trello').addEventListener('click', () => {
+  document.getElementById('e_removeall_trello').style.display = "none";
+  remove_trello_cards();
+});
+
+document.getElementById('e_opsett_trello').addEventListener('click', () => {
+  window.open("trello.html", '_blank');
 });

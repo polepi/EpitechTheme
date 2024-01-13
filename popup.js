@@ -156,7 +156,6 @@ function openDescList(event) {
     document.getElementById("info_taskChecks").innerHTML = "";
 
     if (storedData[dataTitle] && storedData[dataTitle].checks) {
-        
         storedData[dataTitle].checks.forEach((item) => {
             const checkTable_div = document.createElement('div');
             checkTable_div.innerHTML = "<h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>checklist</span>&nbsp;&nbsp;"+item.name+"</h3>";
@@ -416,16 +415,6 @@ document.getElementById('s_canelEvent_btn').addEventListener('click', () => {
     document.getElementById('tab_addevent').style.display = "none";
 });
 
-document.getElementById('s_config_btn').addEventListener('click', () => {
-    document.getElementById('tab_table').style.display = "none";
-    document.getElementById('tab_options').style.display = "block";
-});
-
-document.getElementById('s_canelEvent_btn2').addEventListener('click', () => {
-    document.getElementById('tab_table').style.display = "block";
-    document.getElementById('tab_options').style.display = "none";
-});
-
 document.getElementById('s_canelEvent_btn3').addEventListener('click', () => {
     document.getElementById('tab_table').style.display = "block";
     document.getElementById('tab_taskdesc').style.display = "none";
@@ -434,17 +423,6 @@ document.getElementById('s_canelEvent_btn3').addEventListener('click', () => {
 document.getElementById('s_add_btn').addEventListener('click', () => {
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('tab_addevent').style.display = "block";
-});
-
-document.getElementById('e_opsett_trello').addEventListener('click', () => {
-    window.open("trello.html", '_blank');
-    return;
-    var x = document.getElementById("subtab_trellosett");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
 });
 
 document.getElementById('createTask_form').addEventListener('submit', (event) => {

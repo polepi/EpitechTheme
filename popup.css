@@ -1,5 +1,7 @@
 body {
-    width: 550px;
+    width: 100%;
+    margin: 0;
+    min-width: 600px;
     margin: 0;
     padding: 0;
     max-height: 300px;
@@ -28,13 +30,13 @@ body {
 
 .searchIco {
     position: absolute;
-    margin-top: 8px;
+    top: 52px;
     margin-left: 10px;
 }
 
 .homeIco {
     position: absolute;
-    top: 8px;
+    top: 52px;
     right: 10px;
     text-decoration: none;
     color: #000;
@@ -47,7 +49,7 @@ body {
     background-size: cover !important;
     background-position: 0%, 0% !important;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Office_Teams_%282018%E2%80%93present%29.svg/2203px-Microsoft_Office_Teams_%282018%E2%80%93present%29.svg.png");
-    top: 10px;
+    top: 52px;
     width: 20px !important;
 	height: 20px !important;
     right: 72px;
@@ -60,7 +62,7 @@ body {
     background-size: cover !important;
     background-position: 0%, 0% !important;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Emoji_u1f4a9.svg/1200px-Emoji_u1f4a9.svg.png");
-    top: 8px;
+    top: 52px;
     width: 24px !important;
 	height: 24px !important;
     right: 40px;
@@ -73,7 +75,7 @@ body {
     background-size: cover !important;
     background-position: 0%, 0% !important;
     background-image: url("https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png");
-    top: 8px;
+    top: 52px;
     width: 24px !important;
 	height: 24px !important;
     right: 100px;
@@ -99,53 +101,48 @@ td:has(> .btn_del) {
     vertical-align: top;
 }
   
-#taskTable {
+#taskTable, #table_proj_event_list {
     border-collapse: collapse;
     width: 100%;
     font-size: 14px;
     border: 1px solid #ddd;
+    background-color: #f9f9f9 !important;
 }
 
-#taskTable tr {
+#taskTable tr, #table_proj_event_list tr {
     border-bottom: 1px solid #ddd;
 }
 
-#taskTable td {
+#taskTable td, #table_proj_event_list td {
     padding: 10px 0px;
 }
 
-#filter_input {
-    background-position: 10px, 108px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
-    outline: none;
-}
-
-#info_taskCardUrl {
-    text-decoration: none;
-    color: #222;
-}
-  
-#taskTable {
-    background-color: #f9f9f9 !important;
-}
-#taskTable tr:nth-child(even){
+#taskTable tr:nth-child(even), #table_proj_event_list tr:nth-child(even) {
     background-color: #f1f1f1 !important;
 }
-#taskTable tr:hover {
+#taskTable tr:hover, #table_proj_event_list tr:hover {
     cursor: pointer !important;
     opacity: 0.6;
+}
+
+#table_proj_event_list span {
+    width:100%;
+    display:block;
 }
 
 #taskTable tr td:first-child {
     padding-left: 15px;
     padding-right: 10px;
-    max-width: 200px;
+    max-width: 34px;
+}
+
+#table_proj_event_list tr td:first-child {
+    padding-left: 15px;
+}
+
+#info_taskCardUrl {
+    text-decoration: none;
+    color: #222;
 }
 
 .isComp {
@@ -155,16 +152,12 @@ td:has(> .btn_del) {
 .navbar {
     display: block;
     line-height: 16px;
-    padding: 5px;
 }
 
 .navbar>div, button {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 8px 10px;
     color: #444;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    background-color: #ddd;
     cursor: pointer;
 }
 
@@ -193,10 +186,6 @@ td:has(> .btn_del) {
     display: none;
 }
 
-#tab_options {
-    display: none;
-}
-
 #tab_taskdesc {
     display: none;
 }
@@ -205,8 +194,7 @@ td:has(> .btn_del) {
     padding: 4px 8px;
 }
 
-#tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local], 
-#tab_options input[type=password], select {
+#tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local], select {
     display: block;
     width: 100%;
     margin-bottom: 5px;
@@ -215,7 +203,7 @@ td:has(> .btn_del) {
     border: 1px solid #ccc;
 }
 
-#tab_addevent>h3, #tab_options>h3, #tab_taskdesc>h3 {
+#tab_addevent>h3, #tab_taskdesc>h3 {
     width: 100%;
     background-color: #fff;
     margin: 0px;
@@ -228,23 +216,6 @@ td:has(> .btn_del) {
 
 #subtab_trello>.cont>table button {
     width: 100%;
-}
-
-.subtab_cont {
-    background-color: #fff;
-    margin: 5px;
-    margin-top: 0px;
-}
-
-.subtab_cont>h3 {
-    width: 100%;
-    background-color: #fff;
-    margin: 0px;
-    margin-bottom: 0px;
-    font-size: 16px;
-    padding: 11px 20px 11px 12px;
-    border: none;
-    border-bottom: 1px solid #ccc;
 }
 
 .cont {
@@ -405,4 +376,69 @@ td:has(> .btn_del) {
 #info_taskChecks>div>table tr>td:first-child {
     width: 40px;
     padding-left: 6px;
+}
+
+.topbar {
+    color: #222;
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+
+.topbar>.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    padding-right: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar>.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    padding-right: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar>.inp {
+    width: 35%;
+    display: inline-block;
+    padding: 0;
+}
+
+#s_completed_icon, #s_completed_icon2 {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.navbar>.inp>.material-icons-outlined {
+    display: inline-block;
+    font-size: 18px;
+    color: #444;
+    margin-top: 4px;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.navbar>.inp>input[type=text] {
+    width: 80%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 6px 12px;
+}
+
+.topbar>.btn>.material-icons-outlined, .topbar>.btn>.material-icons-round {
+    margin-right: 8px;
+    margin-top: -1px;
+    font-size: 20px;
+}
+
+.topbar>.btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.topbar>.btn.br {
+    border-right: 1px solid #ccc;
 }

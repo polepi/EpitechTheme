@@ -1,0 +1,76 @@
+#nv_main_bar {
+    padding: 5px;
+    width: 100%;
+    background-color: rgb(45, 54, 110);
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+#nv_main_bar>a {
+    float: left;
+    text-align: center;
+    padding: 6px 12px;
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-right: 5px;
+    border: 1px solid rgb(45, 54, 110);
+}
+#nv_main_bar>a>.material-icons-outlined {
+    font-size: 16px;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+#nv_main_bar>a:hover {
+    border-color: rgb(35, 40, 75);
+}
+#nv_main_bar>a.active {
+    background-color: rgb(35, 40, 75);
+    border-color: rgb(29, 31, 53);
+}
+#nv_main_bar>a.navbar-tune {
+    float: right !important;
+}
+#nv_main_bar>a.navbar-tune>.material-icons-outlined {
+    margin-right: 0px;
+}
+#navbar-expand {
+    text-align: center;
+    padding: 6px 12px;
+    color: #f1f1f1;
+    font-size: 14px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.material-icons, .material-icons-outlined, .material-icons-round {
+    display: inline-flex;
+    vertical-align: top;
+}
+
+.loader {
+    border: 1px solid #ccc;
+    border-top: 4px solid rgb(45, 54, 110);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    animation: spin 1s ease infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.block {
+    width: 100%;
+    display: block;
+}
+
+@media screen and (max-width: 500px) {
+    #nv_main_bar>a {
+        float: none;
+        display: block;
+    }
+}

@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Popup</title>
+    <title>Schedule - EpiTheme</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
 </head>
 <body>
+    <div id="nv_main_bar">
+        <a class="active" href="popup.html"><span class="material-icons-outlined">category</span> Projects</a>
+        <a href="events.html"><span class="material-icons-outlined">event</span> Events</a>
+        <a href="profile.html"><span class="material-icons-outlined">bar_chart</span> Profile</a>
+        <a class="navbar-tune" href="preferences.html"><span class="material-icons-outlined">tune</span></a>
+        <!--<span id="navbar-expand"><span class="material-icons-outlined">more_horiz</span></span>--> 
+    </div>
+    <div class="topbar noselect">
+        <div class="btn br" id="tb_myprojects_btn">
+            <span class="material-icons-outlined">bookmark_border</span><span>My Projects</span>
+        </div>
+        <div class="btn" id="tb_allprojects_btn">
+            <span class="material-icons-outlined">format_list_bulleted</span><span>All Projects</span>
+        </div>
+    </div>
     <div id="tab_table">
-        <i class="material-icons searchIco">search</i>
+        <!--
         <a href="https://intra.epitech.eu/" target="_blank" title="Intranet" class="material-icons homeIco">home</a>
         <a href="https://my.epitech.eu/" target="_blank" title="Stupid wanker thing that enjoys pissing everyone over" class="shiteIco"></a>
         <a href="https://github.com/EpitechPromo2028" target="_blank" title="Github" class="gitIco"></a>
         <a href="https://teams.microsoft.com/go" target="_blank" title="Teams" class="teamsIco"></a>
-        <input type="text" id="filter_input" placeholder="Filter by name.." title="Type in a name">
+        -->
         <div class="navbar noselect">
-            <div id="s_add_btn">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons' title="Create new event">playlist_add</span>
+            <div id="s_add_btn" style="border-right: 1px solid #ccc;">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons' title="Create new event">add_box</span>
             </div>
-            <div id="s_completed_btn" title="Show/Hide completed events">
-                <span style='font-size: 18px;margin-top: 0px;' id="s_completed_icon" class='material-icons'>visibility</span>&nbsp;&nbsp;<span>Completed&nbsp;<span id="s_completed_badge"></span></span>
-            </div>
-            <div id="s_config_btn">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>tune</span>&nbsp;&nbsp;<span>Preferences</span>
+            <div class="inp">
+                <span style="margin-top: 8px;" class="material-icons-outlined">search</span><input id="filter_input" style="padding-top: 10px;" type="text" placeholder="Filter name..">
             </div>
             <div id="s_tupload_btn" class="t_row_hide" style="float: right;" title="Upload to Trello (Export)">
                 <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_upload</span>
             </div>
-            <div id="s_tdownload_btn" class="t_row_hide" style="float: right;margin-right: 3px;" title="Import from Trello (Merge)">
+            <div id="s_tdownload_btn" class="t_row_hide" style="float: right;margin-right: 3px;border-right: 1px solid #ccc;" title="Import from Trello (Merge)">
                 <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_download</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_completed_btn" title="Show/Hide completed tasks">
+                <span class="material-icons-outlined" id="s_completed_icon">visibility</span><span>Completed <span id="s_completed_badge"></span></span>
             </div>
         </div>
         <table id ="taskTable">
@@ -78,103 +94,20 @@
             <div id="info_taskChecks"></div>
         </div>
     </div>
-    <div id="tab_options">
-        <h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>tune</span>&nbsp;&nbsp;Preferences</h3>
+    <div id="tab_allprojects" style="display: none;">
         <div class="navbar noselect">
-            <div id="s_canelEvent_btn2">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span>&nbsp;<span>Return</span>
+            <div class="inp">
+                <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
             </div>
-            <div id="s_s_subtab_trello">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>view_agenda</span>&nbsp;&nbsp;<span>Trello</span>
-            </div>
+            <a href="https://intra.epitech.eu/module/" target="_blank" class="btn" style="float:right;border-right: 1px solid #ccc;padding-top: 9px;" id="btn_show_reg" title="Go to the intranet">
+                <span class="material-icons-outlined" id="s_completed_icon2" style="margin-top: 2px;margin-right: 4px;">fullscreen</span>
+            </a>
         </div>
-        <div id="subtab_trello" class="subtab_cont">
-            <h3>Trello</h3>
-            <div class="cont">
-                <span style="display: block;" id="t_notset_warn" class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Trello API not configured.</span><br>
-                <table id="t_infoTable">
-                    <tr>
-                        <td>
-                            <b>Actions</b>
-                        </td>
-                    </tr> 
-                    <tr class="t_row_hide">
-                        <td>
-                            <button id="e_export_trello">
-                                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_upload</span>&nbsp;&nbsp;<span>Export</span>
-                            </button>
-                        </td>
-                        <td>Export your projects to your desired Trello list as individual cards. Existing cards will be updated.</td>
-                    </tr>
-                    <tr class="t_row_hide">
-                        <td>
-                            <button id="e_merge_trello">
-                                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_download</span>&nbsp;&nbsp;<span>Merge</span>
-                            </button>
-                        </td>
-                        <td>Imports cards from trello. Existing cards will be updated.</td>
-                    </tr>
-                    <tr class="t_row_hide">
-                        <td>
-                            <button id="e_replace_trello" style="background-color: indianred; color: white;">
-                                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sync_problem</span>&nbsp;&nbsp;<span>Replace</span>
-                            </button>
-                        </td>
-                        <td>Replaces all your local projects with the ones in the Trello list.</td>
-                    </tr>
-                    <tr class="t_row_hide">
-                        <td>
-                            <button id="e_removeall_trello" style="background-color:indianred;color: white;">
-                                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>delete</span>&nbsp;&nbsp;<span>Delete</span>
-                            </button>
-                        </td>
-                        <td>Removes all the cards from the Trello List.</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Config</b>
-                        </td>
-                    </tr>
-                    <tr class="t_row_hide" style="display: none;">
-                        <td style="text-align: right;">
-                            <input type="checkbox" id="t_pull_onstartup">
-                        </td>
-                        <td>Export to Trello onStartUp</td>
-                    </tr>
-                    <tr class="t_row_hide" style="display: none;">
-                        <td style="text-align: right;">
-                            <input type="checkbox" id="t_merge_onstartup">
-                        </td>
-                        <td>Merge from Trello onStartUp</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button id="e_opsett_trello">
-                                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>webhook</span>&nbsp;&nbsp;<span>API</span>
-                            </button>
-                        </td>
-                        <td>Configure the Trello API.</td>
-                    </tr>
-                </table>
-                <div id="subtab_trellosett" style="display: none; border-top: 1px dashed #ccc;padding: 0px 10px;">
-                    <h3>Trello API Configuration</h3>
-                    <a href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/" target="_blank"> API Documentation</a> | <a href="https://trello.com/power-ups/admin/" target="_blank">Get an API Key</a><br><br>
-                    <form id="form_trello_config">
-                        <label for="t_trello_apikey" href="https://trello.com/power-ups/admin/"><b>Trello API Key</b></label>
-                        <input type="password" id="t_trello_apikey" placeholder="Trello API Key" required minlength="10">
-                        <label for="t_trello_token"><b>Trello API Token</b></label>
-                        <input type="password" id="t_trello_token" placeholder="Trello Token" required minlength="10">
-                        <label for="t_trello_lisid"><b>Trello List ID</b></label>
-                        <input type="password" id="t_trello_lisid" placeholder="Trello List ID" required minlength="10">
-                        <button id="e_save_trello">
-                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check</span>&nbsp;&nbsp;<span>Apply API Changes</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+        <table id ="table_proj_event_list"></table>
     </div>
     <script src="popup.js"></script>
+    <script src="allprojects.js"></script>
     <script src="trello.js"></script>
 </body>
 </html>

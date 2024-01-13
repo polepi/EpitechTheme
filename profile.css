@@ -1,0 +1,205 @@
+body {
+    width: 100%;
+    margin: 0;
+    min-width: 600px;
+    margin: 0;
+    padding: 0;
+    max-height: 300px !important;
+    height: 300px !important;
+    background-color: #ddd;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: #aaa;
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 3px;
+}
+
+.searchIco {
+    position: absolute;
+    top: 52px;
+    margin-left: 10px;
+}
+
+.material-icons, .material-icons-outlined, #info_taskUrl>a {
+    display: inline-flex;
+    vertical-align: top;
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-left: 1px solid #ccc !important;
+}
+
+table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+table td {
+    padding: 10px 0px;
+}
+
+#tab_global tr td:first-child {
+    width: 60px;
+}
+
+#tab_global tr td:nth-child(3) {
+    padding-left: 16px;
+    border-left: 1px dashed #ccc;
+}
+
+#ul_show_subjects tr:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#ul_show_subjects tr td:nth-child(1) {
+    padding-left: 4px;
+    width: 35px;
+    text-align: center;
+}
+
+#ul_show_subjects tr td:nth-child(1) i {
+    margin-top: 2px;
+    font-size: 18px;
+}
+
+#ul_show_subjects tr td:nth-child(2) {
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+#ul_show_subjects tr td:nth-child(3) {
+    width: 85px;
+}
+
+#ul_show_subjects tr td:nth-child(4) {
+    width: 26px;
+    text-align: center;
+    border-left: 1px dashed #ccc;
+}
+
+#ul_show_subjects tr td:nth-child(5) {
+    width: 42px;
+    border-left: 1px dashed #ccc;
+    text-align: center;
+    padding-right: 5px;
+}
+
+#filter_input {
+    background-position: 10px, 108px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+#info_taskCardUrl {
+    text-decoration: none;
+    color: #222;
+}
+  
+table {
+    background-color: #f9f9f9 !important;
+}
+
+table tr:nth-child(even){
+    background-color: #f1f1f1 !important;
+}
+
+table tr td:first-child {
+    padding-left: 15px;
+    padding-right: 10px;
+    max-width: 200px;
+}
+
+.tab {
+    float: left;
+    width: 8%;
+}
+  
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 16px 11px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+  
+.tab button:hover {
+    background-color: #eee;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    float: left;
+    border-bottom: 1px solid #ccc;
+    width: 92%;
+    border-left: none;
+}
+
+#subtab_subjectInfo {
+    display: none;
+}
+
+.info_badge {
+    display: inline-block;
+    padding: 10px 5px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #333;
+    width: calc(33% - 9px);
+    margin-right: 3px;
+    font-size: 16px;
+}
+
+.top_badge {
+    display: block;
+    background-color: #eee;
+    border-bottom: 1px dashed #ccc;
+    color: #333;
+    font-size: 16px;
+    width: 100%;
+}
+
+.top_badge span {
+    display: inline-block;
+    padding: 10px 8px;
+    line-height: 16px;
+}
+
+.top_badge>.material-icons-outlined {
+    margin-top: -1px;
+    cursor: pointer;
+}
