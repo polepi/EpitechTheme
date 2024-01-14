@@ -32,7 +32,6 @@ table {
     border-collapse: collapse;
     width: 100%;
     font-size: 14px;
-    border: 1px solid #ddd;
     background-color: #f9f9f9 !important;
 }
 
@@ -42,6 +41,7 @@ table tr {
 
 table tr td {
     padding: 12px 6px;
+    max-width: 282px;
 }
 
 table tr:nth-child(even){
@@ -146,3 +146,190 @@ tr td span:nth-child(2) {
 .dropdown .drop_option:hover {background-color: #ddd;}
   
 .show {display: block;}
+
+.modal-box {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 60%;
+    border-radius: 7px;
+}
+
+.modal-date-cont {
+    display: block;
+    width: 100%;
+    margin-bottom: 45px;
+}
+
+.modal-date-cont #list_sel_days span:first-child {
+    border-left: 1px solid #ddd;
+}
+
+.modal-date-cont #list_sel_days span {
+    background-color: #f1f1f1;
+    padding: 8px 12px;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    width: calc(100% / 5);
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modal-date-cont #list_sel_days span:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+.modal-date-cont>span:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.dual-range-container {
+    width: 95%;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.slider {
+	position: relative;
+	z-index: 1;
+	height: 5px;
+	margin: 0 18px;
+    margin-bottom: 10px;
+}
+.slider > .track {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+    cursor: default;
+	border-radius: 5px;
+    background-color: #e8e8e8;
+}
+.slider > .range {
+	position: absolute;
+	z-index: 2;
+	left: 25%;
+	right: 25%;
+	top: 0;
+	bottom: 0;
+	border-radius: 5px;
+	background-color: rgb(65, 74, 130);
+}
+.slider > .thumb {
+	position: absolute;
+	z-index: 3;
+	width: 16px;
+    margin-top: 4px;
+	height: 16px;
+	background-color: #fff;
+    cursor: pointer;
+	border: 4px solid rgb(65, 74, 130);
+	border-radius: 50%;
+	box-shadow: 0 0 0 0 rgba(98,0,238,.1);
+	transition: box-shadow .3s ease-in-out;
+}
+.slider > .thumb.left {
+	left: 25%;
+	transform: translate(-15px, -10px);
+}
+.slider > .thumb.right {
+	right: 25%;
+	transform: translate(15px, -10px);
+}
+.slider > .thumb.hover {
+	box-shadow: 0 0 0 6px rgba(65, 74, 130,.1);
+}
+.slider > .thumb.active {
+	box-shadow: 0 0 0 6px rgba(65, 74, 130,.3);
+}
+
+input[type=range] {
+	position: absolute;
+	pointer-events: none;
+	-webkit-appearance: none;
+	z-index: 2;
+	height: 10px;
+	width: 100%;
+	opacity: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+	pointer-events: all;
+	width: 30px;
+	height: 30px;
+	border-radius: 0;
+	border: 0 none;
+	background-color: red;
+	-webkit-appearance: none;
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: -30px;
+    width: 100%;
+}
+
+.range-labels>span {
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    text-align: center;
+    color: #222;
+    width: calc(100% / 11);
+}
+
+#slider_left_showSem {
+    position: absolute;
+    padding: 3px 6px;
+    background-color: #ddd;
+    left: 5px;
+    border-radius: 7px;
+}
+
+#slider_right_showSem {
+    position: absolute;
+    padding: 3px 6px;
+    background-color: #ddd;
+    right: 5px;
+    border-radius: 7px;
+}
+
+.nBtn {
+    padding: 6px 8px;
+    color: #f1f1f1;
+    background-color: rgb(65, 74, 130);
+    border: 1px solid rgb(49, 55, 95);
+    border-radius: 7px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nBtn:hover {
+    background-color: rgb(49, 55, 95);
+}
+
+.nBtn .material-icons-outlined {
+    font-size: 18px;
+}

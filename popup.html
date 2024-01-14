@@ -23,13 +23,7 @@
         </div>
     </div>
     <div id="tab_table">
-        <!--
-        <a href="https://intra.epitech.eu/" target="_blank" title="Intranet" class="material-icons homeIco">home</a>
-        <a href="https://my.epitech.eu/" target="_blank" title="Stupid wanker thing that enjoys pissing everyone over" class="shiteIco"></a>
-        <a href="https://github.com/EpitechPromo2028" target="_blank" title="Github" class="gitIco"></a>
-        <a href="https://teams.microsoft.com/go" target="_blank" title="Teams" class="teamsIco"></a>
-        -->
-        <div class="navbar noselect">
+        <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
             <div id="s_add_btn" style="border-right: 1px solid #ccc;">
                 <span style='font-size: 18px;margin-top: 0px;' class='material-icons' title="Create new event">add_box</span>
             </div>
@@ -51,32 +45,23 @@
         </table>
     </div>
     <div id="tab_addevent">
-        <h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>playlist_add</span>&nbsp;&nbsp;Create an event</h3>
-        <div class="navbar noselect">
-            <div id="s_canelEvent_btn">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span>&nbsp;<span>Return</span>
-            </div>
+        <div class="s_top_task_title" style="border-bottom: 1px solid #ccc;">
+            <span id="s_canelEvent_btn" title="Return" style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span>
+            <span style='font-size: 18px;margin-top: 10px;margin-left: 12px;margin-right: 5px;' class='material-icons'>playlist_add</span><span style="margin-top:8px;margin-left: 10px;display:inline-block;">Create event</span>
         </div>
         <form id="createTask_form">
             <input type="text" id="in_addtask_name" autocomplete="off" placeholder="Event name.." required minlength="3" maxlength="50">
             <input type="url" id="in_addtask_url" autocomplete="off" placeholder="Event URL..">
             <input type="datetime-local" id="in_addtask_due" placeholder="Due time" required>
-            <div class="navbar">
-                <button id="s_addEvent_btn">
-                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>add_circle_outline</span>&nbsp;&nbsp;<span>Create</span>
-                </button>
-            </div>
+            <button id="s_addEvent_btn">
+                <span style='font-size: 18px;' class='material-icons'>add_circle_outline</span>&nbsp;&nbsp;<span>Create</span>
+            </button>
         </form>
     </div>
     <div id="tab_taskdesc">
-        <h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>content_paste</span>&nbsp;&nbsp;<span id="info_taskName"></span></h3>
-        <div class="navbar noselect">
-            <div id="s_canelEvent_btn3">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span>&nbsp;<span>Return</span>
-            </div>
-            <div id="s_descEvent_save">
-                <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check</span>&nbsp;<span>Apply</span>
-            </div>
+        <div class="s_top_task_title" style="margin-bottom: 8px;">
+            <span id="s_canelEvent_btn3" title="Return" style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span><span id="s_descEvent_save" title="Save changes"><span style='font-size: 18px;margin-top: 2px;margin-right: 11px;' class='material-icons'>save_as</span><span style="margin-right: 5px;font-size: 12px;">Apply</span></span>
+            <span title="Task name" style='font-size: 18px;margin-top: 10px;margin-left: 12px;margin-right: 5px;' class='material-icons'>sell</span><span id="info_taskName"></span>
         </div>
         <div class="cont">
             <div style="display: block;">
@@ -95,7 +80,7 @@
         </div>
     </div>
     <div id="tab_allprojects" style="display: none;">
-        <div class="navbar noselect">
+        <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
             <div class="inp">
                 <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
             </div>
@@ -104,7 +89,9 @@
             </a>
         </div>
         <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
-        <table id ="table_proj_event_list"></table>
+        <div style="height: 400px; width: 100%;overflow-y: auto;">
+            <table id ="table_proj_event_list"></table>
+        </div>
     </div>
     <script src="popup.js"></script>
     <script src="allprojects.js"></script>

@@ -159,9 +159,10 @@ function fetch_main() {
         document.getElementById("p_info_name").textContent = data.title;
         document.getElementById("p_info_loc").textContent = data.groups[0].name;
         document.getElementById("p_info_sem").textContent = data.semester_code;
+        fetch_grades();
     })
     .catch(error => {
         console.error('Fetch error:', error);
+        fetch_main();
     });
-    fetch_grades();
 }

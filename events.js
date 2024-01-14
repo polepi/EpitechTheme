@@ -3,6 +3,12 @@ var start_date;
 var end_date;
 var is_reg_hidden = 0;
 
+var selected_days = 7;
+var user_loc = "ES/BAR";
+var event_semester_min = 0;
+var event_semester_max = 2;
+
+
 function convertDateFormat(inputString) {
     const date = new Date(inputString);
   
@@ -22,12 +28,22 @@ function get_current_week() {
     const currentDay = currentDate.getDate();
     start_date = currentYear+"-"+currentMonth+"-"+currentDay;
 
+    var dispText = selected_days + " days";
+    if (selected_days == 30) {
+        dispText = "1 month";
+    }
+    if (selected_days == 365) {
+        dispText = "1 year";
+    }
+
     const oneWeekAhead = new Date(currentDate);
-    oneWeekAhead.setDate(oneWeekAhead.getDate() + 7);
+    oneWeekAhead.setDate(oneWeekAhead.getDate() + selected_days);
     const weekAheadYear = oneWeekAhead.getFullYear();
     const weekAheadMonth = oneWeekAhead.getMonth() + 1;
     const weekAheadDay = oneWeekAhead.getDate();
     end_date = weekAheadYear+"-"+weekAheadMonth+"-"+weekAheadDay;
+
+    document.getElementById("list_settings_days").textContent = dispText;
 }
 
 function getDaysLeft(targetString) {
@@ -131,14 +147,21 @@ function fetch_schedule() {
         return response.json();
     })
     .then(data => {
+        table_event_list.innerHTML = "";
         data.forEach(event => {
-            console.log(event);
-            if (event.instance_location == "ES/BAR" && event.semester<= 1) {
+            if (event.instance_location == user_loc && event.semester >= event_semester_min && event.semester <= event_semester_max) {
                 const new_tr_element = document.createElement('tr');
                 isregist = "check_box_outline_blank";
                 if (event.event_registered == "registered")
                     isregist = "check_box";
-                new_tr_element.innerHTML = "<td title='Registered'><span class='material-icons-outlined'>"+isregist+"</span></td><td title='Room: "+event.room.code+"\nSeats: "+event.total_students_registered+"/"+event.room.seats+"'><span>"+event.acti_title+"</span><span>"+event.titlemodule+"</span></td><td><span>"+convertDateFormat(event.start)+"</span><span>Starts in "+getDaysLeft(event.start)+"</span><td><span>"+convertDateFormat(event.end)+"</span><span>Ends in "+getDaysLeft(event.start)+"</span></td>";
+
+                var room_code = "-";
+                var room_seats = "-";
+                if (event.room && event.room.code && event.seats) {
+                    room_code = event.room.code !== undefined && event.room.code !== null && event.room.code !== "" ? event.room.code : "-";
+                    room_seats = event.room.seats !== undefined && event.room.seats !== null && event.room.seats !== "" ? event.room.seats : "-";
+                }
+                new_tr_element.innerHTML = "<td title='Registered'><span class='material-icons-outlined'>"+isregist+"</span></td><td title='Room: "+room_code+"\nSeats: "+event.total_students_registered+"/"+room_seats+"'><span>"+event.acti_title+"</span><span>"+event.titlemodule+"</span></td><td><span>"+convertDateFormat(event.start)+"</span><span>Starts in "+getDaysLeft(event.start)+"</span><td><span>"+convertDateFormat(event.end)+"</span><span>Ends in "+getDaysLeft(event.start)+"</span></td>";
                 new_tr_element.addEventListener("click", function () {
                     const targetUrl = "https://intra.epitech.eu/module/"+event.scolaryear+"/"+event.codemodule+"/"+event.codeinstance+"/"+event.codeacti;
                     window.open(targetUrl, '_blank');
@@ -150,6 +173,7 @@ function fetch_schedule() {
         document.getElementById('is_grades_loading').style.display = "none";
     })
     .catch(error => {
+        console.log(error);
         document.getElementById('is_grades_loading').style.borderTop = '4px solid #682828';
         setTimeout(() => {
             document.getElementById('is_grades_loading').style.borderTop = '4px solid rgb(45, 54, 110);';
@@ -157,4 +181,99 @@ function fetch_schedule() {
         }, 500);
     });
 }
+
+document.getElementById("list_settings_btn").addEventListener('click', () => {
+    document.getElementById("modal_date").style.display = "block";
+});
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal-box')) {
+        document.getElementById("modal_date").style.display = "none";
+    }
+}
+
+var input_daterange = 7;
+document.getElementById("apply_fiters_btn").addEventListener("click", function() {
+    const semrange_input_min = document.getElementById("input-left").value;
+    const semrange_input_max = document.getElementById("input-right").value;
+
+    selected_days = input_daterange;
+    fetch_schedule();
+    console.log(semrange_input_min, semrange_input_max);
+    document.getElementById("modal_date").style.display = "none";
+});
+
+document.getElementById("btn_modal_range_3").addEventListener("click", function() {
+	input_daterange = 3;
+});
+document.getElementById("btn_modal_range_7").addEventListener("click", function() {
+	input_daterange = 7;
+});
+document.getElementById("btn_modal_range_14").addEventListener("click", function() {
+	input_daterange = 14;
+});
+document.getElementById("btn_modal_range_30").addEventListener("click", function() {
+	input_daterange = 30;
+});
+document.getElementById("btn_modal_range_365").addEventListener("click", function() {
+	input_daterange = 365;
+});
+
 fetch_schedule();
+
+var slider_inputLeft = document.getElementById("input-left");
+var slider_inputRight = document.getElementById("input-right");
+var slider_thumbLeft = document.querySelector(".slider > .thumb.left");
+var slider_thumbRight = document.querySelector(".slider > .thumb.right");
+var slider_range = document.querySelector(".slider > .range");
+
+function setLeftValue() {
+	var _this = slider_inputLeft,
+        min = parseInt(_this.min),
+        max = parseInt(_this.max);
+    _this.value = Math.min(parseInt(_this.value), parseInt(slider_inputRight.value) - 1);
+    var percent = ((_this.value - min) / (max - min)) * 100;
+    slider_thumbLeft.style.left = percent + "%";
+    slider_range.style.left = percent + "%";
+    document.getElementById("slider_left_showSem").textContent = slider_inputLeft.value;
+}
+setLeftValue();
+
+function setRightValue() {
+	var _this = slider_inputRight,
+        min = parseInt(_this.min),
+        max = parseInt(_this.max);
+    _this.value = Math.max(parseInt(_this.value), parseInt(slider_inputLeft.value) + 1);
+    var percent = ((_this.value - min) / (max - min)) * 100;
+    slider_thumbRight.style.right = (100 - percent) + "%";
+    slider_range.style.right = (100 - percent) + "%";
+    document.getElementById("slider_right_showSem").textContent = slider_inputRight.value;
+}
+setRightValue();
+
+slider_inputLeft.addEventListener("input", setLeftValue);
+slider_inputRight.addEventListener("input", setRightValue);
+
+slider_inputLeft.addEventListener("mouseover", function() {
+	slider_thumbLeft.classList.add("hover");
+});
+slider_inputLeft.addEventListener("mouseout", function() {
+	slider_thumbLeft.classList.remove("hover");
+});
+slider_inputLeft.addEventListener("mousedown", function() {
+	slider_thumbLeft.classList.add("active");
+});
+slider_inputLeft.addEventListener("mouseup", function() {
+	slider_thumbLeft.classList.remove("active");
+});
+slider_inputRight.addEventListener("mouseover", function() {
+	slider_thumbRight.classList.add("hover");
+});
+slider_inputRight.addEventListener("mouseout", function() {
+	slider_thumbRight.classList.remove("hover");
+});
+slider_inputRight.addEventListener("mousedown", function() {
+	slider_thumbRight.classList.add("active");
+});
+slider_inputRight.addEventListener("mouseup", function() {
+	slider_thumbRight.classList.remove("active");
+});

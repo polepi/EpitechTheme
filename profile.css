@@ -4,9 +4,9 @@ body {
     min-width: 600px;
     margin: 0;
     padding: 0;
-    max-height: 300px !important;
-    height: 300px !important;
-    background-color: #ddd;
+    height: 270px !important;
+    max-height: 270px !important;
+    background-color: #f5f5f5;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -137,6 +137,9 @@ table tr td:first-child {
 .tab {
     float: left;
     width: 8%;
+    box-sizing: border-box;
+    background-color: #ddd;
+    height: 261px;
 }
   
 .tab button {
@@ -170,6 +173,10 @@ table tr td:first-child {
 
 #subtab_subjectInfo {
     display: none;
+}
+
+#ul_subjects_info {
+    background-color: #f9f9f9;
 }
 
 .info_badge {

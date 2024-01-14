@@ -105,8 +105,7 @@ td:has(> .btn_del) {
     border-collapse: collapse;
     width: 100%;
     font-size: 14px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9 !important;
+    background-color: #f9f9f9;
 }
 
 #taskTable tr, #table_proj_event_list tr {
@@ -165,6 +164,24 @@ td:has(> .btn_del) {
     opacity: 0.6;
 }
 
+button#s_addEvent_btn {
+    margin: 5px;
+    border: 1px solid rgb(35, 44, 100);
+    border-radius: 3px;
+    padding: 8px 14px;
+    background-color: rgb(45, 54, 110);
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+button#s_addEvent_btn:hover {
+    background-color: rgb(44, 51, 94);
+}
+
+button#s_addEvent_btn>.material-icons {
+    margin-top: -2px;
+}
+
 .noselect {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -190,32 +207,42 @@ td:has(> .btn_del) {
     display: none;
 }
 
-#tab_addevent>form {
-    padding: 4px 8px;
-}
-
 #tab_addevent input[type=text], #tab_addevent input[type=url], #tab_addevent input[type=datetime-local], select {
     display: block;
     width: 100%;
-    margin-bottom: 5px;
-    padding: 8px 16px;
+    padding: 12px 20px;
+    padding-left: 30;
     outline: none;
-    border: 1px solid #ccc;
+    border: none;
+    border-bottom: 1px solid #ccc;
 }
 
-#tab_addevent>h3, #tab_taskdesc>h3 {
-    width: 100%;
-    background-color: #fff;
+#tab_addevent>h3, .s_top_task_title {
+    background-color: #f9f9f9;
     margin: 0px;
-    font-size: 16px;
-    padding: 11px 20px 11px 12px;
+    font-size: 14px;
     border: none;
     border-bottom: 1px solid #ddd;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+#info_taskName {
+    padding: 4px 8px;
+    display: inline-block;
 }
 
 #subtab_trello>.cont>table button {
     width: 100%;
+}
+
+#s_canelEvent_btn, #s_canelEvent_btn3, #s_descEvent_save {
+    padding: 8px;
+    border-right: 1px solid #ddd;
+    display: inline-block;
+}
+
+#s_canelEvent_btn:hover, #s_canelEvent_btn3:hover, #s_descEvent_save:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .cont {
@@ -261,8 +288,7 @@ td:has(> .btn_del) {
     min-height: 100px;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
     margin-top: 9px;
 }
 
@@ -285,7 +311,6 @@ td:has(> .btn_del) {
     border: 1px solid #ddd;
     color: #fff;
     text-shadow: 1px 1px 2px #111;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 #info_taskUrl>span {
@@ -296,9 +321,8 @@ td:has(> .btn_del) {
     margin-top: 8px;
     margin-right: 10px;
     background-color: #fff;
-    border: 1px solid #c5c5c5;
+    border: 1px solid #ccc;
     color: #000;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 #info_taskUrl>span>a {
@@ -307,8 +331,8 @@ td:has(> .btn_del) {
     color: #000;
     display: inline-block;
     line-height: 32px;
-    height: 32.5px;
-    border-right: 1px solid #c5c5c5;
+    height: 32.2px;
+    border-right: 1px solid #ccc;
     width: 100px;
     cursor: pointer;
 }
@@ -346,12 +370,11 @@ td:has(> .btn_del) {
     padding: 8px 12px;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
 }
 
 #info_taskChecks>div {
-    border: 1px solid #c5c5c5;
+    border: 1px solid #ccc;
     background-color: #fff;
     border-radius: 3px;
     margin-top: 8px;
@@ -360,7 +383,7 @@ td:has(> .btn_del) {
 #info_taskChecks>div>h3 {
     padding: 5px 10px;
     background-color: #ddd;
-    border-bottom: 1px solid #c5c5c5;
+    border-bottom: 1px solid #ccc;
     margin: 0;
 }
 
