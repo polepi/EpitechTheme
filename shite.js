@@ -88,7 +88,7 @@ function daysSince(inputDate) {
 }
 
 function get_correct_per(item) {
-    console.log(item)
+    //console.log(item)
     var iscrashed = item["results"]["externalItems"]
     for (var i = 0; i < iscrashed.length; i++) {
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0)
@@ -119,8 +119,8 @@ function get_correct_per(item) {
     if (completionPercentage > 75)
         colour_text = "#26a324";
     if (completionPercentage >= 100)
-        colour_text = "#762b80";
-    return "<b style='color:"+colour_text+";'>"+completionPercentage+"%</b>";
+    return "<span class='legendary_result'>"+completionPercentage+"%</span>";
+    return "<b class='legendary_result' style='background-color:"+colour_text+";'>"+completionPercentage+"%</b>";
 }
 
 function load_subject_list(data) {
@@ -143,7 +143,7 @@ function load_subject_list(data) {
     sortTable();
 }
     
-function get_shite_data() {
+function get_shite_data(isTest) {
     fetch('https://api.epitest.eu/me/'+targ_year, {
         method: 'GET',
         headers: {
@@ -175,30 +175,29 @@ function get_shite_data() {
         load_subject_list(send_data);
     })
     .catch(error => {
-        document.getElementById('t_notset_warn').style.display = 'block';
-        console.error('Error:', error);
+        if (isTest == true) {
+            update_api();
+        } else {
+            document.getElementById('t_notset_warn').style.display = 'block';
+            console.error('Error:', error);
+        }
     });
 }
 
-function get_header_auth() {
+function get_header_auth(isTest) {
     chrome.storage.local.get('shite-key', function(data) {
         header_auth = data["shite-key"];
         header_auth = header_auth.substring(1, header_auth.length - 1);
-        get_shite_data();
+        get_shite_data(isTest);
     });
 }
 
 function update_api() {
-    chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, function(tab) {
-        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, updatedTab) {
-            if (tabId === tab.id && changeInfo.status === 'complete') {
-                setTimeout(function(){
-                    chrome.tabs.remove(tabId, function() {
-                        get_header_auth();
-                    });
-                }, 2000);
-            }
-        });
+    chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, tab =>{
+        setTimeout(function() {
+            chrome.tabs.remove(tab.id);
+            get_header_auth(false);
+        }, 2000);
     });
 }
 
@@ -227,7 +226,7 @@ function get_stored_data() {
             last_check = new Date();
             chrome.storage.local.set({'last_time': last_check});
         }
-        get_header_auth();
+        get_header_auth(true);
     });
 }
 get_stored_data();

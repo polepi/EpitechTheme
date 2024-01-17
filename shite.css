@@ -37,7 +37,7 @@ body {
 .new_tag {
     padding: 3px 6px;
     border-radius: 7px;
-    background-color: rgb(155, 66, 66);
+    background-color: rgb(45, 54, 110);
     color: #f1f1f1;
 }
 
@@ -117,4 +117,11 @@ body {
 
 .topbar>.btn.br {
     border-right: 1px solid #ccc;
+}
+
+.legendary_result {
+    background-color: #a71ac4;
+    padding: 4px 6px;
+    border-radius: 5px;
+    color: #f1f1f1;
 }
