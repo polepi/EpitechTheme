@@ -2,10 +2,13 @@
 
 <h2>Features:</h2>
 
-1. Adds a custom dark theme the Epitech's Intranet.
-2. Adds a utility to help you manage your projects. From intra.epitech.eu > Projects press the + on your desired project it will be added to your personal project list (access it by pressing the extension icon).
-3. Allows you to modify or replace the theme.css file to create your own custom themes for the intranet
-4. Allows the user to connect their Project list to Trello for sharing with other students.
+🌙 Dark Theme for the intranet.
+📝 Connect your Projects to Trello quick and easy!
+📩 Projects and Events listed and sorted by the remaining time, and a time countdown instead of a date.
+🔗 Navigate easily to the intranet from the extension UI.
+😅 A profile section with your GPA and Grades.
+🚀 Auto-login for the Moulinette: Login button gets automatically pressed.
+📋 A quick recap of the Moulinette corrections.
 
 <h2>How to install:</h2>
 
