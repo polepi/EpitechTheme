@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="shite.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="nv_main_bar">
+        <a href="popup.html"><span class="material-icons-outlined">category</span> Projects</a>
+        <a href="events.html"><span class="material-icons-outlined">event</span> Events</a>
+        <a href="profile.html"><span class="material-icons-outlined">bar_chart</span> Profile</a>
+        <a class="active" href="shite.html">💩 Mouli</a>
+        <a class="navbar-tune" href="preferences.html"><span class="material-icons-outlined">tune</span></a>
+    </div>
+    <div id="t_notset_warn" style="display: none;">
+        <span style="display: block;"  class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Log into the <a href="https://my.epitech.eu" target="_blank">moulinette</a> and <a href="shite.html">refresh</a> this page.</span>
+        <br>
+    </div>
+    <div id="shite_response">
+        <div>
+            <div class="topbar">
+                <div class="btn br" id="btn_mark_read">
+                    <span class="material-icons-outlined">mark_email_unread</span><span>Mark read</span>
+                </div>
+                <div class="inp br">
+                    <span class="material-icons-outlined">search</span><input id="filter_input" type="text" placeholder="Filter name..">
+                </div>
+                <div class="inp2" style="border-left: 1px solid #ccc;">
+                    <input id="date_input" type="number" placeholder="Year" min="2014" max="3000">
+                </div>
+                <a href="https://my.epitech.eu" target="_blank" style="float:right;" id="btn_show_reg" class="btn br" title="Go to shite">
+                    <span class="material-icons-outlined">fullscreen</span>
+                </a>
+            </div>
+        </div>
+        <div style="overflow-y:scroll;height: 350px;">
+            <table id="shite_subject_list"></table>
+        </div>
+    </div>
+</body>
+<script src="shite.js"></script>

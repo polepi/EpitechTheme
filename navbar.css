@@ -86,3 +86,7 @@
         display: block;
     }
 }
+
+#document_content {
+    padding: 20px 15px;
+}

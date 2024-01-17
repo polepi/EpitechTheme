@@ -44,8 +44,6 @@ table {
     border-collapse: collapse;
     width: 100%;
     font-size: 14px;
-    border: 1px solid #ddd;
-    border-left: 1px solid #ccc !important;
 }
 
 table tr {
@@ -139,6 +137,7 @@ table tr td:first-child {
     width: 8%;
     box-sizing: border-box;
     background-color: #ddd;
+    border-right: 1px solid #ccc;
     height: 261px;
 }
   
@@ -166,7 +165,6 @@ table tr td:first-child {
 
 .tabcontent {
     float: left;
-    border-bottom: 1px solid #ccc;
     width: 92%;
     border-left: none;
 }

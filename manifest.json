@@ -4,7 +4,9 @@
   "version": "1.0",
   "description": "Loads themes for your Epitech Intra.",
   "host_permissions": [
-    "https://intra.epitech.eu/*"
+    "https://intra.epitech.eu/*",
+    "https://my.epitech.eu/*",
+    "https://api.epitest.eu/*"
   ],
   "permissions": [
     "storage",
@@ -20,6 +22,10 @@
       "matches": ["https://intra.epitech.eu/*"], 
       "js": ["script.js"],
       "css" : ["theme.css"]
+    },
+    {
+      "matches": ["https://my.epitech.eu/*"], 
+      "js": ["mouli_script.js"]
     }
 ],
   "action": {

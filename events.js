@@ -46,21 +46,28 @@ function get_current_week() {
     document.getElementById("list_settings_days").textContent = dispText;
 }
 
-function getDaysLeft(targetString) {
+function getDaysLeft(targetString, fronttext) {
     const targetDate = new Date(targetString);
     const currentDate = new Date();
     const difference = targetDate - currentDate;
     var returnString;
+    const days = parseFloat((difference / (1000 * 60 * 60 * 24)).toFixed(1));
+    const hours = Math.floor(difference / (1000 * 60 * 60));
+    const minutes = Math.floor(difference / (1000 * 60));
 
-    if (difference > 0) {
-        const days = parseFloat((difference / (1000 * 60 * 60 * 24)).toFixed(1));
+    if (difference < 0) {
+        returnString = `${days * - 1} ${days === 1 ? 'day' : 'days'}`;
+        return returnString + " ago";
+    } else if (days >= 1) {  
         returnString = `${days} ${days === 1 ? 'day' : 'days'}`;
         if (days <= 3)
-            returnString = "<b style='color:orange;'>"+returnString+"</b>";
+            returnString = "<b style='color:#FFBF00;'>"+returnString+"</b>";
+        return fronttext + " " + returnString;
+    } else if (hours >= 1) {
+        returnString = "<b style='color:#FF7518;'>"+ fronttext +` ${hours} ${hours === 1 ? 'hour' : 'hours'}`+"</b>";
         return returnString;
     } else {
-        const hours = Math.floor(difference / (1000 * 60 * 60));
-        returnString = "<b style='color:red;'>"+`${hours} ${hours === 1 ? 'hour' : 'hours'}`+"</b>";
+        returnString = "<b style='color:#DC143C;'>"+ fronttext +` ${minutes} ${minutes === 1 ? 'min' : 'mins'}`+"</b>";
         return returnString;
     }
 }
@@ -161,7 +168,7 @@ function fetch_schedule() {
                     room_code = event.room.code !== undefined && event.room.code !== null && event.room.code !== "" ? event.room.code : "-";
                     room_seats = event.room.seats !== undefined && event.room.seats !== null && event.room.seats !== "" ? event.room.seats : "-";
                 }
-                new_tr_element.innerHTML = "<td title='Registered'><span class='material-icons-outlined'>"+isregist+"</span></td><td title='Room: "+room_code+"\nSeats: "+event.total_students_registered+"/"+room_seats+"'><span>"+event.acti_title+"</span><span>"+event.titlemodule+"</span></td><td><span>"+convertDateFormat(event.start)+"</span><span>Starts in "+getDaysLeft(event.start)+"</span><td><span>"+convertDateFormat(event.end)+"</span><span>Ends in "+getDaysLeft(event.start)+"</span></td>";
+                new_tr_element.innerHTML = "<td title='Registered'><span class='material-icons-outlined'>"+isregist+"</span></td><td title='Room: "+room_code+"\nSeats: "+event.total_students_registered+"/"+room_seats+"'><span>"+event.acti_title+"</span><span>"+event.titlemodule+"</span></td><td><span>"+convertDateFormat(event.start)+"</span><span>"+getDaysLeft(event.start, "Starts in")+"</span><td><span>"+convertDateFormat(event.end)+"</span><span>"+getDaysLeft(event.start, "Ends in")+"</span></td>";
                 new_tr_element.addEventListener("click", function () {
                     const targetUrl = "https://intra.epitech.eu/module/"+event.scolaryear+"/"+event.codemodule+"/"+event.codeinstance+"/"+event.codeacti;
                     window.open(targetUrl, '_blank');
