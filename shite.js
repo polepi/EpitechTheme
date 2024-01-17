@@ -193,11 +193,12 @@ function get_header_auth(isTest) {
 }
 
 function update_api() {
+    console.log("Refreshing!")
     chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, tab =>{
         setTimeout(function() {
             chrome.tabs.remove(tab.id);
             get_header_auth(false);
-        }, 2000);
+        }, 6000);
     });
 }
 
