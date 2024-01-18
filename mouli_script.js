@@ -9,4 +9,4 @@ setTimeout(function(){
     } else {
         console.log("Not found");
     }
-}, 800);
+}, 1000);
