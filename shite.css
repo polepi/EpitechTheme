@@ -34,6 +34,12 @@ body {
     border-radius: 3px;
 }
 
+.info-badge {
+    padding: 6px 10px;
+    background-color: rgb(27, 78, 136);
+    color: #fff;
+}
+
 .new_tag {
     padding: 3px 6px;
     border-radius: 7px;

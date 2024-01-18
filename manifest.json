@@ -12,7 +12,8 @@
     "storage",
     "background",
     "tabs",
-    "webRequest"
+    "webRequest",
+    "scripting"
   ],
 "background": {
     "service_worker": "background.js"
@@ -21,7 +22,7 @@
     {
       "matches": ["https://intra.epitech.eu/*"], 
       "js": ["script.js"],
-      "css" : ["theme.css"]
+      "css": ["theme.css"]
     },
     {
       "matches": ["https://my.epitech.eu/*"], 

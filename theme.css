@@ -1,5 +1,5 @@
 body {
-	background-color: rgb(54, 57, 62) !important;
+	background-color: rgb(54, 57, 61) !important;
 }
 
 #sidebar {
@@ -1364,4 +1364,80 @@ a.log-out {
 	border-radius: 3px !important;
 	color: white !important;
 	cursor: pointer;
+}
+
+.bloc.tabulation > .wrapper > .tabs {
+	background-color: #333 !important;
+	color: white !important;
+	border-top: 1px solid #222 !important;
+	border-bottom: 1px solid #222 !important;
+	
+}
+
+.bloc.tabulation > .wrapper > .tabs > li {
+	cursor: pointer !important;
+	border-right: 1px dashed #222;
+}
+
+.bloc.tabulation > .wrapper > .tabs > li > a > span {
+	display: inline-block !important;
+	margin-left: 0px !important;
+}
+
+.bloc.tabulation > .wrapper > .tabs > li.ui-active {
+	font-weight: bold !important;
+	background-color: #272727 !important;
+	border-right: 1px dashed #222 !important;
+}
+
+.bloc.tabulation > .wrapper > .tabs > li:hover {
+	background-color: #292929 !important;
+	opacity: 0.8 !important;
+}
+
+#content > #planify > .bloc.tabulation > .arrow {
+	background: none !important;
+	background-color: #252525 !important;
+	border: 1px solid #151515 !important;
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+	background-size: 22px 22px !important;
+}
+
+#content > #planify > .bloc.tabulation > .next.arrow {
+	border-radius: 0px 16px 16px 0px !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_right/outline.png?raw=true') !important;
+}
+
+#content > #planify > .bloc.tabulation > .prev.arrow {
+	border-radius: 16px 0px 0px 16px !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_left/outline.png?raw=true') !important;
+}
+
+#content > #planify > .bloc.tabulation > .arrow > .label {
+	display: none !important;
+}
+
+.data > .item.title > .linked > .icon {
+	display: none !important;
+}
+
+#project_title > .value > a {
+	padding: 6px 6px 8px 42px !important;
+	background-color: #151515 !important;
+	text-decoration: none !important;
+	border-radius: 5px !important;
+	font-style: normal !important;
+	background-repeat: no-repeat !important;
+    background-position: 6px, 50% !important;
+	background-size: 22px 22px !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/category/round.png?raw=true') !important;
+	cursor: pointer !important;
+	display: inline-block !important;
+	margin-bottom: 12px !important;
+	margin-left: 11px !important;
+}
+
+#project_title > .value > a:hover {
+	opacity: 0.7 !important;
 }

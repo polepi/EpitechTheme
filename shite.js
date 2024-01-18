@@ -25,8 +25,9 @@ function filterTableNames() {
 
 function is_object_new(input_date) {
     var dateObject = new Date(input_date);
-
     if (last_check <= dateObject) {
+        document.getElementById("btn_mark_read").style.backgroundColor = "#a36a6a";
+        document.getElementById("btn_mark_read").style.color = "#fff";
         return "<span class='new_tag'>New</span>"
     }
     return "";
@@ -74,25 +75,27 @@ function daysSince(inputDate) {
     var minutes = Math.floor(seconds / 60);
     var hours = Math.floor(minutes / 60);
     var days = Math.floor(hours / 24);
-    var months = Math.floor(days / 30); // Using an average month length of 30 days
+    var months = Math.floor(days / 31);
 
     if (months >= 1) {
         return months + "mo ago";
     } else if (days >= 1) {
         return days + "d ago";
     } else if (hours >= 1) {
-        return hours + "h ago";
+        return (minutes / 60).toFixed(1) + "h ago";
     } else {
         return minutes + "m ago";
     }
 }
 
 function get_correct_per(item) {
-    //console.log(item)
+    console.log(item)
     var iscrashed = item["results"]["externalItems"]
     for (var i = 0; i < iscrashed.length; i++) {
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0)
-            return "<span style='color:#555;'>Crashed</span>";
+            return "<span title='Pain.. just pain..' style='margin-right:10px;font-size:18px;'>😭</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 7px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
+        if (iscrashed[i]["type"] == "banned")
+            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;'>😒</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 7px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
     }
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
@@ -107,31 +110,55 @@ function get_correct_per(item) {
     var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
     if (isNaN(completionPercentage))
         return "-";
-    var colour_text = "#e35d5d"
-    if (completionPercentage > 10)
-        colour_text = "#ff4d00";
-    if (completionPercentage > 30)
-        colour_text = "#ff9100";
-    if (completionPercentage > 50)
-        colour_text = "#e3d409";
-    if (completionPercentage > 65)
-        colour_text = "#90b31e";
-    if (completionPercentage > 75)
-        colour_text = "#26a324";
-    if (completionPercentage >= 100)
-    return "<span class='legendary_result'>"+completionPercentage+"%</span>";
-    return "<b class='legendary_result' style='background-color:"+colour_text+";'>"+completionPercentage+"%</b>";
+    var colour_bar = "#e35d5d";
+    var colour_font = "#f1f1f1";
+    var emoji_font = "☹️";
+    var emoji_tooltip = "RIP, time to ask <Teacher Name here> ig";
+    if (completionPercentage <= 33) {
+        colour_font = "#333";
+    }
+    if (completionPercentage > 10) {
+        colour_bar = "#ff4d00";
+        emoji_font = "😕";
+        emoji_tooltip = "Pain, just pain";
+    }
+    if (completionPercentage > 30) {
+        colour_bar = "#ff9100";
+        emoji_font = "😐";
+        emoji_tooltip = "Ouch.. That hurts";
+    }
+    if (completionPercentage > 50) {
+        colour_bar = "#e3d409";
+        emoji_font = "🤔";
+        emoji_tooltip = "Oh well, at least some tests passed!";
+    }
+    if (completionPercentage > 65) {
+        colour_bar = "#90b31e";
+        emoji_font = "😮";
+        emoji_tooltip = "Great job! You are almost there..";
+    }
+    if (completionPercentage > 75) {
+        colour_bar = "#26a324";
+        emoji_font = "🤗";
+        emoji_tooltip = "Amazing! That's prob a 'B' already?";
+    }
+    if (completionPercentage >= 100) {
+        colour_bar = "#a71ac4";
+        emoji_font = "🥳";
+        emoji_tooltip = "Oustanding job! No more pain from THIS project?";
+    }
+    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;'>"+emoji_font+"</span><span style='width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 7px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
 }
 
 function load_subject_list(data) {
     const ulElement = document.getElementById('shite_subject_list');
-
+    ulElement.innerHTML = "";
     data.forEach((item) => {
         const new_tr_element = document.createElement('tr');
         const isnew = is_object_new(item["date"]);
-        
+
         new_tr_element.setAttribute('date-index', Date.parse(item["date"]));
-        new_tr_element.innerHTML = "<td>"+item["project"]["name"]+"</td><td>"+isnew+"</td><td style='text-align:right;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
+        new_tr_element.innerHTML = "<td>"+item["project"]["name"]+"</td><td>"+isnew+"</td><td style='width:170px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
         if (item["project"] && item["project"]["module"] && item["project"]["module"]["code"]) {
             new_tr_element.addEventListener("click", function () {
                 const targetUrl = "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item["project"]["module"]["code"]+"/"+item["project"]["slug"]+"/"+item["results"]["testRunId"];
@@ -144,6 +171,7 @@ function load_subject_list(data) {
 }
     
 function get_shite_data(isTest) {
+    document.getElementById("info_badge_text").textContent = "Awaiting Moulinette...";
     fetch('https://api.epitest.eu/me/'+targ_year, {
         method: 'GET',
         headers: {
@@ -166,6 +194,7 @@ function get_shite_data(isTest) {
     })
     .then(data => {
         var send_data = data;
+        document.getElementById("t_logginset_warn").style.display = "none";
         document.getElementById('t_notset_warn').style.display = 'none';
         if (data && data == "") {
             const new_tr_element = document.createElement('tr');
@@ -178,6 +207,7 @@ function get_shite_data(isTest) {
         if (isTest == true) {
             update_api();
         } else {
+            document.getElementById("t_logginset_warn").style.display = "none";
             document.getElementById('t_notset_warn').style.display = 'block';
             console.error('Error:', error);
         }
@@ -192,13 +222,33 @@ function get_header_auth(isTest) {
     });
 }
 
+function force_login_shite() {
+    var loginbtn = document.querySelector("#app-wrapper>.mdl-color-text--primary>a.mdl-js-ripple-effect.mdl-js-button.mdl-button.mdl-button--colored.mdl-button--raised")
+    if (loginbtn) {
+        loginbtn.click();
+        clearInterval(intervalId);
+    }
+    return 1;
+}
+
 function update_api() {
-    console.log("Refreshing!")
-    chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, tab =>{
-        setTimeout(function() {
-            chrome.tabs.remove(tab.id);
-            get_header_auth(false);
-        }, 6000);
+    document.getElementById("info_badge_text").textContent = "Attemping to log into the Moulinette...";
+    chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, tab => {
+        chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
+            if (tabId === tab.id && changeInfo.status === 'complete') {
+                setTimeout(function(){
+                    chrome.scripting.executeScript({
+                        target: {tabId: tab.id},
+                        func: force_login_shite
+                    });
+                }, 4000);
+                setTimeout(function(){
+                    chrome.tabs.remove(tab.id);
+                    get_header_auth(false);
+                    chrome.tabs.onUpdated.removeListener(listener);
+                }, 6000);
+            }
+        });
     });
 }
 
@@ -222,18 +272,20 @@ function get_stored_data() {
     });
     chrome.storage.local.get('last_time', function(data) {
         last_check = data["last_time"];
-
         if (last_check == null) {
-            last_check = new Date();
+            last_check = new Date().getTime();
             chrome.storage.local.set({'last_time': last_check});
         }
+        last_check = new Date(last_check);
+        document.getElementById("info_badge_text").textContent = "Loading...";
+        document.getElementById("t_logginset_warn").style.display = "block";
         get_header_auth(true);
     });
 }
 get_stored_data();
 
 document.getElementById("btn_mark_read").addEventListener('click', function() {
-    last_check = new Date();
+    last_check = new Date().getTime();
     chrome.storage.local.set({'last_time': last_check}, () => {
         location.reload();
     });
