@@ -140,7 +140,7 @@ function get_correct_per(item) {
     if (completionPercentage > 75) {
         colour_bar = "#26a324";
         emoji_font = "🤗";
-        emoji_tooltip = "Amazing! That's prob a 'B' already?";
+        emoji_tooltip = "Amazing! That`s prob a `B` prob?";
     }
     if (completionPercentage >= 100) {
         colour_bar = "#a71ac4";

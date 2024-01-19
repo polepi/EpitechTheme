@@ -29,17 +29,17 @@
     "service_worker": "background.js"
 },
 "content_scripts": [
-    {
-      "matches": ["https://intra.epitech.eu/*"], 
-      "js": ["script.js"],
-      "css": ["theme.css"],
-      "all_frames": true
-    },
-    {
-      "matches": ["https://my.epitech.eu/*"], 
-      "js": ["mouli_script.js"],
-      "all_frames": true
-    }
+  {
+    "matches": ["https://intra.epitech.eu/*"], 
+    "js": ["script.js"],
+    "css": ["theme.css"],
+    "all_frames": true
+  },
+  {
+    "matches": ["https://my.epitech.eu/*"], 
+    "js": ["mouli_script.js"],
+    "all_frames": true
+  }
 ],
   "action": {
     "default_popup": "popup.html"
