@@ -89,13 +89,13 @@ function daysSince(inputDate) {
 }
 
 function get_correct_per(item) {
-    console.log(item)
+    //console.log(item)
     var iscrashed = item["results"]["externalItems"]
     for (var i = 0; i < iscrashed.length; i++) {
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0)
-            return "<span title='Pain.. just pain..' style='margin-right:10px;font-size:18px;'>😭</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 7px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;'>😭</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
         if (iscrashed[i]["type"] == "banned")
-            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;'>😒</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 7px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
+            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;'>😒</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
     }
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
@@ -120,12 +120,12 @@ function get_correct_per(item) {
     if (completionPercentage > 10) {
         colour_bar = "#ff4d00";
         emoji_font = "😕";
-        emoji_tooltip = "Pain, just pain";
+        emoji_tooltip = "Ouch.. That hurts..";
     }
     if (completionPercentage > 30) {
         colour_bar = "#ff9100";
         emoji_font = "😐";
-        emoji_tooltip = "Ouch.. That hurts";
+        emoji_tooltip = "Pain.. just pain..";
     }
     if (completionPercentage > 50) {
         colour_bar = "#e3d409";
@@ -144,10 +144,10 @@ function get_correct_per(item) {
     }
     if (completionPercentage >= 100) {
         colour_bar = "#a71ac4";
-        emoji_font = "🥳";
+        emoji_font = "🔥";
         emoji_tooltip = "Oustanding job! No more pain from THIS project?";
     }
-    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;'>"+emoji_font+"</span><span style='width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 7px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
+    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;'>"+emoji_font+"</span><span style='width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
 }
 
 function load_subject_list(data) {
@@ -233,23 +233,12 @@ function force_login_shite() {
 
 function update_api() {
     document.getElementById("info_badge_text").textContent = "Attemping to log into the Moulinette...";
-    chrome.tabs.create({url: 'https://my.epitech.eu', active: false}, tab => {
-        chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
-            if (tabId === tab.id && changeInfo.status === 'complete') {
-                setTimeout(function(){
-                    chrome.scripting.executeScript({
-                        target: {tabId: tab.id},
-                        func: force_login_shite
-                    });
-                }, 4000);
-                setTimeout(function(){
-                    chrome.tabs.remove(tab.id);
-                    get_header_auth(false);
-                    chrome.tabs.onUpdated.removeListener(listener);
-                }, 6000);
-            }
-        });
-    });
+    document.getElementById("iframe_login_shite_frame").style.display = "block";
+    setTimeout(function(){
+        document.getElementById("iframe_login_shite_frame").style.display = "none";
+        document.getElementById("iframe_login_shite_frame").innerHTML = "";
+        get_header_auth(false);
+    }, 2000);
 }
 
 function get_stored_data() {
@@ -288,5 +277,30 @@ document.getElementById("btn_mark_read").addEventListener('click', function() {
     last_check = new Date().getTime();
     chrome.storage.local.set({'last_time': last_check}, () => {
         location.reload();
+    });
+});
+
+const iframeHosts = ['https://my.epitech.eu/*'];
+
+chrome.runtime.onInstalled.addListener(() => {
+    const RULE = {
+        id: 1,
+        condition: {
+            initiatorDomains: [chrome.runtime.id],
+            requestDomains: iframeHosts,
+            resourceTypes: ['sub_frame'],
+        },
+        action: {
+            type: 'modifyHeaders',
+            responseHeaders: [
+                {header: 'X-Frame-Options', operation: 'remove'},
+                {header: 'Frame-Options', operation: 'remove'},
+            ],
+        },
+    };
+
+    chrome.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: [RULE.id],
+        addRules: [RULE],
     });
 });

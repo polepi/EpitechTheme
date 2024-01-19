@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "action": {
+            "type": "modifyHeaders",
+            "responseHeaders": [
+                {
+                    "header": "X-Frame-Options",
+                    "operation": "remove"
+                }
+            ]
+        },
+        "condition": {
+            "urlFilter": "https://my.epitech.eu/*"
+        }
+    }
+]

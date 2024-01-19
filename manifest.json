@@ -8,12 +8,22 @@
     "https://my.epitech.eu/*",
     "https://api.epitest.eu/*"
   ],
+  "declarative_net_request": {
+    "rule_resources": [
+        {
+            "id": "net_rules",
+            "enabled": true,
+            "path": "header_rules.json"
+        }
+    ]
+  },
   "permissions": [
     "storage",
     "background",
     "tabs",
     "webRequest",
-    "scripting"
+    "scripting",
+    "declarativeNetRequest"
   ],
 "background": {
     "service_worker": "background.js"
@@ -22,11 +32,13 @@
     {
       "matches": ["https://intra.epitech.eu/*"], 
       "js": ["script.js"],
-      "css": ["theme.css"]
+      "css": ["theme.css"],
+      "all_frames": true
     },
     {
       "matches": ["https://my.epitech.eu/*"], 
-      "js": ["mouli_script.js"]
+      "js": ["mouli_script.js"],
+      "all_frames": true
     }
 ],
   "action": {

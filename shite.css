@@ -131,3 +131,7 @@ body {
     border-radius: 5px;
     color: #f1f1f1;
 }
+
+#iframe_login_shite_frame {
+    border: none;
+}
