@@ -23,6 +23,7 @@
     "tabs",
     "webRequest",
     "scripting",
+    "notifications",
     "declarativeNetRequest"
   ],
 "background": {

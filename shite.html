@@ -19,7 +19,7 @@
         <span style="display: block;"  class="noselect info-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>terminal</span>&nbsp;&nbsp;<span id="info_badge_text"></span></span>
         <br>
     </div>
-    <div id="iframe_login_shite_frame" style="display: none;">
+    <div id="iframe_login_shite_frame">
         <iframe src="https://my.epitech.eu/" height="2px" width="2px" id="iframe_login_shite"></iframe>
     </div>
     <div id="t_notset_warn" style="display: none;">
@@ -43,8 +43,64 @@
                 </a>
             </div>
         </div>
-        <div style="overflow-y:scroll;height: 350px;">
+        <div id="tab_shite_subjects_table" style="overflow-y:scroll;height: 350px;">
             <table id="shite_subject_list"></table>
+        </div>
+    </div>
+    <div id="shite_details" style="display: none;width: 100%;">
+        <div id="tab_shite_subject_details" style="width: 100%;">
+            <div id="tab_shite_subject_info">
+                <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><a id="shite_det_direct_link" style="position: fixed;right:16px;top:53px;" target="_blank"><span class="material-icons-outlined">open_in_new</span></a>
+            </div>
+            <div style="overflow-y:scroll;height: 350px;width:100%;">
+                <div class="block" style="padding: 6px 0px 0px 6px;">
+                    <div id="info_badge_banned_functs">
+                        <div class="info_badge_title">Banned functions</div>
+                        <div style="padding: 6px 0px;">
+                            <div style="vertical-align: top;display: inline-block;padding: 0px 10px;">
+                                <span id="info_badge_banned_functs_list"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_badge" title="Major Coding Style">
+                        <div class="info_badge_title">Major Coding Style</div>
+                        <div style="padding: 6px 0px;">
+                            <div class="info_badge_icon" style="background-color:rgb(197, 124, 14);"></div>
+                            <div style="vertical-align: top;display: inline-block;">
+                                <span id="sub_info_major"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_badge" title="Minor Coding Style">
+                        <div class="info_badge_title">Minor Coding Style</div>
+                        <div style="padding: 6px 0px;">
+                            <div class="info_badge_icon" style="background-color:rgb(216, 185, 9);"></div>
+                            <div style="vertical-align: top;display: inline-block;">
+                                <span id="sub_info_minor"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_badge" title="Info Coding Style">
+                        <div class="info_badge_title">Info Coding Style</div>
+                        <div style="padding: 6px 0px;">
+                            <div class="info_badge_icon" style="background-color:rgb(65, 65, 134);"></div>
+                            <div style="vertical-align: top;display: inline-block;">
+                                <span id="sub_info_info"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info_badge" title="Fatal Coding Style">
+                        <div class="info_badge_title">Fatal Errors</div>
+                        <div style="padding: 6px 0px;">
+                            <div class="info_badge_icon" style="background-color:rgb(168, 36, 36);"></div>
+                            <div style="vertical-align: top;display: inline-block;">
+                                <span id="sub_info_fatal"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab_shite_subject_details2"></div>
+            </div>
         </div>
     </div>
 </body>

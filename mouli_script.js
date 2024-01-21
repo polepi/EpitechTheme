@@ -5,7 +5,6 @@ if (api_key)
 function update_login() {
     var loginbtn = document.querySelector("#app-wrapper>.mdl-color-text--primary>a.mdl-js-ripple-effect.mdl-js-button.mdl-button.mdl-button--colored.mdl-button--raised")
     if (loginbtn) {
-        console.log("Auto-login..");
         loginbtn.click();
     }
 }

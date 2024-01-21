@@ -90,17 +90,12 @@ function daysSince(inputDate) {
 
 function get_correct_per(item) {
     //console.log(item)
-    var iscrashed = item["results"]["externalItems"]
-    for (var i = 0; i < iscrashed.length; i++) {
-        if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0)
-            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;'>😭</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
-        if (iscrashed[i]["type"] == "banned")
-            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;'>😒</span><span style='width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
-    }
+    var iscrashed = item["results"]["externalItems"];
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
     var completedItems = 0;
     var countItems = 0;
+    var did_crash = 0;
 
     for (var i = 0; i < len; i++) {
         var res = item[i];
@@ -109,7 +104,15 @@ function get_correct_per(item) {
     }
     var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
     if (isNaN(completionPercentage))
-        return "-";
+        return "<span style='margin-right: 15px;'>—</span>";
+    for (var i = 0; i < iscrashed.length; i++) {
+        if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage == 0)
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
+        if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage > 0)
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>"+completionPercentage+"% (Crash)</span></span>";
+        if (iscrashed[i]["type"] == "banned")
+            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;;text-align:left;'>😒</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
+    }
     var colour_bar = "#e35d5d";
     var colour_font = "#f1f1f1";
     var emoji_font = "☹️";
@@ -135,7 +138,7 @@ function get_correct_per(item) {
     if (completionPercentage > 65) {
         colour_bar = "#90b31e";
         emoji_font = "😮";
-        emoji_tooltip = "Great job! You are almost there..";
+        emoji_tooltip = "Hey, that's pretty good!";
     }
     if (completionPercentage > 75) {
         colour_bar = "#26a324";
@@ -147,7 +150,183 @@ function get_correct_per(item) {
         emoji_font = "🔥";
         emoji_tooltip = "Oustanding job! No more pain from THIS project?";
     }
-    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;'>"+emoji_font+"</span><span style='width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
+    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;text-align:left;'>"+emoji_font+"</span><span style='text-align:left;width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
+}
+
+function get_result_label(info) {
+    if (info["passed"] == true)
+        return "<span class='span_result_box' style='background-color:#90b31e;color:white;'>Passed</span>";
+    if (info["crashed"] == true)
+        return "<span class='span_result_box' style='background-color:#ff9100;color:#222;'>Crashed</span>"
+    if (info["skipped"] == true)
+        return "<span class='span_result_box' style='background-color:#bbb;color:#333;'>Skipped</span>"
+    return "<span class='span_result_box' style='background-color:#e35d5d;color:#f1f1f1;'>Failed</span>"
+}
+
+function proccess_result(raw) {
+    raw = raw.replace(/'([^']+)'/g, (_, match) => {
+        return `<span style="padding: 2px 6px;border:1px solid #ccc;background-color:#ddd;border-radius:5px;display:inline-block;">${match}</span>`;
+    });
+    return raw;
+}
+
+function print_details(det, url) {
+    const new_tr_element = document.createElement('div');
+    document.getElementById("shite_response").style.display = "none";
+    document.getElementById("info_badge_banned_functs").style.display = "none";
+    document.getElementById("shite_details").style.display = "block";
+    document.getElementById("shite_det_direct_link").href = url;
+
+    document.getElementById("sub_info_minor").textContent = "0";
+    document.getElementById("sub_info_major").textContent = "0";
+    document.getElementById("sub_info_info").textContent = "0";
+    document.getElementById("sub_info_fatal").textContent = "0";
+
+    det["externalItems"].forEach((skill) => {
+        if (skill["type"] == "banned") {
+            document.getElementById("info_badge_banned_functs_list").textContent = skill["comment"].replace("Functions used but not allowed: ", "");
+            document.getElementById("info_badge_banned_functs").style.display = "inline-block";
+        }
+        
+    });
+
+    if (det["style"] && det["style"]["Details"]) {
+        var style_count = 0;
+        if (det["style"]["Details"]["major"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Details"]["major"];
+            for (const key in minorObject) {
+                if (minorObject.hasOwnProperty(key) && Array.isArray(minorObject[key])) {
+                    style_count += minorObject[key].length;
+                }
+            }
+            document.getElementById("sub_info_major").textContent = style_count;
+        }
+        if (det["style"]["Details"]["minor"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Details"]["minor"];
+            for (const key in minorObject) {
+                if (minorObject.hasOwnProperty(key) && Array.isArray(minorObject[key])) {
+                    style_count += minorObject[key].length;
+                }
+            }
+            document.getElementById("sub_info_minor").textContent = style_count;
+        }
+        if (det["style"]["Details"]["info"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Details"]["info"];
+            for (const key in minorObject) {
+                if (minorObject.hasOwnProperty(key) && Array.isArray(minorObject[key])) {
+                    style_count += minorObject[key].length;
+                }
+            }
+            document.getElementById("sub_info_info").textContent = style_count;
+        }
+        if (det["style"]["Details"]["fatal"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Details"]["fatal"];
+            for (const key in minorObject) {
+                if (minorObject.hasOwnProperty(key) && Array.isArray(minorObject[key])) {
+                    style_count += minorObject[key].length;
+                }
+            }
+            document.getElementById("sub_info_fatal").textContent = style_count;
+        }
+    }
+
+    det["skills"].forEach((skill) => {
+        var colour_bar = "#e35d5d";
+        var colour_font = "#f1f1f1";
+        var completedItems = 0;
+        var countItems = 0;
+        skill["FullSkillReport"]["tests"].forEach((test) => {
+            countItems++;
+            if (test["passed"] == true)
+                completedItems++;
+        });
+        var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
+        if (completionPercentage <= 33)
+            colour_font = "#333";
+        if (completionPercentage > 10)
+            colour_bar = "#ff4d00";
+        if (completionPercentage > 30)
+            colour_bar = "#ff9100";
+        if (completionPercentage > 50)
+            colour_bar = "#e3d409";
+        if (completionPercentage > 65)
+            colour_bar = "#90b31e";
+        if (completionPercentage > 75)
+            colour_bar = "#26a324";
+        if (completionPercentage >= 100)
+            colour_bar = "#a71ac4";
+        document.getElementById("shite_details_name").textContent = det["instance"]["projectName"]; 
+        new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
+        skill["FullSkillReport"]["tests"].forEach((test) => {
+            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+"<span class='span_copy_box' data-copy='"+test["name"]+":\n"+test["comment"]+"'><span class='material-icons-outlined'>content_copy</span></span></div>";
+        });
+    });
+    document.getElementById("tab_shite_subject_details2").appendChild(new_tr_element);
+
+    // Assign copy_btn //
+
+    document.querySelectorAll('.span_copy_box').forEach(function(element) {
+        element.addEventListener('click', function() {
+            var textToCopy = this.getAttribute('data-copy');
+            var textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            this.querySelector('.material-icons-outlined').textContent = "check";
+        });
+    });
+}
+
+
+tab_shite_subject_back.addEventListener("click", function () {
+    document.getElementById("shite_details").style.display = "none";
+    document.getElementById("shite_response").style.display = "block";
+});
+
+function open_details(id, url) {
+    document.getElementById('tab_shite_subject_details2').innerHTML = "";
+    fetch('https://api.epitest.eu/me/details/'+id, {
+        method: 'GET',
+        headers: {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-GB,en;q=0.9',
+            'Authorization': `Bearer ${header_auth}`,
+            'Connection': 'keep-alive',
+            'DNT': '1',
+            'Host': 'api.epitest.eu',
+            'Origin': 'https://my.epitech.eu',
+            'Referer': 'https://my.epitech.eu/'
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        var send_data = data;
+        if (data && data == "") {
+            const new_tr_element = document.createElement('tr');
+            new_tr_element.innerHTML = "<td>No data found</td>";
+            document.getElementById('tab_shite_subject_details2').appendChild(new_tr_element);
+        } else {
+            print_details(send_data, url);
+        }
+    })
+    .catch(error => {
+        document.getElementById("t_logginset_warn").style.display = "none";
+        document.getElementById('t_notset_warn').style.display = 'block';
+        console.error('Error:', error);
+    });
 }
 
 function load_subject_list(data) {
@@ -158,11 +337,12 @@ function load_subject_list(data) {
         const isnew = is_object_new(item["date"]);
 
         new_tr_element.setAttribute('date-index', Date.parse(item["date"]));
-        new_tr_element.innerHTML = "<td>"+item["project"]["name"]+"</td><td>"+isnew+"</td><td style='width:170px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
+        new_tr_element.innerHTML = "<td title='Display info'><a title='Moulinette link' target='_blank' href='https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']+"'>"+item["project"]["name"]+"</a></td><td title='Mark as read to hide'>"+isnew+"</td><td style='text-align:right;width:165px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
         if (item["project"] && item["project"]["module"] && item["project"]["module"]["code"]) {
             new_tr_element.addEventListener("click", function () {
-                const targetUrl = "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item["project"]["module"]["code"]+"/"+item["project"]["slug"]+"/"+item["results"]["testRunId"];
-                window.open(targetUrl, '_blank');
+                //const targetUrl = "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item["project"]["module"]["code"]+"/"+item["project"]["slug"]+"/"+item["results"]["testRunId"];
+                //window.open(targetUrl, '_blank');
+                open_details(item["results"]["testRunId"], "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']);
             });
         }
         ulElement.appendChild(new_tr_element);
@@ -196,6 +376,8 @@ function get_shite_data(isTest) {
         var send_data = data;
         document.getElementById("t_logginset_warn").style.display = "none";
         document.getElementById('t_notset_warn').style.display = 'none';
+        document.getElementById("iframe_login_shite_frame").style.display = "none";
+        document.getElementById("iframe_login_shite_frame").innerHTML = "";
         if (data && data == "") {
             const new_tr_element = document.createElement('tr');
             new_tr_element.innerHTML = "<td>No data, try a different year</td>";
@@ -238,7 +420,7 @@ function update_api() {
         document.getElementById("iframe_login_shite_frame").style.display = "none";
         document.getElementById("iframe_login_shite_frame").innerHTML = "";
         get_header_auth(false);
-    }, 2000);
+    }, 4000);
 }
 
 function get_stored_data() {
