@@ -8,7 +8,8 @@
 🔗 Navigate easily to the intranet from the extension UI.<br>
 😅 A profile section with your GPA and Grades.<br>
 🚀 Auto-login for the Moulinette: Login button gets automatically pressed.<br>
-📋 A quick recap of the Moulinette corrections.<br>
+📋 A quick recap of recent Moulinette corrections.<br>
+🔔 Get notified when the moulinette corrects (WIP).<br>
 
 <h2>How to install:</h2>
 
