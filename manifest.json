@@ -24,7 +24,8 @@
     "webRequest",
     "scripting",
     "notifications",
-    "declarativeNetRequest"
+    "declarativeNetRequest",
+    "fileSystem"
   ],
 "background": {
     "service_worker": "background.js"

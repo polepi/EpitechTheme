@@ -89,29 +89,31 @@ function daysSince(inputDate) {
 }
 
 function get_correct_per(item) {
-    //console.log(item)
+    console.log(item)
     var iscrashed = item["results"]["externalItems"];
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
     var completedItems = 0;
     var countItems = 0;
-    var did_crash = 0;
 
     for (var i = 0; i < len; i++) {
         var res = item[i];
         countItems += res["count"];
         completedItems += res["passed"];
     }
-    var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
-    if (isNaN(completionPercentage))
+    var completionPercentage = 100;
+    if (len > 0)
+        completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
+    if (isNaN(completionPercentage)) {
         return "<span style='margin-right: 15px;'>—</span>";
+    }
     for (var i = 0; i < iscrashed.length; i++) {
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage == 0)
-            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage > 0)
-            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>"+completionPercentage+"% (Crash)</span></span>";
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>"+completionPercentage+"% (Crash)</span></span>";
         if (iscrashed[i]["type"] == "banned")
-            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;;text-align:left;'>😒</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px; border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
+            return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;;text-align:left;'>😒</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
     }
     var colour_bar = "#e35d5d";
     var colour_font = "#f1f1f1";
@@ -150,7 +152,7 @@ function get_correct_per(item) {
         emoji_font = "🔥";
         emoji_tooltip = "Oustanding job! No more pain from THIS project?";
     }
-    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;text-align:left;'>"+emoji_font+"</span><span style='text-align:left;width:104px;border: 1px solid "+colour_bar+";padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
+    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;text-align:left;'>"+emoji_font+"</span><span style='text-align:left;width:104px;border: 1px solid "+colour_bar+";padding: 1px;border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
 }
 
 function get_result_label(info) {
@@ -172,6 +174,7 @@ function proccess_result(raw) {
 
 function print_details(det, url) {
     const new_tr_element = document.createElement('div');
+    document.getElementById("shite_details_name").textContent = det["instance"]["projectName"]; 
     document.getElementById("shite_response").style.display = "none";
     document.getElementById("info_badge_banned_functs").style.display = "none";
     document.getElementById("shite_details").style.display = "block";
@@ -259,7 +262,6 @@ function print_details(det, url) {
             colour_bar = "#26a324";
         if (completionPercentage >= 100)
             colour_bar = "#a71ac4";
-        document.getElementById("shite_details_name").textContent = det["instance"]["projectName"]; 
         new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
         skill["FullSkillReport"]["tests"].forEach((test) => {
             new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+"<span class='span_copy_box' data-copy='"+test["name"]+":\n"+test["comment"]+"'><span class='material-icons-outlined'>content_copy</span></span></div>";

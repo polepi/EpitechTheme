@@ -137,3 +137,55 @@ button.danger span:first-child {
 button:hover {
     opacity: 0.9;
 }
+
+.sett_btn {
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+    color: #111;
+    cursor: pointer;
+}
+
+.sett_btn_theme {
+    position: relative;
+    padding: 6px 12px 3px 6px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+    color: #111;
+}
+
+.sett_btn_theme > img {
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+}
+
+.sett_btn_theme > span {
+    position: absolute;
+    top: 13px;
+    display: inline-block;
+}
+
+.sett_btn>.material-icons-outlined {
+    margin-right: 25px;
+}
+
+.sett_btn>.text {
+    margin-top: 3px;
+    display: inline-block;
+}
+
+.sett_btn:hover, .sett_btn_theme:hover, #themes_btn_goback:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.code_span {
+    padding: 2px 6px;
+    background:#eee;
+    border:1px solid #ccc;
+    border-radius:5px;
+    display:inline-block;
+    margin-top:2px;
+    margin-bottom:2px;
+}
