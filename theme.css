@@ -558,7 +558,9 @@ div.datagrid div:last-child table tfoot tr {
 	height: 36px !important;
 	line-height: 36px !important;
 	font-size: 16px !important;
+	padding-bottom: 6px !important;
 	margin-bottom: 5px !important;
+	border-bottom: 2px solid #555;
 }
 
 .tabulation>.tabs>li>a>span {
@@ -602,11 +604,17 @@ ul.tabs li a span {
 	color: white !important;
 }
 
+.tabulation>.tabs>li>a:first-child {
+	border-left: 2px solid #555 !important;
+}
+
 .tabulation>.tabs>li>a {
 	border: none !important;
 	background: none !important;
 	margin-top: 4px !important;
-    border-radius: 3px !important;
+	margin-left: 0px !important;
+	border-top: 2px solid #555 !important;
+	border-right: 2px solid #555 !important;
 	color: #fff !important;
 	padding: 0px 12px !important;
 	padding-left: 38px !important;
@@ -615,6 +623,10 @@ ul.tabs li a span {
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/flip_to_front/round.png?raw=true') !important;
 	background-color: rgb(66, 69, 73) !important;
 	text-shadow: none !important;
+}
+
+.tabulation>.tabs>li>a:hover {
+	background-color: rgb(44, 45, 47) !important;
 }
 
 ul.tabs, ul.tabs li a, ul.tabs li a span {
@@ -1385,6 +1397,12 @@ a.log-out {
 }
 
 .bloc.tabulation > .wrapper > .tabs > li.ui-active {
+	font-weight: bold !important;
+	background-color: #272727 !important;
+	border-right: 1px dashed #222 !important;
+}
+
+.bloc.tabulation > .tabs > li.ui-active > a {
 	font-weight: bold !important;
 	background-color: #272727 !important;
 	border-right: 1px dashed #222 !important;
