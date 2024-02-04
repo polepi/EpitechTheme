@@ -1,5 +1,8 @@
 # EpitechTheme
 
+Tired of getting flashbanged every time you open the Intranet? Feeling like personalizing a bit the intranet? Tired of the long loading times and confusing navigation of the intranet? Then consider trying out this extension!
+Adds a comfy to your eyes theme for the intra. A pop-up with all the important information in one same place, in a quick and easy way to access it, including the Moulinette.
+
 <h2>Features:</h2>
 
 🌙 Dark Theme for the intranet.<br>
