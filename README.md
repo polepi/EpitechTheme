@@ -4,12 +4,13 @@
 
 🌙 Dark Theme for the intranet.<br>
 📝 Connect your Projects to Trello quick and easy!<br>
-📩 Projects and Events listed and sorted by the remaining time, and a time countdown instead of a date.<br>
+🗓️ Projects and Events listed and sorted by the remaining time, and a time countdown instead of a date.<br>
 🔗 Navigate easily to the intranet from the extension UI.<br>
 😅 A profile section with your GPA and Grades.<br>
+💼 HUB experience/credits calculator.<br>
 🚀 Auto-login for the Moulinette: Login button gets automatically pressed.<br>
-📋 A quick recap of recent Moulinette corrections.<br>
-🔔 Get notified when the moulinette corrects (WIP).<br>
+📋 A quick recap of Moulinette corrections.<br>
+🔔 See new moulinette corrections.<br>
 
 <h2>How to install:</h2>
 
