@@ -98,7 +98,6 @@ function openDescList(event) {
         color = '#3b8000';
         icon = 'event_available';
         icon2 = 'check_box';
-        completed_count = completed_count + 1;
     }
     if (Math.ceil(timeDifference / (1000 * 60)) <= 0) {
         color = '#aaa';
@@ -226,11 +225,11 @@ function createTaskList() {
     }
 
     taskTable.innerHTML = '';
-    let completed_count = 0;
+    var completed_count = 0;
+    var all_count = 0;
     chrome.storage.local.get("TaskListing", function(data) {
         storedData = data["TaskListing"];
         if (storedData) {
-            console.log("CARDS: ", storedData);
             Object.keys(storedData).forEach(title => {
                 const date = new Date(storedData[title].d);
                 const dateString = date.toDateString();
@@ -247,6 +246,7 @@ function createTaskList() {
                 let icon2 = "check_box_outline_blank";
                 let daysLeft = Math.floor(timeDifference / millisecondsInDay);
 
+                all_count = parseInt(all_count) + 1;
                 if (showCompletedTable == 0 && storedData[title].c == 1) {
                     row.style.display = "none";
                 }
@@ -266,7 +266,7 @@ function createTaskList() {
                     color = '#3b8000';
                     icon = 'event_available';
                     icon2 = 'check_box';
-                    completed_count = completed_count + 1;
+                    completed_count = parseInt(completed_count) + 1;
                 }
                 if (Math.ceil(timeDifference / (1000 * 60)) <= 0) {
                     color = '#aaa';
@@ -326,7 +326,8 @@ function createTaskList() {
                         row.parentNode.removeChild(row);
                     });
                 });
-                button2.innerHTML = '<i class="material-icons" style="font-size: 16px;">delete</i>';
+                button2.innerHTML = '<i class="material-icons" style="font-size: 18px;">remove</i>';
+                button2Cell.setAttribute("title", "Remove "+title)
                 button2.classList.add('btn_del');
                 button2Cell.appendChild(button2);
                 row.appendChild(checkCell);
@@ -352,6 +353,13 @@ function createTaskList() {
             noDataItem.appendChild(noDataCell);
             taskTable.appendChild(noDataItem);
         }
+
+        if (showCompletedTable == 1 && all_count != 0)
+            document.getElementById("nothingToSee_div").style.display = "none";
+        else if ((all_count - completed_count) == 0)
+            document.getElementById("nothingToSee_div").style.display = "block";
+        else
+            document.getElementById("nothingToSee_div").style.display = "none";
     });
 }
 
@@ -420,7 +428,7 @@ document.getElementById('s_canelEvent_btn3').addEventListener('click', () => {
     document.getElementById('tab_taskdesc').style.display = "none";
 });
 
-document.getElementById('s_add_btn').addEventListener('click', () => {
+document.getElementById('s_add_btn2').addEventListener('click', () => {
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('tab_addevent').style.display = "block";
 });

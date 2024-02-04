@@ -88,12 +88,14 @@ body {
     padding-left: 5px;
     margin-right: -7px;
     margin-top: -7px;
-    color: #f1f1f1;
+    color: #944f41;
+    text-align: center;
+    border-radius: 50px;
     cursor: pointer;
 }
 
 td:has(> .btn_del) {
-    background-color: #B04632;
+    width: 30px;
 }
 
 .material-icons, .material-icons-outlined, #info_taskUrl>a {
@@ -464,4 +466,23 @@ button#s_addEvent_btn>.material-icons {
 
 .topbar>.btn.br {
     border-right: 1px solid #ccc;
+}
+
+#nothingToSee_div {
+    text-align: center;
+    vertical-align: middle;
+    padding: 30px 0;
+}
+
+#nothingToSee_div .btn {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+#nothingToSee_div .btn:hover {
+    background-color: #ddd;
+    opacity: 0.8;
 }

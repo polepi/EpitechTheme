@@ -37,6 +37,7 @@
             <div class="tab">
                 <button class="tablinks"  data-link="tab_global" title="General"><span class="material-icons-outlined" style="margin-top: -3px;">dashboard</span></button>
                 <button class="tablinks" data-link="tab_grades" title="Grades"><span class="material-icons-outlined" style="margin-top: -3px;">school</span></button>
+                <button class="tablinks" data-link="tab_hub" title="Hub"><span class="material-icons-outlined" style="margin-top: -3px;">device_hub</span></button>
             </div>
             <div id="tab_global" class="tabcontent">
                 <div style="background-color: #f5f5f5;">
@@ -69,6 +70,13 @@
             <div id="tab_grades" class="tabcontent">
                 <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
                 <div id="subtab_subjectList" style="max-height: 260px;overflow-y: auto;">
+                    <div id="subjectlist_filterbtns">
+                        <div class="filter_btn" title='Module count'><i class='material-icons-outlined'>radio_button_checked</i><span id="filterBtn_all"></span></div>
+                        <div class="filter_btn" title='Registred/Ongoing'><i class='material-icons-outlined'>schedule</i><span id="filterBtn_reg"></span></div>
+                        <div class="filter_btn" title='Not registred'><i class='material-icons-outlined' style='color:LightSalmon;' title='Not registred'>circle</i><span id="filterBtn_not"></span></div>
+                        <div class="filter_btn" title='Passed modules'><i class='material-icons-outlined' style='color:#8FBC8F;' title='Not registred'>check_circle</i><span id="filterBtn_pass"></span></div>
+                        <div class="filter_btn" title='Failed modules'><i class='material-icons-outlined' style='color:indianred;' title='Not registred'>cancel</i><span id="filterBtn_fail"></span></div>
+                    </div>
                     <table id="ul_show_subjects"></table>
                 </div>
                 <div id="subtab_subjectInfo">
@@ -90,8 +98,37 @@
                     </div>
                 </div>
             </div>
+            <div id="tab_hub" class="tabcontent">
+                <div class="loader" id="is_hub_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+                <div id="subtab_subjectList" style="max-height: 260px;overflow-y: auto;">
+                    <div style="padding: 0px 10px;margin-bottom: 10px">
+                        <h2 style="margin: 10px 0px;padding-bottom: 7px; border-bottom: 1px solid #ddd;">Hub</h2>
+                        <div class="info_badge_cred" title="Predicted Experience">
+                            <div class="info_badge_title">HUB Experience</div>
+                            <div style="padding: 3px 3px; position: relative; min-height: 36px;">
+                                <span id="sub_hub_exp"></span>
+                            </div>
+                        </div>
+                        <div class="info_badge_cred" title="Predicted Credits">
+                            <div class="info_badge_title">HUB Credits</div>
+                            <div style="padding: 3px 3px; position: relative; min-height: 36px;">
+                                <div id="sub_hub_cred_bar"><span id="sub_hub_cred"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-badge">
+                        <b>Found activities</b>
+                    </div>
+                    <table id="table_hub_recipt"></table>
+                    <div class="info-badge">
+                        <b>Disclaimer: </b>This is a prediction of your HUB Experience and Credits based on the HUB activities you have participated. This prediction could be wrong, you should still ask your teacher if you need to know for certain.<br>
+                        <a href="info/hub.html" target="_blank">More information</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="profile.js"></script>
+    <script src="hub.js"></script>
 </body>
 </html>

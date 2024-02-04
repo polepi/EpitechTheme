@@ -208,3 +208,76 @@ table tr td:first-child {
     margin-top: -1px;
     cursor: pointer;
 }
+
+#subjectlist_filterbtns {
+    padding: 8px;
+}
+
+.filter_btn > .material-icons-outlined {
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: 6px;
+}
+
+.filter_btn {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 2px 8px;
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.info_badge_cred {
+    display: inline-block;
+    width: calc(50% - 5px);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    color: #333;
+    margin-right: 3px;
+    font-size: 14px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.info_badge_title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+    padding: 3px 10px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.info-badge {
+    padding: 6px 10px;
+    background-color: #eee;
+    color: #333;
+}
+
+
+#sub_hub_cred_bar {
+    display: block;
+    height: 30px;
+    background-color: rgb(45, 54, 110);
+    border-radius: 3px;
+    padding: 0 0px;
+}
+
+#sub_hub_exp, #sub_hub_cred {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #333;
+    transform: translate(-50%, -50%);
+}
+
+#sub_hub_cred {
+    padding: 0px 3px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, .6);
+}

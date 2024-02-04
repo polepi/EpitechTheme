@@ -1,4 +1,6 @@
 var userid;
+var user_loc;
+var user_year;
 
 function open_tab(evt, tabname) {
     var i, tabcontent, tablinks;
@@ -18,8 +20,6 @@ function open_tab(evt, tabname) {
     if (evt)
         evt.currentTarget.className += " active";
 }
-
-
 
 var tablinks = document.getElementsByClassName('tablinks');
 for (var i = 0; i < tablinks.length; i++) {
@@ -86,6 +86,11 @@ function gradeToText(raw_grade, islong) {
             return "Passed";
         return "Pass";
     }
+    if (raw_grade == "Echec") {
+        if (islong)
+            return "Failed";
+        return "Fail";
+    }
     return raw_grade;
 }
 
@@ -109,6 +114,57 @@ function open_subjectInfo(module, data) {
     document.getElementById('subtab_subjectInfo').style.display = "block";
 }
 
+function getSubjectInfo() {
+    const url_subject_info = "https://intra.epitech.eu/course/filter?format=json&preload=1&location%5B%5D="+user_loc+"&course%5B%5D=bachelor%2Fclassic&scolaryear%5B%5D="+user_year;
+    
+    fetch(url_subject_info)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        var filt_btn_fail = 0;
+        var filt_btn_succ = 0;
+        var filt_btn_reg = 0;
+        var filt_btn_notr = 0;
+
+        data.items.forEach(module => {
+            const el = document.querySelectorAll('[id-code="'+module.code+'"]');
+            if (el && el[0]) {
+                const el2 = el[0].querySelector("td:first-child");
+                el2.innerHTML = "<i class='material-icons-outlined' title='Error loading data'>help_outline</i>";
+                if (module.status == "notregistered") {
+                    el2.innerHTML = "<i class='material-icons-outlined' style='color:LightSalmon;' title='Not registred'>circle</i>";
+                    filt_btn_notr += 1;
+                }
+                if (module.status == "ongoing") {
+                    el2.innerHTML = "<i class='material-icons-outlined' title='Registred/Ongoing'>schedule</i>";
+                    filt_btn_reg += 1;
+                }
+                if (module.status == "valid") {
+                    el2.innerHTML = "<i class='material-icons-outlined' style='color:#8FBC8F;' title='Module Passed'>check_circle</i>";
+                    filt_btn_succ += 1;
+                }
+                if (module.status == "fail") {
+                    el2.innerHTML = "<i class='material-icons-outlined' style='color:IndianRed;' title='Module Failed'>cancel</i>";
+                    filt_btn_fail += 1;
+                }
+            }
+        });
+
+        document.getElementById("filterBtn_all").textContent = filt_btn_reg + filt_btn_succ + filt_btn_fail + filt_btn_notr;
+        document.getElementById("filterBtn_reg").textContent = filt_btn_reg;
+        document.getElementById("filterBtn_pass").textContent = filt_btn_succ;
+        document.getElementById("filterBtn_fail").textContent = filt_btn_fail;
+        document.getElementById("filterBtn_not").textContent = filt_btn_notr;
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
+
 function fetch_grades() {
     document.getElementById('is_grades_loading').style.display = "block";
     const url_grades_json = "https://intra.epitech.eu/user/"+userid+"/notes?format=json";
@@ -125,13 +181,14 @@ function fetch_grades() {
         data.modules.forEach(module => {
             console.log(module);
             const new_tr_element = document.createElement('tr');
-            new_tr_element.innerHTML = "<td><i class='material-icons-outlined' title='Add/Remove favourite'>star_border</i></td><td>"+module.title+"</td><td>"+module.codemodule+"</td><td>"+module.credits+"</td><td class='td_tabl_grade'>"+gradeToText(module.grade)+"</td>";
+            new_tr_element.innerHTML = "<td>-</td><td>"+module.title+"</td><td>"+module.codemodule+"</td><td>"+module.credits+"</td><td class='td_tabl_grade'>"+gradeToText(module.grade)+"</td>";
             new_tr_element.addEventListener('click', () => {
                 open_subjectInfo(module, data);
             });
+            new_tr_element.setAttribute("id-code", module.codemodule);
             ulElement.appendChild(new_tr_element);
         });
-        
+        getSubjectInfo();
         document.getElementById('is_grades_loading').style.display = "none";
     })
     .catch(error => {
@@ -153,12 +210,14 @@ function fetch_main() {
         return response.json();
     })
     .then(data => {
-        document.getElementById("p_info_credits").textContent = data.credits;
-        document.getElementById("p_info_gpa").textContent = data.gpa[0].gpa;
+        document.getElementById("p_info_credits").innerHTML = "<b>"+data.credits + "</b>&nbsp;<span style='color:#666;'>/ 60</span>";
+        document.getElementById("p_info_gpa").innerHTML = "<b>"+data.gpa[0].gpa + "</b>&nbsp;<span style='color:#666;'>/ 4.00</span>";
         document.getElementById("p_info_mail").textContent = data.internal_email;
         document.getElementById("p_info_name").textContent = data.title;
         document.getElementById("p_info_loc").textContent = data.groups[0].name;
         document.getElementById("p_info_sem").textContent = data.semester_code;
+        user_loc = data.location;
+        user_year = data.scolaryear;
         fetch_grades();
     })
     .catch(error => {

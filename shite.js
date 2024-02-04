@@ -140,7 +140,7 @@ function get_correct_per(item) {
     if (completionPercentage > 65) {
         colour_bar = "#90b31e";
         emoji_font = "😮";
-        emoji_tooltip = "Hey, that's pretty good!";
+        emoji_tooltip = "Hey, that`s pretty good!";
     }
     if (completionPercentage > 75) {
         colour_bar = "#26a324";
@@ -170,6 +170,13 @@ function proccess_result(raw) {
         return `<span style="padding: 2px 6px;border:1px solid #ccc;background-color:#ddd;border-radius:5px;display:inline-block;">${match}</span>`;
     });
     return raw;
+}
+
+function did_crash(is_crashed) {
+    if (is_crashed == 1) {
+        return "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>sync_problem</span>Crashed</span>";
+    }
+    return "";
 }
 
 function print_details(det, url) {
@@ -242,30 +249,62 @@ function print_details(det, url) {
         var colour_font = "#f1f1f1";
         var completedItems = 0;
         var countItems = 0;
-        skill["FullSkillReport"]["tests"].forEach((test) => {
-            countItems++;
-            if (test["passed"] == true)
-                completedItems++;
-        });
-        var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
-        if (completionPercentage <= 33)
-            colour_font = "#333";
-        if (completionPercentage > 10)
-            colour_bar = "#ff4d00";
-        if (completionPercentage > 30)
-            colour_bar = "#ff9100";
-        if (completionPercentage > 50)
-            colour_bar = "#e3d409";
-        if (completionPercentage > 65)
-            colour_bar = "#90b31e";
-        if (completionPercentage > 75)
-            colour_bar = "#26a324";
-        if (completionPercentage >= 100)
-            colour_bar = "#a71ac4";
-        new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
-        skill["FullSkillReport"]["tests"].forEach((test) => {
-            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+"<span class='span_copy_box' data-copy='"+test["name"]+":\n"+test["comment"]+"'><span class='material-icons-outlined'>content_copy</span></span></div>";
-        });
+        var is_crashed = 0;
+        if (skill["FullSkillReport"] && skill["FullSkillReport"]["tests"]) {
+            skill["FullSkillReport"]["tests"].forEach((test) => {
+                countItems++;
+                if (test["crashed"] == true)
+                    is_crashed = 1;
+                if (test["passed"] == true)
+                    completedItems++;
+            });
+            var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
+            if (completionPercentage <= 33)
+                colour_font = "#333";
+            if (completionPercentage > 10)
+                colour_bar = "#ff4d00";
+            if (completionPercentage > 30)
+                colour_bar = "#ff9100";
+            if (completionPercentage > 50)
+                colour_bar = "#e3d409";
+            if (completionPercentage > 65)
+                colour_bar = "#90b31e";
+            if (completionPercentage > 75)
+                colour_bar = "#26a324";
+            if (completionPercentage >= 100) {
+                colour_bar = "#a71ac4";
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(is_crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+            } else {
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(is_crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
+            }
+            
+            skill["FullSkillReport"]["tests"].forEach((test) => {
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+"<span class='span_copy_box' data-copy='"+test["name"]+":\n"+test["comment"]+"'><span class='material-icons-outlined'>content_copy</span></span></div>";
+            });
+        } else if (skill["BreakdownSkillReport"] && skill["BreakdownSkillReport"]["breakdown"]) {
+            countItems = skill["BreakdownSkillReport"]["breakdown"].count;
+            completedItems = skill["BreakdownSkillReport"]["breakdown"].passed;
+            var completionPercentage = ((completedItems / countItems) * 100).toFixed(0);
+            if (completionPercentage <= 33)
+                colour_font = "#333";
+            if (completionPercentage > 10)
+                colour_bar = "#ff4d00";
+            if (completionPercentage > 30)
+                colour_bar = "#ff9100";
+            if (completionPercentage > 50)
+                colour_bar = "#e3d409";
+            if (completionPercentage > 65)
+                colour_bar = "#90b31e";
+            if (completionPercentage > 75)
+                colour_bar = "#26a324";
+            if (completionPercentage >= 100) {
+                colour_bar = "#a71ac4";
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["BreakdownSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+            } else {
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["BreakdownSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
+            }
+            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><i style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>This part has no tests to be displayed.</i></div><span class='span_copy_box' data-copy='No tests'><span class='material-icons-outlined'>content_copy</span></span></div>";
+        }
     });
     document.getElementById("tab_shite_subject_details2").appendChild(new_tr_element);
 

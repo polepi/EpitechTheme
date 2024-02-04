@@ -604,31 +604,6 @@ ul.tabs li a span {
 	color: white !important;
 }
 
-.tabulation>.tabs>li>a:first-child {
-	border-left: 2px solid #555 !important;
-}
-
-.tabulation>.tabs>li>a {
-	border: none !important;
-	background: none !important;
-	margin-top: 4px !important;
-	margin-left: 0px !important;
-	border-top: 2px solid #555 !important;
-	border-right: 2px solid #555 !important;
-	color: #fff !important;
-	padding: 0px 12px !important;
-	padding-left: 38px !important;
-	background-repeat: no-repeat !important;
-    background-position: 8px, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/flip_to_front/round.png?raw=true') !important;
-	background-color: rgb(66, 69, 73) !important;
-	text-shadow: none !important;
-}
-
-.tabulation>.tabs>li>a:hover {
-	background-color: rgb(44, 45, 47) !important;
-}
-
 ul.tabs, ul.tabs li a, ul.tabs li a span {
     background: none !important;
     display: block;
@@ -737,6 +712,25 @@ ul.tabs, ul.tabs li a, ul.tabs li a span {
 	background-color: rgb(45, 54, 110) !important;
 }
 
+a.button.register {
+	background: none !important;
+}
+
+a.button.register > span > .icon {
+	display: none !important
+}
+
+.button.register > span {
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+	background-size: 19px 19px !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/check_box/round.png?raw=true') !important;
+	background-color: rgb(45, 54, 110) !important;
+	padding: 6px 8px;
+	padding-left: 26px;
+	border-radius: 3px;
+}
+
 .buttons > .confirm > span {
 	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/check_circle/round.png?raw=true') !important;
 	background-color: rgb(45, 54, 110) !important;
@@ -764,6 +758,13 @@ div.datagrid tbody tr:nth-child(even) {
 
 div.datagrid table thead th>div {
     border: none !important;
+}
+
+.button.teams>span {
+	background-repeat: no-repeat !important;
+    background-position: 8px, 0px !important;
+	background-size: 18px 18px !important;
+	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/call/round.png?raw=true') !important;
 }
 
 #sidebar form.filter.course .button.expand-filters > span .icon {
@@ -907,15 +908,12 @@ div.datagrid {
 
 #module .tab > ul li.activite > .title h2 a {
     color: white !important;
+	text-decoration: none !important;
 }
 
 .sub_list {
 	background: rgb(66, 69, 73) !important;
 	border: none !important;
-	border-radius: 3px;
-}
-
-.item img {
 	border-radius: 3px;
 }
 
@@ -1398,13 +1396,11 @@ a.log-out {
 
 .bloc.tabulation > .wrapper > .tabs > li.ui-active {
 	font-weight: bold !important;
-	background-color: #272727 !important;
 	border-right: 1px dashed #222 !important;
 }
 
 .bloc.tabulation > .tabs > li.ui-active > a {
 	font-weight: bold !important;
-	background-color: #272727 !important;
 	border-right: 1px dashed #222 !important;
 }
 
@@ -1458,4 +1454,253 @@ a.log-out {
 
 #project_title > .value > a:hover {
 	opacity: 0.7 !important;
+}
+
+.tab > ul > li > .title {
+	box-shadow: none !important;
+	border-bottom: 1px solid #555 !important;
+}
+
+.tab > ul > li > .title:hover {
+	background-color: #34363a !important;
+}
+
+#module .tab > ul li.activite.future > .title .dates .bargraph {
+	border-radius: 7px !important;
+	border-color: #4352b1 !important;
+}
+
+#module .tab > ul li.activite > .title .dates .bargraph>.closed-on {
+	background-color: #4352b1 !important;
+}
+
+#module .tab > ul li.activite.past > .title .dates .bargraph {
+	border-radius: 7px !important;
+	border-color: #777 !important;
+}
+
+#module .tab > ul li.activite.future > .title .dates .bargraph>.bar {
+	border-radius: 7px !important;
+	background-color: #4352b1 !important;
+}
+
+#module .tab > ul li.activite.past > .title .dates .bargraph>.bar {
+	border-radius: 7px !important;
+	background-color: #777 !important;
+}
+
+#module .tab > ul li.activite .eventzone .event:hover {
+	background-color: #36393e !important;
+}
+
+#module .tab > ul li.activite .eventzone .event .item.teachers a.picture {
+	border: 1px solid #555;
+	background-color: #888 !important;
+	border-radius: 50px;
+	max-height: 32px !important;
+}
+
+.item img {
+    border-radius: 50px !important;
+	aspect-ratio: 1 / .5 !important;
+}
+
+#module .tab > ul li.activite .data .item, #content .rzone, #module .tab > ul li.activite .eventzone .event .data, #module .tab > ul li.activite .eventzone .event .data {
+	border-color: #555 !important;
+}
+
+#module .tab > ul li.activite .eventzone .event .item:first-child, #module .tab > ul li.activite .eventzone .event .item:first-child {
+	border-color: #555 !important;
+}
+
+#profil .bloc.main .data>.infos {
+	background-color: #222 !important;
+	color: #f1f1f1 !important;
+	border: none !important;
+	border-radius: 5px;
+}
+
+#info-area > .box > .details {
+	background-image: none !important;
+	background-color: #252525 !important;
+	border-radius: 5px !important;
+}
+
+#info-area > .box > .details > .header {
+	background-image: none !important;
+	background-color: #151515 !important;
+	border-radius: 5px 5px 0 0 !important;
+	margin-bottom:15px !important;
+}
+
+#info-area .box .details .group.info {
+	padding: 0 !important;
+	background: none !important;
+	
+}
+
+#info-area .box .details .note {
+	display: block !important;
+}
+
+#profil .bloc.main .data .infos>.item {
+	border-color: #555 !important;
+}
+
+#elearning #content .homeview ul li .wrapper ul {
+	background-color: #222 !important;
+	color: #f1f1f1 !important;
+}
+
+#elearning #content .homeview ul li.is-class .onglet .filter li.cours, #elearning #content .homeview ul li.has-class .onglet .filter li.cours, #elearning #content .homeview ul li .maxi-wrapper .separator, #elearning #content .bloc .data .mainview ul li .wrapper.expand ul, #elearning #content .homeview ul li .maxi-wrapper .wrapper.expand .separator, #elearning #content .bloc .data .mainview ul li .title {
+	background: none !important;
+	background-color: #151515 !important;
+	color: #f1f1f1 !important;
+}
+
+#elearning #content .homeview ul li.has-class .onglet .filter li.tp {
+	background: none !important;
+	background-color: #222 !important;
+	color: #bbb !important;
+}
+
+#elearning #content .bloc .data .mainview ul li .arrow .icon {
+	background: none !important;
+	background-color: #111 !important;
+	border: 3px solid #36393e;
+	border-radius: 50px;
+	color: #bbb !important;
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+	background-size: 16px 16px;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/expand_more/round.png?raw=true') !important;
+}
+
+#elearning #content .bloc .data .mainview ul li a.arrow.disabled {
+	display: none !important;
+}
+
+h2 {
+	color: #f1f1f1 !important;
+}
+
+.planner.daysview > .days .scroll .events td {
+    border-left: 3px solid #888 !important;
+    vertical-align: top;
+}
+
+.planner.daysview > .days .scroll .events .hour {
+    border-bottom: 1px solid #888 !important;
+}
+
+.planner.daysview > .days .scroll .events .half {
+    border-bottom: 1px dotted #666 !important;
+}
+
+#sidebar > .wrapper > .button.toggle .label {
+    color: #bbb !important;
+}
+
+.bloc.planif.ui-selected.expanded {
+	background: #424242;
+}
+
+#module .tab > ul li.activite .item .info.project, #module .tab > ul li.activite .access .item.project h3 .icon {
+	background: none !important;
+	background-repeat: no-repeat !important;
+    background-position: 40%, 50% !important;
+	background-size: 14px 14px;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/category/round.png?raw=true') !important;
+}
+
+#module .tab > ul li.activite .item .info.appointment, #module .tab > ul li.activite .access .item.rdv h3 .icon {
+    background: none !important;
+	background-repeat: no-repeat !important;
+    background-position: 30%, 50% !important;
+	background-size: 14px 14px;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/group/round.png?raw=true') !important;
+}
+
+#module .tab > ul li.activite .item .info.notation, #module .tab > ul li.activite .access .item.note h3 .icon {
+    background: none !important;
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-size: 14px 14px;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/school/round.png?raw=true') !important;
+}
+
+#module .tab > ul li.activite .slide .access > .item .links ul {
+    margin: 0 !important;
+	text-align: center;
+}
+
+#module .tab > ul li.activite .slide .access > .item .links ul a {
+	margin: 5px;
+	background-color: #262626;
+	padding: 6px 4px;
+	text-align: center;
+	text-decoration: none;
+}
+
+#module .tab > ul li.activite .slide .access > .item .links ul a:hover {
+	opacity: 0.7;
+}
+
+#module .tab > ul li.activite.archive > .title .link.break {
+    visibility: hidden !important;
+}
+
+.tabulation > .tabs {
+	background-color: #272727 !important;
+	border: 1px solid #555 !important;
+	border-radius: 32px;
+	padding: 0 10px !important;
+}
+
+.tabulation>.tabs>li:first-child {
+	border: none !important;
+}
+
+.tabulation>.tabs>li {
+	border: none !important;
+	border-left: 1px solid #555 !important;
+	background: none !important;
+	margin-top: 0px !important;
+	margin-left: 0px !important;
+	color: #f1f1f1 !important;
+	padding: 0px 12px !important;
+	padding-left: 38px !important;
+	background-repeat: no-repeat !important;
+    background-position: 8px, 50% !important;
+    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/flip_to_front/round.png?raw=true') !important;
+	text-shadow: none !important;
+}
+
+#sidebar form.filter.course .datatree .notregistered .icon.registration {
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" fill="LightSalmon" /></svg>') !important;
+	text-shadow: none !important;
+}
+
+#sidebar form.filter.course .datatree .ongoing .icon.registration {
+	background-repeat: no-repeat !important;
+    background-position: -100%, -100% !important;
+	filter: invert(100%);
+    background-image: url('https://fonts.gstatic.com/s/i/materialiconsoutlined/watch_later/v6/24px.svg') !important;
+	text-shadow: none !important;
+}
+
+#sidebar form.filter.course .datatree .valid .icon.registration {
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z" fill="LightGreen" /></svg>') !important;
+	text-shadow: none !important;
+}
+
+#sidebar form.filter.course .datatree .fail .icon.registration {
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" style="fill: IndianRed;" /></svg>') !important;
+	text-shadow: none !important;
 }
