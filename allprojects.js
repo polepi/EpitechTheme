@@ -1,6 +1,7 @@
 var start_date;
 var end_date;
 var is_reg_hidden = 0;
+var show_hubprojects = 0;
 
 function convertDateFormat(inputString) {
     const date = new Date(inputString);
@@ -123,9 +124,21 @@ document.getElementById("inp_text_filter").addEventListener('keyup', () => {
     filterTable();
 });
 
+document.getElementById('s_hub_proj_btn').addEventListener('click', () => {
+    if (show_hubprojects == 1) {
+        show_hubprojects = 0;
+        document.getElementById('s_showhub_icon').innerHTML = "visibility_off";
+    } else {
+        show_hubprojects = 1;
+        document.getElementById('s_showhub_icon').innerHTML = "visibility";
+    }
+    fetch_projects();
+});
+
 function fetch_projects() {
     const url_projects_json = "https://intra.epitech.eu/?format=json";
     const ulProjElement = document.getElementById('table_proj_event_list');
+    ulProjElement.innerHTML = "";
 
     fetch(url_projects_json)
     .then(response => {
@@ -136,14 +149,16 @@ function fetch_projects() {
     })
     .then(data => {
         data.board.projets.forEach(event => {
-            const new_tr_element = document.createElement('tr');
-            new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
-            new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
-            new_tr_element.addEventListener("click", function () {
-                const targetUrl = "https://intra.epitech.eu"+event.title_link;
-                window.open(targetUrl, '_blank');
-            });
-            ulProjElement.appendChild(new_tr_element);
+            if (show_hubprojects == 1 || event.title.substring(0, 9) != "[PROJECT]") {
+                const new_tr_element = document.createElement('tr');
+                new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
+                new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
+                new_tr_element.addEventListener("click", function () {
+                    const targetUrl = "https://intra.epitech.eu"+event.title_link;
+                    window.open(targetUrl, '_blank');
+                });
+                ulProjElement.appendChild(new_tr_element);
+            }
         });
         sortTableDates();
         document.getElementById('is_grades_loading').style.display = "none";

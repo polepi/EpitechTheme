@@ -22,8 +22,8 @@
         <div class="btn br" id="tb_allprojects_btn">
             <span class="material-icons-outlined">format_list_bulleted</span><span>All Projects</span>
         </div>
-        <div class="btn" id="tb_intra_btn">
-            <span class="material-icons-outlined">open_in_new</span><span>Intranet</span>
+        <div class="btn" id="tb_intra_btn" title="Open Intranet" style="float:right;">
+            <span class="material-icons-outlined">fullscreen</span>
         </div>
     </div>
     <div id="tab_table">
@@ -93,9 +93,9 @@
             <div class="inp">
                 <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
             </div>
-            <a href="https://intra.epitech.eu/module/" target="_blank" class="btn" style="float:right;border-right: 1px solid #ccc;padding-top: 9px;" id="btn_show_reg" title="Go to the intranet">
-                <span class="material-icons-outlined" id="s_completed_icon2" style="margin-top: 2px;margin-right: 4px;">fullscreen</span>
-            </a>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_hub_proj_btn" title="Show/Hide HUB Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 5px;" id="s_showhub_icon">visibility_off</span><span>HUB Projects</span>
+            </div>
         </div>
         <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
         <div style="height: 400px; width: 100%;overflow-y: auto;">
