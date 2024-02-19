@@ -29,7 +29,13 @@ function add_to_calendar2(event) {
         link: link,
         endDate: endDate},
         (response) => {
-            console.log('Response', response);
+            if (response == true) {
+                const newchild = document.createElement("div");
+                newchild.style = "line-height:18px;border-radius: 3px;z-index: 100000;position:fixed;top:10px;right:10px;background-color:#222;color:#f1f1f1;border:1px solid #111;padding: 8px 6px;";
+                newchild.innerHTML = "<span style='display:inline-block;margin-right:5px;font-size:16px;'>✨</span><span style='display:inline-block;'>Added <b>"+title+"</b> to <b>My Projects</b></span>";
+                document.body.appendChild(newchild);
+                setTimeout(function(){newchild.remove();},5000);
+            }
     });
 }
 
