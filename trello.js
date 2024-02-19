@@ -103,7 +103,7 @@ function trello_update_card(id, title, iscomp, due, url, desc, idchecks) {
   })
   .then(newCard => {
     trello_set_attributes(newCard.id, url);
-    console.log('(~) Updated trello card:', newCard);
+    //console.log('(~) Updated trello card:', newCard);
   })
   .catch(error => {
     console.error('There was a problem creating the card:', error);
@@ -139,7 +139,7 @@ function trello_new_card(title, iscomp, due, url, desc) {
   })
   .then(newCard => {
     trello_set_attributes(newCard.id, url);
-    console.log('(+) Added new trello card:', newCard);
+    //console.log('(+) Added new trello card:', newCard);
   })
   .catch(error => {
     console.error('There was a problem creating the card:', error);
@@ -188,7 +188,6 @@ function merge_from_trello() {
       })
       .then(cards => {
         cards.forEach(card => {
-            console.log("Card: ", card);
             let iscomp = 0;
             const dateObject = new Date(card.due);
             const epochTime = dateObject.getTime();
@@ -200,7 +199,6 @@ function merge_from_trello() {
               c: card.dueComplete,
               tu: card.url,
               bu: card.shortUrl,
-              u: card.url,
               desc: card.desc,
               idChecklists: card.idChecklists,
               checks: {}
@@ -226,7 +224,6 @@ function merge_from_trello() {
             .then(lists => {
               storedData[card.name].checks = lists;
               chrome.storage.local.set({"TaskListing": storedData}, function() {
-                
               });
             })
             .catch(error => {
@@ -248,10 +245,12 @@ function merge_from_trello() {
               });
             });
         });
-        chrome.storage.local.set({"TaskListing": storedData}, function() {
-          console.log("(+) Merged data from Trello ", storedData);
-          createTaskList();
-        });
+        setInterval(function(){
+          chrome.storage.local.set({"TaskListing": storedData}, function() {
+            //console.log("(+) Merged data from Trello ", storedData);
+            createTaskList();
+          });
+        }, 1000);
       })
       .catch(error => {
         console.error('There was a problem fetching the cards:', error);
@@ -271,7 +270,6 @@ function replace_from_trello() {
       })
       .then(cards => {
         cards.forEach(card => {
-          console.log("Card: ", card);
             let iscomp = 0;
             const dateObject = new Date(card.due);
             const epochTime = dateObject.getTime();
@@ -301,7 +299,7 @@ function replace_from_trello() {
             })
         });
         chrome.storage.local.set({"TaskListing": storedData}, function() {
-          console.log("(+) Merged data from Trello ", storedData);
+          //console.log("(+) Merged data from Trello ", storedData);
           createTaskList();
         });
       })
@@ -327,7 +325,6 @@ function remove_trello_cards() {
         if (!deleteResponse.ok) {
           throw new Error('Error deleting card');
         }
-        console.log(`Card with ID ${card.id} deleted.`);
       })
       .catch(error => {
         console.error('There was a problem deleting the card:', error);
@@ -342,11 +339,11 @@ function remove_trello_cards() {
 function saveAPIInput() {
   chrome.storage.local.get("TrelloData", function(data) {
     tData = data["TrelloData"] || {};
-    console.log(document.getElementById('t_merge_onstartup').checked, document.getElementById('t_pull_onstartup').checked);
+    //console.log(document.getElementById('t_merge_onstartup').checked, document.getElementById('t_pull_onstartup').checked);
     tData.mergestart = document.getElementById('t_merge_onstartup').checked;
     tData.pushstart = document.getElementById('t_pull_onstartup').checked;
     chrome.storage.local.set({"TrelloData": tData}, function() {
-      console.log("(!) Updated", tData);
+      //console.log("Updated", tData);
     });
   });
 }

@@ -89,7 +89,7 @@ function daysSince(inputDate) {
 }
 
 function get_correct_per(item) {
-    console.log(item)
+    //console.log(item)
     var iscrashed = item["results"]["externalItems"];
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
@@ -114,6 +114,10 @@ function get_correct_per(item) {
             return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>"+completionPercentage+"% (Crash)</span></span>";
         if (iscrashed[i]["type"] == "banned")
             return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;;text-align:left;'>😒</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
+        if (iscrashed[i]["type"] == "coding-style-fail")
+            return "<span title='It sucks, I feel your pain' style='margin-right:10px;font-size:18px;;text-align:left;'>😤</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Coding Style</span></span>";
+        if (iscrashed[i]["type"] == "no-test-passed")
+            return "<span title='It sucks, I feel your pain' style='margin-right:10px;font-size:18px;;text-align:left;'>😩</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#222;display:inline-block;width:0px;background-color:#e35d5d;'><b>0%</b></span></span>";
     }
     var colour_bar = "#e35d5d";
     var colour_font = "#f1f1f1";
@@ -192,12 +196,19 @@ function print_details(det, url) {
     document.getElementById("sub_info_info").textContent = "0";
     document.getElementById("sub_info_fatal").textContent = "0";
 
+    console.log("Data:",det)
+
     det["externalItems"].forEach((skill) => {
         if (skill["type"] == "banned") {
             document.getElementById("info_badge_banned_functs_list").textContent = skill["comment"].replace("Functions used but not allowed: ", "");
             document.getElementById("info_badge_banned_functs").style.display = "inline-block";
         }
-        
+        if (skill["type"] == "no-test-passed") {
+            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>assignment_late</span> No tests passed.</span></div></div>";
+        }
+        if (skill["type"] == "coding-style-fail") {
+            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>warning</span> Coding style failure.</span></div></div>";
+        }
     });
 
     if (det["style"] && det["style"]["Details"]) {
@@ -211,6 +222,7 @@ function print_details(det, url) {
                 }
             }
             document.getElementById("sub_info_major").textContent = style_count;
+
         }
         if (det["style"]["Details"]["minor"]) {
             style_count = 0;
@@ -243,13 +255,50 @@ function print_details(det, url) {
             document.getElementById("sub_info_fatal").textContent = style_count;
         }
     }
+    if (det["style"] && det["style"]["Counts"]) {
+        var style_count = 0;
+        if (det["style"]["Counts"]["major"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Counts"]["major"];
+            for (const key in minorObject) {
+                style_count += minorObject[key];
+            }
+            document.getElementById("sub_info_major").textContent = style_count;
 
+        }
+        if (det["style"]["Counts"]["minor"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Counts"]["minor"];
+            for (const key in minorObject) {
+                style_count += minorObject[key];
+            }
+            document.getElementById("sub_info_minor").textContent = style_count;
+        }
+        if (det["style"]["Counts"]["info"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Counts"]["info"];
+            for (const key in minorObject) {
+                style_count += minorObject[key];
+            }
+            document.getElementById("sub_info_info").textContent = style_count;
+        }
+        if (det["style"]["Counts"]["fatal"]) {
+            style_count = 0;
+            const minorObject = det["style"]["Counts"]["fatal"];
+            for (const key in minorObject) {
+                style_count += minorObject[key];
+            }
+            document.getElementById("sub_info_fatal").textContent = style_count;
+        }
+    }
+    var tot_itms = 0;
     det["skills"].forEach((skill) => {
         var colour_bar = "#e35d5d";
         var colour_font = "#f1f1f1";
         var completedItems = 0;
         var countItems = 0;
         var is_crashed = 0;
+        tot_itms += 1;
         if (skill["FullSkillReport"] && skill["FullSkillReport"]["tests"]) {
             skill["FullSkillReport"]["tests"].forEach((test) => {
                 countItems++;
@@ -306,6 +355,9 @@ function print_details(det, url) {
             new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><i style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>This part has no tests to be displayed.</i></div><span class='span_copy_box' data-copy='No tests'><span class='material-icons-outlined'>content_copy</span></span></div>";
         }
     });
+    if (tot_itms == 0) {
+        new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>No tests to be displayed.</span></div></div>";
+    }
     document.getElementById("tab_shite_subject_details2").appendChild(new_tr_element);
 
     // Assign copy_btn //

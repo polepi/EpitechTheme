@@ -30,11 +30,23 @@
 "background": {
     "service_worker": "background.js"
 },
+"web_accessible_resources": [
+  {
+    "resources": ["*.css", "Themes/*.json"],
+    "matches": ["<all_urls>"]
+  }
+],
 "content_scripts": [
   {
     "matches": ["https://intra.epitech.eu/*"], 
     "js": ["script.js"],
-    "css": ["theme.css"],
+    "css": ["misc.css"],
+    "all_frames": true
+  },
+  {
+    "matches": ["https://intra.epitech.eu/*"], 
+    "js": ["theme_handler.js"],
+    "run_at": "document_start",
     "all_frames": true
   },
   {

@@ -73,3 +73,25 @@ if (spanElement) {
     else if (Number(originalText) > 1)
         spanElement.textContent = originalText + " credits";
 }
+
+function changeLanguage(ev) {
+    document.cookie='language='+this.value;
+}
+
+let url_params = new URLSearchParams(document.location.search);
+if (url_params.has("et_pref")) {
+    const div = document.createElement("div");
+    div.classList.add("et_modalBackground");
+    div.innerHTML = "<div class='et_modalContent'><h3>Language</h3><div class='et_sett_cont'><select style='display:block;width:100%;' id='et_changeLang'><option value='en'>English</option><option value='fr'>French</option></select></div></div>";
+    document.body.appendChild(div);
+
+    document.getElementById("et_changeLang").addEventListener("change", function(ev) {
+        document.cookie="language="+ev.target.value+";Expire=100;path=/";
+        console.log("Language changed", ev.target.value);
+    });
+
+    document.getElementById("et_changeLang").value = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("language="))
+    ?.split("=")[1];
+}

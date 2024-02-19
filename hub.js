@@ -1,6 +1,6 @@
 var limit_max_Workshop = 10;
 var limit_max_Hackathon = 0;
-var limit_max_Talk = 0;
+var limit_max_Talk = 15;
 var limit_max_Project = 0;
 var limit_max_Experience = 8;
 const hubTable = document.getElementById("table_hub_recipt")
@@ -30,9 +30,9 @@ function getExpFromItem(hub) {
         new_tr_element.innerHTML = "<td>"+hub.title+"</td><td>Present</td><td>Workshop</td><td style='padding-right:10px;'>"+exp+"</td>";
         hubTable.appendChild(new_tr_element);
     }
-    if (hub.type_title == "Hackathon" && limit_max_Hackathon > 0) {
+    if (hub.type_title == "Hackathon") {
         exp += 6;
-        limit_max_Hackathon -= 1;
+        limit_max_Hackathon += 1;
         const new_tr_element = document.createElement('tr');
         new_tr_element.innerHTML = "<td>"+hub.title+"</td><td>Present</td><td>Hackathon</td><td style='padding-right:10px;'>"+exp+"</td>";
         hubTable.appendChild(new_tr_element);
@@ -63,19 +63,23 @@ function display_expected_credits(cred) {
         max_cred = 5;
     if (max_cred < cred)
         cred = max_cred;
-    document.getElementById("sub_hub_cred").innerHTML = "<b>"+ cred +"</b>/"+max_cred;
-    document.getElementById("sub_hub_cred_bar").style.width = (cred/max_cred) * 100 + "%";
+    document.getElementById("sub_hub_cred").innerHTML = "<span class='material-icons-outlined' style='margin-top: 2px;margin-right: 10px;font-size: 16px;'>auto_awesome</span><b>"+ cred +"</b>/"+max_cred;
+    //document.getElementById("sub_hub_cred_bar").style.width = (cred/max_cred) * 100 + "%";
 }
 
 function getExpectedEXP(hub) {
     var expected_exp = 0;
     limit_max_Workshop = 10;
-    limit_max_Hackathon = 6;
+    limit_max_Hackathon = 0;
     limit_max_Talk = 15;
     limit_max_Project = 0;
-    limit_max_Experience = 0;
-
+    limit_max_Experience = 8;
     max_exp_points = 50;
+
+    document.getElementById("filterBtn_hubWork").innerHTML = limit_max_Workshop;
+    document.getElementById("filterBtn_hubTalk").innerHTML = limit_max_Talk;
+    document.getElementById("filterBtn_hubHack").innerHTML = limit_max_Hackathon;
+    document.getElementById("filterBtn_hubExp").innerHTML = limit_max_Experience;
     
     hub.activites.forEach(act => {
         if (act.events && act.events[0] && act.events[0].user_status) {
@@ -84,8 +88,13 @@ function getExpectedEXP(hub) {
             }
         }
     });
+
+    document.getElementById("filterBtn_hubWork").innerHTML = (document.getElementById("filterBtn_hubWork").innerHTML - limit_max_Workshop) + "/" + document.getElementById("filterBtn_hubWork").innerHTML;
+    document.getElementById("filterBtn_hubTalk").innerHTML = (document.getElementById("filterBtn_hubTalk").innerHTML - limit_max_Talk) + "/" + document.getElementById("filterBtn_hubTalk").innerHTML;
+    document.getElementById("filterBtn_hubHack").innerHTML = limit_max_Hackathon;
+    document.getElementById("filterBtn_hubExp").innerHTML = (document.getElementById("filterBtn_hubExp").innerHTML - limit_max_Experience) + "/" + document.getElementById("filterBtn_hubExp").innerHTML;
     
-    document.getElementById("sub_hub_exp").innerHTML = "<span class='material-icons-outlined' style='margin-top: 2px;margin-right: 10px;font-size: 18px;'>auto_awesome</span><b>" + expected_exp + "</b> / "+ max_exp_points;
+    document.getElementById("sub_hub_exp").innerHTML = "<span class='material-icons-outlined' style='margin-top: 2px;margin-right: 10px;font-size: 16px;'>local_fire_department</span><b>" + expected_exp + "</b> / "+ max_exp_points;
     display_expected_credits(expected_exp);
     document.getElementById("is_hub_loading").style.display = "none";
 }

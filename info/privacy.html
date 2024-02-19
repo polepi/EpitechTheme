@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    .modal {
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: #2e2e2e;
+    }
+    .modal-content {
+        background-color: #272727;
+        margin: auto;
+        border: 1px solid #1a1a1a;
+        width: 620px;
+        border-radius: 7px;
+        color: white;
+    }
+    #t_trello_token, #t_trello_apikey, #t_trello_lisid {
+        padding: 8px 12px;
+        width: calc(100% - 24px);
+        background-color: #202020;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        margin-top: 3px;
+        border: 1px solid #111;
+        color: white;
+    }
+    .material-icons, .material-icons-outlined {
+        display: inline-flex;
+        vertical-align: top;
+    }
+    .btn {
+        padding: 8px 12px;
+        background-color: #494949;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        color: white;
+        margin-top: 3px;
+        border: 1px solid #111;
+        cursor: pointer;
+        display: inline-block;
+    }
+    .btn:hover {
+        opacity: 0.7;
+    }
+    a.btn {
+        text-decoration: none;
+    }
+    h3 {
+        border-bottom: 1px solid #1a1a1a;
+        margin: 0;
+        margin-bottom: 15px;
+        padding: 20px 20px;
+        background-color: #1f1f1f;
+    }
+    #form_trello_config {
+        padding: 5px 20px;
+    }
+    </style>
+    <title>EpiTheme: Configure Trello API</title>
+</head>
+<body>
+<div class="modal">
+  <div class="modal-content">
+    <h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>api</span>&nbsp;&nbsp;Trello API Configuration</h3>
+    <form id="form_trello_config">
+        <label for="t_trello_apikey" href="https://trello.com/power-ups/admin/"><b>API Key</b></label>
+        <input type="password" id="t_trello_apikey" placeholder="Trello API Key" required minlength="10">
+        <label for="t_trello_token"><b>API Token</b></label>
+        <input type="password" id="t_trello_token" placeholder="Trello Token" required minlength="10">
+        <label for="t_trello_lisid"><b>List ID</b></label>
+        <input type="password" id="t_trello_lisid" placeholder="Trello List ID" required minlength="10">
+        <button id="e_save_trello" class="btn" style="background-color:rgb(45, 54, 110);margin-top: -5px;">
+            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check</span>&nbsp;&nbsp;<span>Apply API Changes</span>
+        </button>
+        <a class="btn" href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/" target="_blank">
+            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sticky_note_2</span>&nbsp;&nbsp;<span>Docs</span>
+        </a>
+        <a class="btn" href="https://trello.com/power-ups/admin/" target="_blank">
+            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>vpn_key</span>&nbsp;&nbsp;<span>Get key</span>
+        </a>
+    </form>
+  </div>
+</div>
+</body>
+</html>

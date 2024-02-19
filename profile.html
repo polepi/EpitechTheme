@@ -25,7 +25,7 @@
         </style>
 </head>
 <body>
-    <div style="height: 304px;overflow-y: auto;">
+    <div style="height: 404px;overflow-y: auto;">
         <div id="nv_main_bar">
             <a href="popup.html">📋 Projects</a>
             <a href="events.html">📅 Events</a>
@@ -69,7 +69,28 @@
             </div>
             <div id="tab_grades" class="tabcontent">
                 <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
-                <div id="subtab_subjectList" style="max-height: 260px;overflow-y: auto;">
+                <div id="subtab_subjectList" style="max-height: 360px;overflow-y: auto;">
+                    <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
+                        <div class="inp">
+                            <span style="margin-top: 8px;" class="material-icons-outlined">search</span><input id="filter_input" autocomplete="off" style="padding-top: 10px;" type="text" placeholder="Filter subject..">
+                        </div>
+                        <div id="div_filter_sem" style="border-left: 1px solid #ccc;">
+                            <select style='margin-top: 0px;'>
+                                <option value="all">Filter</option>
+                                <option value="0">S0</option>
+                                <option value="1">S1</option>
+                                <option value="2">S2</option>
+                                <option value="3">S3</option>
+                                <option value="4">S4</option>
+                                <option value="5">S5</option>
+                                <option value="6">S6</option>
+                                <option value="7">S7</option>
+                                <option value="8">S8</option>
+                                <option value="9">S9</option>
+                                <option value="10">S10</option>
+                            </select>
+                        </div>
+                    </div>
                     <div id="subjectlist_filterbtns">
                         <div class="filter_btn" title='Module count'><i class='material-icons-outlined'>radio_button_checked</i><span id="filterBtn_all"></span></div>
                         <div class="filter_btn" title='Registred/Ongoing'><i class='material-icons-outlined'>schedule</i><span id="filterBtn_reg"></span></div>
@@ -100,27 +121,27 @@
             </div>
             <div id="tab_hub" class="tabcontent">
                 <div class="loader" id="is_hub_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
-                <div id="subtab_subjectList" style="max-height: 260px;overflow-y: auto;">
+                <div id="subtab_subjectList" style="max-height: 360px;overflow-y: auto;">
                     <div style="padding: 0px 10px;margin-bottom: 10px">
                         <h2 style="margin: 10px 0px;padding-bottom: 7px; border-bottom: 1px solid #ddd;">Hub</h2>
-                        <div class="info_badge_cred" title="Predicted Experience">
-                            <div class="info_badge_title">HUB Experience</div>
-                            <div style="padding: 3px 3px; position: relative; min-height: 36px;">
-                                <span id="sub_hub_exp"></span>
-                            </div>
+                        <div style="border-bottom: 1px solid #ddd;margin-bottom: 5px;padding-bottom: 5px;">
+                            <div class="hub_btn" title='HUB Experience'><b style="width: 155px;">HUB Experience</b><span id="sub_hub_exp"></span></div>
+                            <div class="hub_btn" title='HUB Credits'><b style="width: 195px;">HUB Credits</b><span id="sub_hub_cred"></span></div>
                         </div>
-                        <div class="info_badge_cred" title="Predicted Credits">
-                            <div class="info_badge_title">HUB Credits</div>
-                            <div style="padding: 3px 3px; position: relative; min-height: 36px;">
-                                <div id="sub_hub_cred_bar"><span id="sub_hub_cred"></span></div>
-                            </div>
+                        <div style="margin-bottom: 5px;">
+                            <div class="hub_btn" title='2 xp/session'><b>Workshop</b><span id="filterBtn_hubWork"></span></div>
+                            <div class="hub_btn" title='1 xp/session'><b>Talk</b><span id="filterBtn_hubTalk"></span></div>
+                            <div class="hub_btn" title='6 xp/session'><b>Hackathon</b><span id="filterBtn_hubHack"></span></div>
+                            <div class="hub_btn" title='3 xp/session'><b>Experience</b><span id="filterBtn_hubExp"></span></div>
                         </div>
+                        
                     </div>
-                    <div class="info-badge">
+                    <div class="info-badge" style="border-top: 1px solid #ddd;">
                         <b>Found activities</b>
                     </div>
                     <table id="table_hub_recipt"></table>
                     <div class="info-badge">
+                        <p><span style="padding: 4px;border-radius: 3px;border: 1px solid #ccc;background-color: #ddd;">Feature In-Development</span></p>
                         <b>Disclaimer: </b>This is a prediction of your HUB Experience and Credits based on the HUB activities you have participated. This prediction could be wrong, you should still ask your teacher if you need to know for certain.<br>
                         <a href="info/hub.html" target="_blank">More information</a>
                     </div>

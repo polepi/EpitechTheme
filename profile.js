@@ -45,7 +45,6 @@ function fetch_mail() {
         return response.json();
     })
     .then(data => {
-        console.log("1 => ", data.internal_email);
         chrome.storage.local.set({"UserId": data.internal_email}, function() {
             userid = data.internal_email;
             fetch_main();
@@ -185,6 +184,7 @@ function fetch_grades() {
             new_tr_element.addEventListener('click', () => {
                 open_subjectInfo(module, data);
             });
+            new_tr_element.setAttribute("id-sem", module.title.slice(1, 2))
             new_tr_element.setAttribute("id-code", module.codemodule);
             ulElement.appendChild(new_tr_element);
         });
@@ -224,4 +224,25 @@ function fetch_main() {
         console.error('Fetch error:', error);
         fetch_main();
     });
+}
+
+document.getElementById("filter_input").addEventListener("keyup", filterTableNames);
+function filterTableNames() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("filter_input");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("ul_show_subjects");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+    sortTable();
 }

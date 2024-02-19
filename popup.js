@@ -433,6 +433,10 @@ document.getElementById('s_add_btn2').addEventListener('click', () => {
     document.getElementById('tab_addevent').style.display = "block";
 });
 
+document.getElementById('tb_intra_btn').addEventListener('click', () => {
+    window.open('https://intra.epitech.eu/', '_blank');
+});
+
 document.getElementById('createTask_form').addEventListener('submit', (event) => {
     event.preventDefault();
     let t_name = document.getElementById('in_addtask_name').value;

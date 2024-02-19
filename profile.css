@@ -4,8 +4,6 @@ body {
     min-width: 600px;
     margin: 0;
     padding: 0;
-    height: 270px !important;
-    max-height: 270px !important;
     background-color: #f5f5f5;
     overflow-y: auto;
     overflow-x: hidden;
@@ -101,18 +99,6 @@ table td {
     padding-right: 5px;
 }
 
-#filter_input {
-    background-position: 10px, 108px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.1);
-    outline: none;
-}
-
 #info_taskCardUrl {
     text-decoration: none;
     color: #222;
@@ -138,7 +124,7 @@ table tr td:first-child {
     box-sizing: border-box;
     background-color: #ddd;
     border-right: 1px solid #ccc;
-    height: 261px;
+    height: 361px;
 }
   
 .tab button {
@@ -259,25 +245,86 @@ table tr td:first-child {
     color: #333;
 }
 
-
-#sub_hub_cred_bar {
+.navbar {
     display: block;
-    height: 30px;
-    background-color: rgb(45, 54, 110);
-    border-radius: 3px;
-    padding: 0 0px;
+    line-height: 16px;
 }
 
-#sub_hub_exp, #sub_hub_cred {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    color: #333;
-    transform: translate(-50%, -50%);
+.navbar>div, button {
+    display: inline-block;
+    padding: 8px 10px;
+    color: #444;
+    cursor: pointer;
 }
 
-#sub_hub_cred {
-    padding: 0px 3px;
+.navbar>div:hover, button:hover {
+    opacity: 0.6;
+}
+
+.navbar>.btn {
+    display: inline-block;
+    padding: 10px 12px;
+    padding-right: 14px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar>.inp {
+    width: 35%;
+    display: inline-block;
+    padding: 0;
+}
+
+.navbar>.inp>.material-icons-outlined {
+    display: inline-block;
+    font-size: 18px;
+    color: #444;
+    margin-top: 4px;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.navbar>.inp>input[type=text] {
+    width: 80%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 11px 12px;
+    box-shadow: none;
+}
+
+#div_filter_sem {
+    float: right;
+    margin-right: 5px;
+    padding: 0px 0px;
+}
+
+#div_filter_sem select {
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    min-width: 50px;
+    background: none;
+    cursor: pointer;
+    color: #222;
+}
+
+.hub_btn {
+    display: inline-block;
+    border: 1px solid #ddd;
+    color:#222;
+    margin-right: 2px;
     border-radius: 3px;
-    background-color: rgba(255, 255, 255, .6);
+}
+
+.hub_btn > b {
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    padding: 8px 14px;
+}
+
+.hub_btn > span {
+    display: inline-block;
+    padding: 8px 13px;
+    background-color: #eee;
 }

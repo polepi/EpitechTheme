@@ -8,6 +8,32 @@ var user_loc = "ES/BAR";
 var event_semester_min = 0;
 var event_semester_max = 2;
 
+var input_daterange = 7;
+function apply_filter_sem() {
+    const semrange_input_min = document.getElementById("input-left").value;
+    const semrange_input_max = document.getElementById("input-right").value;
+
+    event_semester_min = semrange_input_min;
+    event_semester_max = semrange_input_max;
+    selected_days = input_daterange;
+    var storedData = {};
+    storedData["event_semester_min"] = semrange_input_min;
+    storedData["event_semester_max"] = semrange_input_max;
+    chrome.storage.local.set({"event_semester": storedData });
+}
+
+chrome.storage.local.get("event_semester", function(data) {
+    var in_min = 0;
+    var in_max = 2;
+    let storedData = data["event_semester"] || {};
+    if (storedData && storedData["event_semester_min"] && storedData["event_semester_max"]) {
+        in_min = storedData["event_semester_min"];
+        in_max = storedData["event_semester_max"];
+    }
+    event_semester_min = in_min;
+    event_semester_max = in_max;
+});
+
 
 function convertDateFormat(inputString) {
     const date = new Date(inputString);
@@ -42,8 +68,6 @@ function get_current_week() {
     const weekAheadMonth = oneWeekAhead.getMonth() + 1;
     const weekAheadDay = oneWeekAhead.getDate();
     end_date = weekAheadYear+"-"+weekAheadMonth+"-"+weekAheadDay;
-
-    document.getElementById("list_settings_days").textContent = dispText;
 }
 
 function getDaysLeft(targetString, fronttext) {
@@ -161,7 +185,6 @@ function fetch_schedule() {
                 isregist = "check_box_outline_blank";
                 if (event.event_registered == "registered")
                     isregist = "check_box";
-
                 var room_code = "-";
                 var room_seats = "-";
                 if (event.room && event.room.code && event.seats) {
@@ -198,14 +221,9 @@ window.onclick = function(event) {
     }
 }
 
-var input_daterange = 7;
 document.getElementById("apply_fiters_btn").addEventListener("click", function() {
-    const semrange_input_min = document.getElementById("input-left").value;
-    const semrange_input_max = document.getElementById("input-right").value;
-
-    selected_days = input_daterange;
+    apply_filter_sem();
     fetch_schedule();
-    console.log(semrange_input_min, semrange_input_max);
     document.getElementById("modal_date").style.display = "none";
 });
 
