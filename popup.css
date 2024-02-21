@@ -176,6 +176,18 @@ button#s_addEvent_btn {
     cursor: pointer;
 }
 
+a#add_from_dashboard{
+    margin: 5px;
+    border: 1px solid #ccc;
+    max-height: 33.6px;
+    border-radius: 3px;
+    padding: 8px 14px;
+    color: #111;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
 button#s_addEvent_btn:hover {
     background-color: rgb(44, 51, 94);
 }

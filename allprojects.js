@@ -111,12 +111,14 @@ function filterTable() {
 document.getElementById("tb_myprojects_btn").addEventListener('click', () => {
     document.getElementById("tab_table").style.display = "block";
     document.getElementById("tab_allprojects").style.display = "none";
+    document.getElementById('tab_addevent').style.display = "none";
     document.getElementById('tab_taskdesc').style.display = "none";
 });
 
 document.getElementById("tb_allprojects_btn").addEventListener('click', () => {
     document.getElementById("tab_table").style.display = "none";
     document.getElementById("tab_allprojects").style.display = "block";
+    document.getElementById('tab_addevent').style.display = "none";
     document.getElementById('tab_taskdesc').style.display = "none";
 });
 

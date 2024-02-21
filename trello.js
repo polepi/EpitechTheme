@@ -139,6 +139,9 @@ function trello_new_card(title, iscomp, due, url, desc) {
   })
   .then(newCard => {
     trello_set_attributes(newCard.id, url);
+    storedData[title].du = newCard.shortUrl;
+    storedData[title].tu = newCard.url;
+    chrome.storage.local.set({"TaskListing": storedData});
     //console.log('(+) Added new trello card:', newCard);
   })
   .catch(error => {
@@ -280,7 +283,7 @@ function replace_from_trello() {
               d: epochTime,
               c: card.dueComplete,
               tu: card.url,
-              u: card.url,
+              du: card.shortUrl,
               desc: card.desc
             }
             fetch(`https://api.trello.com/1/cards/${card.id}/attachments?key=${tData.apiKey}&token=${tData.token}`)

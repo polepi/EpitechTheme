@@ -357,13 +357,17 @@ document.getElementById('e_export_trello').addEventListener('click', () => {
 });
 
 document.getElementById('e_replace_trello').addEventListener('click', () => {
-  document.getElementById('e_replace_trello').style.display = "none";
-  replace_from_trello();
+  if (confirm("Do you wish to REPLACE your local cards with the ones on Trello?")) {
+    document.getElementById('e_replace_trello').style.display = "none";
+    replace_from_trello();
+  }
 });
 
 document.getElementById('e_removeall_trello').addEventListener('click', () => {
-  document.getElementById('e_removeall_trello').style.display = "none";
-  remove_trello_cards();
+  if (confirm("Do you wish to REMOVE ALL the cards in the Trello?")) {
+    document.getElementById('e_removeall_trello').style.display = "none";
+    remove_trello_cards();
+  }
 });
 
 document.getElementById('e_opsett_trello').addEventListener('click', () => {
