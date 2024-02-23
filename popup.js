@@ -124,7 +124,7 @@ function openDescList(event) {
         info_taskLab.style.display = "block";
     }
     
-    document.getElementById('info_taskDaysIcon').innerHTML = "<span style='font-size: 18px;margin-top: 0px;' class='material-icons' >"+icon+"</span>&nbsp;&nbsp;"+remainingTime;
+    document.getElementById('info_taskDaysIcon').innerHTML = "<div style='border-right:1px solid #ddd;'><span style='font-size: 18px;margin-top: 0px;' class='material-icons' >"+icon+"</span></div><div>"+remainingTime+"</div>";
     document.getElementById('info_taskDaysIcon').style.color = color;
     document.getElementById('tab_table').style.display = "none";
     document.getElementById('info_taskName').textContent = dataTitle;
@@ -132,7 +132,7 @@ function openDescList(event) {
     document.getElementById('info_taskCardUrl').style.display = "none";
     if (storedData[dataTitle] && storedData[dataTitle].tu) {
         document.getElementById('info_taskCardUrl').href = storedData[dataTitle].tu;
-        document.getElementById('info_taskCardUrl').style.display = "inline";
+        document.getElementById('info_taskCardUrl').style.display = "inline-block";
     }
 
     document.getElementById('info_taskDesc').style.display = "none";
@@ -148,7 +148,7 @@ function openDescList(event) {
     document.getElementById('info_taskUrl').innerHTML = "";
     if (storedData[dataTitle] && storedData[dataTitle].u) {
         const row = document.createElement('span');
-        row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;'><i class='material-icons'>link</i> <span>Project</span></a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
+        row.innerHTML = "<a href='"+storedData[dataTitle].u+"' target='_blank' style='font-size: 18px;margin-top: 0px;'><i class='material-icons'>open_in_new</i></a><input id='etask_url' value='"+storedData[dataTitle].u+"' autocomplete='off' placeholder='Link to project'>";
         document.getElementById('info_taskUrl').appendChild(row);
         document.getElementById('info_taskUrl').style.display = "block";
     }
@@ -157,7 +157,7 @@ function openDescList(event) {
     if (storedData[dataTitle] && storedData[dataTitle].checks) {
         storedData[dataTitle].checks.forEach((item) => {
             const checkTable_div = document.createElement('div');
-            checkTable_div.innerHTML = "<h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>checklist</span>&nbsp;&nbsp;"+item.name+"</h3>";
+            checkTable_div.innerHTML = "<h3><span style='font-size: 18px;padding-right:8px;margin-top: 0px;border-right:1px solid #bbb;margin-right:3px' class='material-icons'>checklist</span>&nbsp;&nbsp;"+item.name+"</h3>";
             const checkTable_table = document.createElement('table');
             item.checkItems.forEach((itemCheck) => {
                 const checkTable_tr = document.createElement('tr');

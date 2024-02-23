@@ -22,6 +22,9 @@
         <div class="btn br" id="tb_allprojects_btn">
             <span class="material-icons-outlined">format_list_bulleted</span><span>All Projects</span>
         </div>
+        <div class="btn br" id="tb_calprojects_btn">
+            <span class="material-icons-outlined">calendar_month</span><span>Calendar<span class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;">open_in_new</span></span>
+        </div>
         <div class="btn" id="tb_intra_btn" title="Open Intranet" style="float:right;">
             <span class="material-icons-outlined">fullscreen</span>
         </div>
@@ -71,18 +74,18 @@
         </form>
     </div>
     <div id="tab_taskdesc">
-        <div class="s_top_task_title" style="margin-bottom: 8px;">
+        <div class="s_top_task_title">
             <span id="s_canelEvent_btn3" title="Return" style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span><span id="s_descEvent_save" title="Save changes"><span style='font-size: 18px;margin-top: 2px;margin-right: 11px;' class='material-icons'>save_as</span><span style="margin-right: 5px;font-size: 12px;">Apply</span></span>
             <span title="Task name" style='font-size: 18px;margin-top: 10px;margin-left: 12px;margin-right: 5px;' class='material-icons'>sell</span><span id="info_taskName"></span>
         </div>
         <div class="cont">
             <div style="display: block;">
                 <span class="date_infoEvent date_calendar_e" id="in_edittask_due_holder">
-                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>event</span>&nbsp;&nbsp;<input type="datetime-local" id="in_edittask_due">
+                    <div style="border-right:1px solid #ddd;"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>event</span></div><div><input type="datetime-local" id="in_edittask_due"></div>
                 </span>
                 <span class="date_infoEvent" id="info_taskDaysIcon" style="margin-left: 5px;"></span>
                 <a class="date_infoEvent" id="info_taskCardUrl" target="_blank" style="margin-left: 3px;">
-                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sticky_note_2</span>&nbsp;&nbsp;Trello
+                    <div style="border-right:1px solid #ddd;"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sticky_note_2</span></div><div>Trello</div>
                 </a>
             </div>
             <div id="info_taskLab"></div>
@@ -97,7 +100,13 @@
                 <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
             </div>
             <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_hub_proj_btn" title="Show/Hide HUB Projects">
-                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 5px;" id="s_showhub_icon">visibility_off</span><span>HUB Projects</span>
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showhub_icon">visibility_off</span><span id="s_showhub_txt">HUB</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_boot_proj_btn" title="Show/Hide Bootstraps">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showboot_icon">visibility</span><span id="s_showboot_txt">Bootstraps</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_expired_proj_btn" title="Show/Hide Expired Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showexpired_icon">visibility_off</span><span id="s_showexpired_txt"><span>Expired</span>
             </div>
         </div>
         <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>

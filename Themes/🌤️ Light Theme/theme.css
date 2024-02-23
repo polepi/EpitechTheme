@@ -702,7 +702,12 @@ ul.tabs, ul.tabs li a, ul.tabs li a span {
 	line-height: 26px !important;
     background-repeat: no-repeat !important;
     background-position: 8px, 50% !important;
-	background-color: rgb(55, 56, 58) !important;
+	background-color: var(--colour-section) !important;
+	border: 1px solid var(--colour-borders);
+}
+
+#project #tab-group.tab li.group > .wrapper > .actions a:hover {
+	background-color: var(--colour-borders) !important;
 }
 
 #project #tab-group.tab li.group > .wrapper > .actions > .callwithteams {
@@ -732,10 +737,10 @@ ul.tabs, ul.tabs li a, ul.tabs li a span {
 .buttons > a > span {
 	border-radius: 3px !important;
 	background: none !important;
-	background-color: #111 !important;
+	background-color: var(--colour-section) !important;
 	background-repeat: no-repeat !important;
     background-position: 8px, 50% !important;
-	padding: 6px 12px !important;
+	padding: 5px 12px !important;
 }
 
 .buttons > a > span > .label {

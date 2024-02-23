@@ -248,7 +248,7 @@ function merge_from_trello() {
               });
             });
         });
-        setInterval(function(){
+        setTimeout(function(){
           chrome.storage.local.set({"TaskListing": storedData}, function() {
             //console.log("(+) Merged data from Trello ", storedData);
             createTaskList();

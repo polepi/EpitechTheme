@@ -1,7 +1,11 @@
 var start_date;
 var end_date;
 var is_reg_hidden = 0;
+
 var show_hubprojects = 0;
+var show_bootsprojects = 1;
+var show_completedprojects = 0;
+var count_hubprojects, count_bootsprojects, count_completedprojects;
 
 function convertDateFormat(inputString) {
     const date = new Date(inputString);
@@ -122,6 +126,10 @@ document.getElementById("tb_allprojects_btn").addEventListener('click', () => {
     document.getElementById('tab_taskdesc').style.display = "none";
 });
 
+document.getElementById("tb_calprojects_btn").addEventListener('click', () => {
+    window.open('https://intra.epitech.eu/planning/', '_blank');
+});
+
 document.getElementById("inp_text_filter").addEventListener('keyup', () => {
     filterTable();
 });
@@ -137,10 +145,36 @@ document.getElementById('s_hub_proj_btn').addEventListener('click', () => {
     fetch_projects();
 });
 
+document.getElementById('s_boot_proj_btn').addEventListener('click', () => {
+    if (show_bootsprojects == 1) {
+        show_bootsprojects = 0;
+        document.getElementById('s_showboot_icon').innerHTML = "visibility_off";
+    } else {
+        show_bootsprojects = 1;
+        document.getElementById('s_showboot_icon').innerHTML = "visibility";
+    }
+    fetch_projects();
+});
+
+document.getElementById('s_expired_proj_btn').addEventListener('click', () => {
+    if (show_completedprojects == 1) {
+        show_completedprojects = 0;
+        document.getElementById('s_showexpired_icon').innerHTML = "visibility_off";
+    } else {
+        show_completedprojects = 1;
+        document.getElementById('s_showexpired_icon').innerHTML = "visibility";
+    }
+    fetch_projects();
+});
+
 function fetch_projects() {
     const url_projects_json = "https://intra.epitech.eu/?format=json";
     const ulProjElement = document.getElementById('table_proj_event_list');
     ulProjElement.innerHTML = "";
+
+    count_hubprojects = 0;
+    count_bootsprojects = 0;
+    count_completedprojects = 0;
 
     fetch(url_projects_json)
     .then(response => {
@@ -152,17 +186,36 @@ function fetch_projects() {
     .then(data => {
         data.board.projets.forEach(event => {
             if (show_hubprojects == 1 || event.title.substring(0, 9) != "[PROJECT]") {
-                const new_tr_element = document.createElement('tr');
-                new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
-                new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
-                new_tr_element.addEventListener("click", function () {
-                    const targetUrl = "https://intra.epitech.eu"+event.title_link;
-                    window.open(targetUrl, '_blank');
-                });
-                ulProjElement.appendChild(new_tr_element);
+                if (event.title.substring(0, 9) == "[PROJECT]")
+                    count_hubprojects += 1;
+                if (show_bootsprojects == 1 || event.title.substring(0, 12) != "Bootstrap - ") {
+                    if (event.title.substring(0, 12) == "Bootstrap - ")
+                        count_bootsprojects += 1;
+                    if (show_completedprojects == 1 || gettimeepoch(event.timeline_end) > (new Date().getTime())) {
+                        if (gettimeepoch(event.timeline_end) <= (new Date().getTime()))
+                            count_completedprojects += 1;
+                        const new_tr_element = document.createElement('tr');
+                        new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
+                        new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
+                        new_tr_element.addEventListener("click", function () {
+                            const targetUrl = "https://intra.epitech.eu"+event.title_link;
+                            window.open(targetUrl, '_blank');
+                        });
+                        ulProjElement.appendChild(new_tr_element);
+                    }
+                }
             }
         });
         sortTableDates();
+        document.getElementById("s_showhub_txt").innerHTML = "HUB <span class='completed_badges'>"+count_hubprojects+"</span>";
+        document.getElementById("s_showboot_txt").innerHTML = "Bootstraps <span class='completed_badges'>"+count_bootsprojects+"</span>";
+        document.getElementById("s_showexpired_txt").innerHTML = "Expired <span class='completed_badges'>"+count_completedprojects+"</span>";
+        if (count_completedprojects == 0)
+            document.getElementById("s_showexpired_txt").innerHTML = 'Expired';
+        if (count_bootsprojects == 0)
+            document.getElementById("s_showboot_txt").innerHTML = 'Bootstraps';
+        if (count_hubprojects == 0)
+            document.getElementById("s_showhub_txt").innerHTML = 'HUB';
         document.getElementById('is_grades_loading').style.display = "none";
     })
     .catch(error => {

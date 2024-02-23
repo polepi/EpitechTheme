@@ -205,7 +205,7 @@ button#s_addEvent_btn>.material-icons {
     user-select: none;
 }
 
-#s_completed_badge {
+#s_completed_badge, .completed_badges {
     color: #fff;
     padding: 0px 3px;
     margin-top: 3px;
@@ -276,6 +276,7 @@ button#s_addEvent_btn>.material-icons {
 #in_edittask_due {
     border: none;
     box-sizing: border-box;
+    background: none;
     outline: 0;
     margin-right: -10px;
     position: relative;
@@ -302,7 +303,7 @@ button#s_addEvent_btn>.material-icons {
     min-height: 100px;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     margin-top: 9px;
 }
 
@@ -341,13 +342,13 @@ button#s_addEvent_btn>.material-icons {
 
 #info_taskUrl>span>a {
     text-decoration: none;
-    background-color: #ddd;
-    color: #000;
+    background-color: #eee;
+    color: #555;
     display: inline-block;
     line-height: 32px;
     height: 32.2px;
     border-right: 1px solid #ccc;
-    width: 100px;
+    width: 40px;
     cursor: pointer;
 }
 
@@ -373,7 +374,7 @@ button#s_addEvent_btn>.material-icons {
     position: absolute;
     border: none;
     outline: none;
-    width: 70%;
+    width: calc(100% - 60px);
 }
 
 #info_taskUrl>span>a:hover {
@@ -381,14 +382,19 @@ button#s_addEvent_btn>.material-icons {
 }
 
 .date_infoEvent {
-    padding: 8px 12px;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+
+.date_infoEvent > div {
+    display: inline-block;
+    padding: 8px;
 }
 
 #info_taskChecks>div {
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     background-color: #fff;
     border-radius: 3px;
     margin-top: 8px;
@@ -396,8 +402,9 @@ button#s_addEvent_btn>.material-icons {
 
 #info_taskChecks>div>h3 {
     padding: 5px 10px;
-    background-color: #ddd;
-    border-bottom: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    border-radius: 3px 3px 0px 0px;
     margin: 0;
 }
 
