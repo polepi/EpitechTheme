@@ -302,3 +302,11 @@ slider_inputRight.addEventListener("mousedown", function() {
 slider_inputRight.addEventListener("mouseup", function() {
 	slider_thumbRight.classList.remove("active");
 });
+
+document.getElementById("btn_goto_schedule").addEventListener("click", function () {
+    window.location = "events.html";
+});
+
+document.getElementById("btn_goto_calendar").addEventListener("click", function () {
+    window.location = "calendar.html";
+});

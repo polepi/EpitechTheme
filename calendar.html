@@ -3,9 +3,9 @@
 <head>
     <title>Schedule - EpiTheme</title>
     <link rel="stylesheet" type="text/css" href="events.css">
+    <link rel="stylesheet" type="text/css" href="calendar.css">
     <link rel="stylesheet" type="text/css" href="navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
-    <script src="jquery/jquery.js"></script>
     <meta charset="utf-8">
 </head>
 <body>
@@ -25,20 +25,25 @@
             <div id="btn_goto_calendar" class="btn br">
                 <span class="material-icons-outlined">calendar_view_month</span><span>Calendar</span>
             </div>
-            <div class="inp" style="width: 25%;">
-                <span class="material-icons-outlined">search</span><input id="inp_text_filter" type="text" placeholder="Filter name..">
-            </div>
-            <div style="float:right;" class="btn" id="list_settings_btn">
-                <span class="material-icons-outlined">sort</span><span id="list_settings_days">Filter</span>
+            <div style="float: right;">
+                <select id="select_val_days">
+                    <option value=3>3 days</option>
+                    <option value=7>7 days</option>
+                    <option value=14 selected>14 days</option>
+                    <option value=28>1 month</option>
+                    <option value=84>3 months</option>
+                </select>
             </div>
             <div style="float:right;" id="btn_show_reg" class="btn br" title="Show/Hide Non-registered tasks">
-                <span class="material-icons-outlined">visibility</span><span>Registered</span>
+                <span id="is_reg_only" class="material-icons-outlined">visibility</span><span>Registered</span>
             </div>
         </div>
-        <div style="overflow-y: auto;height: 350px;">
+        <div style="overflow-y: auto;height: 400px;zoom: .75;">
             <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
-            <table id="table_event_list"></table>
-            <table style="display: none;" id="table_proj_event_list"></table>
+            <div id="table_calendar_view_div" style="display: none;">
+                <table id="table_calendar_view"></table>
+            </div>
+            
         </div>
     </div>
     <div id="modal_date" class="modal-box">
@@ -69,6 +74,6 @@
             <span class="nBtn" id="apply_fiters_btn"><span class="material-icons-outlined" style="margin-right: 7px;">done</span>Apply filters</span>
         </div>
     </div>
-    <script src="events.js"></script>
+    <script src="calendar.js"></script>
 </body>
 </html>

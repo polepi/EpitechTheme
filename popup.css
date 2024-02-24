@@ -207,10 +207,11 @@ button#s_addEvent_btn>.material-icons {
 
 #s_completed_badge, .completed_badges {
     color: #fff;
-    padding: 0px 3px;
+    padding: 0px 4px;
     margin-top: 3px;
-    border-radius: 5px;
-    background-color: rgb(45, 54, 110);
+    margin-left: 5px;
+    border-radius: 50px;
+    background-color: #555;
 }
 
 #tab_addevent {

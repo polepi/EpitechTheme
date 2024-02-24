@@ -1,0 +1,81 @@
+body {
+    width: 100%;
+    margin: 0;
+    min-width: 800px;
+    margin: 0;
+    padding: 0;
+    max-height: 400px;
+    background-color: #f1f1f1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#table_calendar_view {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table_calendar_view th {
+    padding: 6px;
+}
+
+#table_calendar_view td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+    overflow-y: auto;
+    height: 341px;
+}
+
+#select_val_days {
+    padding: 11px 6px;
+    margin-right: 5px;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.calendar_holder {
+    margin-top: 5px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.calendar_event {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.calendar_event:hover {
+    opacity: 0.8;
+}
+
+.calendar_event:not(:first-child) {
+    margin-top: 5px;
+}
+
+.calendar_event div:nth-child(1) {
+    padding: 5px 0px 5px 5px;
+    border-radius: 3px 3px 0px 0px;
+    background-color: #e5e5e5;
+    border-left: 1px solid #ddd;
+    color: #444;
+}
+
+.calendar_event div:nth-child(2) {
+    color: #222;
+    padding: 5px;
+    
+}
+
+.calendar_event_active {
+    border: 1px solid rgb(45, 54, 110);
+}
+
+.calendar_event_active > div:nth-child(1) {
+    border-bottom: 1px solid rgb(45, 54, 110);
+}

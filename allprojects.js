@@ -185,15 +185,15 @@ function fetch_projects() {
     })
     .then(data => {
         data.board.projets.forEach(event => {
+            if (event.title.substring(0, 9) == "[PROJECT]")
+                count_hubprojects += 1;
+            if (event.title.substring(0, 12) == "Bootstrap - ")
+                count_bootsprojects += 1;
+            if (gettimeepoch(event.timeline_end) <= (new Date().getTime()))
+                count_completedprojects += 1;
             if (show_hubprojects == 1 || event.title.substring(0, 9) != "[PROJECT]") {
-                if (event.title.substring(0, 9) == "[PROJECT]")
-                    count_hubprojects += 1;
-                if (show_bootsprojects == 1 || event.title.substring(0, 12) != "Bootstrap - ") {
-                    if (event.title.substring(0, 12) == "Bootstrap - ")
-                        count_bootsprojects += 1;
+                if (show_bootsprojects == 1 || event.title.substring(0, 12) != "Bootstrap - ") {       
                     if (show_completedprojects == 1 || gettimeepoch(event.timeline_end) > (new Date().getTime())) {
-                        if (gettimeepoch(event.timeline_end) <= (new Date().getTime()))
-                            count_completedprojects += 1;
                         const new_tr_element = document.createElement('tr');
                         new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
                         new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
