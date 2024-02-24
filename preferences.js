@@ -63,6 +63,10 @@ document.getElementById("sett_expand_sett").addEventListener('click', () => {
   document.getElementById("tab_btns").style.display = "none";
 });
 
+document.getElementById("sett_expand_repo").addEventListener('click', () => {
+  window.open("https://github.com/polepi/EpitechTheme/", '_blank');
+});
+
 document.getElementById("sett_expand_trello").addEventListener('click', () => {
   document.getElementById("tab_pref").style.display = "none";
   document.getElementById("subtab_trello").style.display = "block";

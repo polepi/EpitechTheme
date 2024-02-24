@@ -127,7 +127,7 @@ document.getElementById("tb_allprojects_btn").addEventListener('click', () => {
 });
 
 document.getElementById("tb_calprojects_btn").addEventListener('click', () => {
-    window.open('https://intra.epitech.eu/planning/', '_blank');
+    window.location = "calendar.html";
 });
 
 document.getElementById("inp_text_filter").addEventListener('keyup', () => {
