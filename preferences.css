@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     max-height: 300px;
-    background-color: #f1f1f1;
+    background-color: #fff;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -94,20 +94,20 @@ body {
 button {
     line-height: 14px;
     padding: 0;
-    border: 2px solid #bbb;
+    border: 1px solid #ddd;
     text-align: left;
     color: #333;
     text-decoration: none;
     font-size: 14px;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-right: 5px;
-    background-color: #ddd;
+    background-color: #eee;
     cursor: pointer;
 }
 
 button span:first-child {
-    padding: 6px 6px;
-    border-right: 2px solid #bbb;
+    padding: 8px 10px;
+    border-right: 1px solid #ddd;
     margin-right: 5px;
     display: inline-block;
     line-height: 14px;
@@ -116,7 +116,8 @@ button span:first-child {
 }
 
 button span:nth-child(2) {
-    padding: 6px 3px;
+    padding: 6px 8px;
+    text-align: center;
     display: inline-block;
     line-height: 14px;
     text-align: center;
@@ -125,17 +126,17 @@ button span:nth-child(2) {
 }
 
 button.danger {
-    border: 2px solid #7a2a2a;
+    border: 1px solid #7a2a2a;
     background-color: rgb(158, 71, 71);
     color: #f1f1f1;
 }
 
 button.danger span:first-child {
-    border-right: 2px solid #7a2a2a;
+    border-right: 1px solid #7a2a2a;
 }
 
 button:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .sett_btn {
@@ -175,7 +176,7 @@ button:hover {
     display: inline-block;
 }
 
-.sett_btn:hover, .sett_btn_theme:hover, #themes_btn_goback:hover {
+.sett_btn:hover, .sett_btn_theme:hover, #themes_btn_goback:hover, #themes_btn_goback2:hover {
     opacity: 0.8;
     cursor: pointer;
 }

@@ -13,18 +13,25 @@
         <a href="events.html">📅 Events</a>
         <a href="profile.html">🎓 Profile</a>
         <a href="shite.html">💩 Mouli</a>
-        <a class="navbar-tune active" href="preferences.html"><span class="material-icons-outlined">tune</span></a>
+        <a class="navbar-tune active" href="preferences.html"></a>
     </div>
-    <div id="subtab_theme" class="subtab_cont">
-        <h3>Settings</h3>
-        <div class="sett_btn" id="sett_upload_set_theme"><i class="material-icons-outlined">translate</i><span class="text">Language</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+    <div id="tab_btns" class="subtab_cont">
+        <h3>EpiTheme</h3>
+        <div class="sett_btn" id="sett_expand_sett"><i class="material-icons-outlined">tune</i><span class="text">Settings</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+        <div class="sett_btn" id="sett_expand_trello"><i class="material-icons-outlined">ballot</i><span class="text">Trello</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
     </div>
-    <div id="subtab_themes" class="subtab_cont" style="display: block;">
-        <h3 id="themes_btn_goback"><span class="material-icons-outlined" style="margin-right: 15px;display: none;">chevron_left</span>Themes</h3>
-        <div id="themes_list"></div>
+    <div id="tab_pref" style="display: none;">
+        <div id="subtab_theme" class="subtab_cont">
+            <h3 id="themes_btn_goback"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span>Intranet settings</h3>
+            <div class="sett_btn" id="sett_upload_set_theme"><i class="material-icons-outlined">translate</i><span class="text">Language</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+        </div>
+        <div id="subtab_themes" class="subtab_cont" style="display: block;">
+            <h3><span class="material-icons-outlined" style="margin-right: 15px;display: none;">chevron_left</span>Themes</h3>
+            <div id="themes_list"></div>
+        </div>
     </div>
-    <div id="subtab_trello" class="subtab_cont">
-        <h3>Trello</h3>
+    <div id="subtab_trello" style="display: none;" class="subtab_cont">
+        <h3 id="themes_btn_goback2"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span>Trello</h3>
         <div class="cont">
             <div id="t_notset_warn">
                 <span style="display: block;"  class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Trello API not configured.</span>

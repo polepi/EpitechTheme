@@ -4,11 +4,6 @@ document.getElementById("sett_upload_set_theme").addEventListener('click', () =>
   window.open('https://intra.epitech.eu/pref/?et_pref', '_blank');
 });
 
-document.getElementById("themes_btn_goback").addEventListener('click', () => {
-    document.getElementById("subtab_theme").style.display = "block";
-    document.getElementById("subtab_themes").style.display = "none";
-});
-
 function loadTheme(fileName) {
   const targetUrl = 'https://intra.epitech.eu/';
 
@@ -61,5 +56,29 @@ function listThemeFiles() {
       });
     });
 }
+
+document.getElementById("sett_expand_sett").addEventListener('click', () => {
+  document.getElementById("tab_pref").style.display = "block";
+  document.getElementById("subtab_trello").style.display = "none";
+  document.getElementById("tab_btns").style.display = "none";
+});
+
+document.getElementById("sett_expand_trello").addEventListener('click', () => {
+  document.getElementById("tab_pref").style.display = "none";
+  document.getElementById("subtab_trello").style.display = "block";
+  document.getElementById("tab_btns").style.display = "none";
+});
+
+document.getElementById("themes_btn_goback").addEventListener('click', () => {
+  document.getElementById("tab_pref").style.display = "none";
+  document.getElementById("subtab_trello").style.display = "none";
+  document.getElementById("tab_btns").style.display = "block";
+});
+
+document.getElementById("themes_btn_goback2").addEventListener('click', () => {
+  document.getElementById("tab_pref").style.display = "none";
+  document.getElementById("subtab_trello").style.display = "none";
+  document.getElementById("tab_btns").style.display = "block";
+});
 
 listThemeFiles();

@@ -36,6 +36,14 @@
 }
 #nv_main_bar>a.navbar-tune {
     float: right !important;
+    background-color: transparent;
+    background-image: url("icons/ico32_w.png");
+    background-position: 50%, 50% !important;
+	background-size: 17px 17px !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 33px;
+    width: 33px;
 }
 #nv_main_bar>a.navbar-tune>.material-icons-outlined {
     margin-right: 0px;

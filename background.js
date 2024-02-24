@@ -45,7 +45,7 @@ function listThemeFiles() {
             console.error("Error loading themes:", error);
         });
 }
-listThemeFiles();
+//listThemeFiles();
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'addEventToCalendar') {
