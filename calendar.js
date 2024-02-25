@@ -4,6 +4,7 @@ var event_semester_min = 0;
 var event_semester_max = 2;
 
 var show_registred_only = 0;
+var stack_duplicated = 1;
 
 var start_date = 0;
 var end_date = 0;
@@ -37,6 +38,64 @@ chrome.storage.local.get("event_semester", function(data) {
     event_semester_max = in_max;
 });
 
+function stack_elements(td, el, els) {
+    if (!el.classList.contains("cal_stack")) {
+        const name = el.getAttribute("name");
+        let foundDuplicate = false;
+        els.forEach(element => {
+            if (element !== el && element.getAttribute("name") === name) {
+                if (!foundDuplicate) {
+                    const new_el = document.createElement('span');
+                    new_el.setAttribute("name", "showMore_"+name);
+                    new_el.classList.add("dup_btn");
+                    new_el.innerHTML = "<span class='material-icons-outlined' name='expand_icon_"+name+"'>expand_more</span>Show <b>0</b> more";
+                    new_el.addEventListener("click", function () {
+                        const duplicates = td.querySelectorAll('[name="' + name + '"]');
+                        duplicates.forEach((dup, index) => {
+                            if (index > 0) {
+                                dup.style.display = 'block';
+                            }
+                        });
+                        new_el.style.display = 'none';
+                        new_el1.style.display = 'block';
+                        td.querySelector('[name="hideMore_'+name+'"]').style.display = 'block';
+                    });
+                    td.appendChild(new_el);
+
+                    const new_el1 = document.createElement('span');
+                    new_el1.setAttribute("name", "hideMore_"+name);
+                    new_el1.classList.add("dup_btn");
+                    new_el1.style.display = 'none';
+                    new_el1.innerHTML = "<span class='material-icons-outlined'>expand_less</span>Hide duplicated";
+                    new_el1.addEventListener("click", function () {
+                        const duplicates = td.querySelectorAll('[name="' + name + '"]');
+                        duplicates.forEach((dup, index) => {
+                            if (index > 0) {
+                                dup.style.display = 'none';
+                            }
+                        });
+                        new_el.style.display = 'block';
+                        new_el1.style.display = 'none';
+                        td.querySelector('[name="showMore_'+name+'"]').style.display = 'block';
+                    });
+                    td.appendChild(new_el1);
+                    foundDuplicate = true;
+                }
+                if (td.querySelector('[name="showMore_'+name+'"]')) {
+                    td.querySelector('[name="showMore_'+name+'"] > b').textContent = parseInt(td.querySelector('[name="showMore_'+name+'"] > b').textContent, 10) + 1;
+                }
+                element.classList.add("cal_stack");
+                if (element.classList.contains('calendar_event_active')) {
+                    td.querySelector('[name="showMore_'+name+'"]').style.color = "red";
+                    td.querySelector('[name="showMore_'+name+'"] > span').innerHTML = "expand_circle_down";
+                    element.style.display = "block";
+                }
+                element.style.marginLeft = '20px';
+            }
+        });
+    }
+}
+
 function sortEvents() {
     const tdElements = document.querySelectorAll('#table_calendar_view td');
 
@@ -49,7 +108,11 @@ function sortEvents() {
             return timeA.localeCompare(timeB);
         });
         divs.forEach(div => div.remove());
-        divArray.forEach(div => td.appendChild(div));
+        divArray.forEach(div => {
+            td.appendChild(div);
+            if (stack_duplicated == 1)
+                stack_elements(td, div, divArray);
+        });
     });
 }
 
@@ -79,6 +142,7 @@ function fetch_schedule() {
                     if (cont && ev_date && start && end) {
                         const new_el = document.createElement('div');
                         new_el.setAttribute("data-time", start);
+                        new_el.setAttribute("name", event.acti_title);
                         new_el.classList.add("calendar_event");
                         if (event.event_registered == "registered")
                             new_el.classList.add("calendar_event_active");
@@ -166,6 +230,10 @@ document.getElementById("btn_show_reg").addEventListener("click", function () {
     fetch_schedule();
 });
 
+document.getElementById("go_full_screen").addEventListener("click", function () {
+    window.open("calendar.html", "_blank");
+});
+
 document.getElementById("btn_goto_schedule").addEventListener("click", function () {
     window.location = "events.html";
 });
@@ -173,5 +241,26 @@ document.getElementById("btn_goto_schedule").addEventListener("click", function 
 document.getElementById("btn_goto_calendar").addEventListener("click", function () {
     window.location = "calendar.html";
 });
+
+document.getElementById("stack_duplicated_btn").addEventListener("click", function () {
+    if (stack_duplicated == 1) {
+        stack_duplicated = 0;
+        document.getElementById('is_stacked_only').textContent = "layers_clear";
+    } else {
+        stack_duplicated = 1
+        document.getElementById('is_stacked_only').textContent = "layers";
+    }
+    fetch_schedule();
+});
+
+
+
+if (window.outerHeight > 800) {
+    document.getElementById("nv_main_bar").style.display = "none";
+    document.getElementById("btn_goto_schedule").style.display = "none";
+    document.getElementById("btn_goto_calendar").style.display = "none";
+    document.getElementById("calendar_main_container").style.zoom = "1";
+    document.getElementById("go_full_screen").style.display = "none";
+}
 
 fetch_schedule();

@@ -23,7 +23,7 @@
                 <span class="material-icons-outlined">view_agenda</span><span>Schedule</span>                
             </div>
             <div id="btn_goto_calendar" class="btn br">
-                <span class="material-icons-outlined">calendar_view_month</span><span>Calendar<a href="https://intra.epitech.eu/planning/" target="_blank" class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;" title="Open Intranet's Calendar">open_in_new</a></span>
+                <span class="material-icons-outlined">calendar_month</span><span>Calendar<a href="https://intra.epitech.eu/planning/" target="_blank" class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;" title="Open Intranet's Calendar">open_in_new</a></span>
             </div>
             <div style="float: right;">
                 <select id="select_val_days">
@@ -37,8 +37,14 @@
             <div style="float:right;" id="btn_show_reg" class="btn br" title="Show/Hide Non-registered tasks">
                 <span id="is_reg_only" class="material-icons-outlined">visibility</span><span>Registered</span>
             </div>
+            <div style="float:right;padding-right:4px;" id="stack_duplicated_btn" class="btn br" title="Stack duplicated">
+                <span id="is_stacked_only" class="material-icons-outlined">layers</span>
+            </div>
+            <div style="float:right;padding-right:4px;" id="go_full_screen" class="btn br" title="Fullscreen">
+                <span id="is_reg_only" class="material-icons-outlined">fullscreen</span>
+            </div>
         </div>
-        <div style="overflow-y: auto;height: 400px;zoom: .75;">
+        <div style="overflow-y: auto;" id="calendar_main_container">
             <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
             <div id="table_calendar_view_div" style="display: none;">
                 <table id="table_calendar_view"></table>

@@ -1,13 +1,43 @@
 body {
     width: 100%;
+    height: 100%;
     margin: 0;
-    min-width: 800px;
+    min-width: 793px;
     margin: 0;
     padding: 0;
-    max-height: 500px;
     background-color: #f1f1f1;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+#calendar_main_container {
+    width: 100%;
+    height: calc(100% - 100px);
+    zoom: .75;
+}
+
+.cal_stack {
+    display: none;
+}
+
+.dup_btn {
+    display: block;
+    padding: 6px 4px;
+    cursor: pointer;
+    color: #666;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dup_btn:hover {
+    opacity: 0.8;
+}
+
+.dup_btn > .material-icons-outlined {
+    display: inline;
+    margin-right: 6px;
+    font-size: 16px;
 }
 
 #table_calendar_view {
