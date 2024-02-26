@@ -321,10 +321,10 @@ button#s_addEvent_btn>.material-icons {
     padding: 8px 12px;
     min-width: 1px;
     border-radius: 3px;
-    margin-top: 14px;
+    margin-top: 5px;
     margin-right: 5px;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     color: #fff;
     text-shadow: 1px 1px 2px #111;
 }
