@@ -8,6 +8,7 @@ Adds a comfy to your eyes theme for the intra. A pop-up with all the important i
 🌙 Dark Theme for the intranet.<br>
 📝 Connect your Projects to Trello quick and easy!<br>
 🗓️ Projects and Events listed and sorted by the remaining time, and a time countdown instead of a date.<br>
+📅 Calendar with filters.<br>
 🔗 Navigate easily to the intranet from the extension UI.<br>
 😅 A profile section with your GPA and Grades.<br>
 💼 HUB experience/credits calculator.<br>
