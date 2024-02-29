@@ -36,11 +36,14 @@
                     <span class="material-icons-outlined">search</span><input id="filter_input" type="text" placeholder="Filter name..">
                 </div>
                 <div class="inp2" style="border-left: 1px solid #ccc;">
-                    <input id="date_input" type="number" placeholder="Year" min="2014" max="3000">
+                    <input id="date_input" type="number" placeholder="Year" min="2010" max="9999">
                 </div>
                 <a href="https://my.epitech.eu" target="_blank" style="float:right;" id="btn_show_reg" class="btn br" title="Go to shite">
                     <span class="material-icons-outlined">open_in_new</span>
                 </a>
+                <div style="float:right;padding-right:4px;" id="go_full_screen" class="btn br" title="Fullscreen">
+                    <span id="is_reg_only" class="material-icons-outlined">fullscreen</span>
+                </div>
             </div>
         </div>
         <div id="tab_shite_subjects_table" style="overflow-y:scroll;height: 350px;">
@@ -50,7 +53,7 @@
     <div id="shite_details" style="display: none;width: 100%;">
         <div id="tab_shite_subject_details" style="width: 100%;">
             <div id="tab_shite_subject_info">
-                <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><a id="shite_det_direct_link" style="position: fixed;right:16px;top:53px;" target="_blank"><span class="material-icons-outlined">open_in_new</span></a>
+                <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><div style="position: fixed;right:46px;top:53px;padding-right:4px;cursor:pointer;border-right:1px solid #bbb;padding-right:10px;" title="Open in a new window.." id="go_full_screen2" class="br" title="Fullscreen"><span id="is_reg_only" class="material-icons-outlined">fullscreen</span></div><a id="shite_det_direct_link" title="Open in moulinette.." style="position: fixed;right:16px;top:55px;" target="_blank"><span class="material-icons-outlined" style="font-size: 21px;color:#111;">open_in_new</span></a>
             </div>
             <div style="overflow-y:scroll;height: 350px;width:100%;">
                 <div class="block" style="padding: 6px 0px 0px 6px;">
@@ -63,39 +66,27 @@
                         </div>
                     </div>
                     <div class="info_badge" title="Major Coding Style">
-                        <div class="info_badge_title">Major Coding Style</div>
-                        <div style="padding: 6px 0px;">
-                            <div class="info_badge_icon" style="background-color:rgb(197, 124, 14);"></div>
-                            <div style="vertical-align: top;display: inline-block;">
-                                <span id="sub_info_major"></span>
-                            </div>
+                        <div class="info_badge_subtitle"><span style="margin-right: 10px;">🔴</span>Major</div>
+                        <div style="vertical-align: top;display: inline-block;">
+                            <span id="sub_info_major"></span>
                         </div>
                     </div>
                     <div class="info_badge" title="Minor Coding Style">
-                        <div class="info_badge_title">Minor Coding Style</div>
-                        <div style="padding: 6px 0px;">
-                            <div class="info_badge_icon" style="background-color:rgb(216, 185, 9);"></div>
-                            <div style="vertical-align: top;display: inline-block;">
-                                <span id="sub_info_minor"></span>
-                            </div>
+                        <div class="info_badge_subtitle"><span style="margin-right: 10px;">🟢</span>Minor</div>
+                        <div style="vertical-align: top;display: inline-block;">
+                            <span id="sub_info_minor"></span>
                         </div>
                     </div>
                     <div class="info_badge" title="Info Coding Style">
-                        <div class="info_badge_title">Info Coding Style</div>
-                        <div style="padding: 6px 0px;">
-                            <div class="info_badge_icon" style="background-color:rgb(65, 65, 134);"></div>
-                            <div style="vertical-align: top;display: inline-block;">
-                                <span id="sub_info_info"></span>
-                            </div>
+                        <div class="info_badge_subtitle"><span style="margin-right: 10px;">🔵</span>Info</div>
+                        <div style="vertical-align: top;display: inline-block;">
+                            <span id="sub_info_info"></span>
                         </div>
                     </div>
                     <div class="info_badge" title="Fatal Coding Style">
-                        <div class="info_badge_title">Fatal Errors</div>
-                        <div style="padding: 6px 0px;">
-                            <div class="info_badge_icon" style="background-color:rgb(168, 36, 36);"></div>
-                            <div style="vertical-align: top;display: inline-block;">
-                                <span id="sub_info_fatal"></span>
-                            </div>
+                        <div class="info_badge_subtitle"><span style="margin-right: 10px;">💥</span>Fatal</div>
+                        <div style="vertical-align: top;display: inline-block;">
+                            <span id="sub_info_fatal"></span>
                         </div>
                     </div>
                 </div>

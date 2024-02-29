@@ -204,7 +204,12 @@ function printTable() {
     }
     table += '</tr><tr>';
     days.forEach(day => {
-        table += `<td id='calend_td_${day.yearNumber}-${day.monthNumber}-${day.dayNumber}'>${day.dayOfMonth}<div class='calendar_holder'></div></td>`;
+        table += `<td id='calend_td_${day.yearNumber}-${day.monthNumber}-${day.dayNumber}'><div style='display:block;'><span style='display:inline-block;width:auto;'>${day.dayOfMonth}</span>`;
+        if (i == 0)
+            table += `<span style='float:right;color:#555;display:inline-block;width:auto;'>(Today)</span>`;
+        else
+            table += `<span style='float:right;color:#555;display:inline-block;width:auto;' title='day(s) away'>(`+i+` d)</span>`;
+        table += `</div><div class='calendar_holder'></div></td>`;
         i += 1;
         if (i % 7 == 0)
             table += '</tr><tr>';

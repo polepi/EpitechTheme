@@ -108,7 +108,7 @@ function openDescList(event) {
     } else if (timeDifference < millisecondsInDay) {
         remainingTime = Math.floor(timeDifference / millisecondsInHour) + ' hours';
     } else {
-        remainingTime = daysLeft + ' day(s)';
+        remainingTime = (timeDifference / millisecondsInDay).toFixed(2) + ' day(s)';
     }
 
     document.getElementById('info_taskLab').style.display = "none";
@@ -277,7 +277,7 @@ function createTaskList() {
                 } else if (timeDifference < millisecondsInDay) {
                     remainingTime = Math.floor(timeDifference / millisecondsInHour) + ' hours';
                 } else {
-                    remainingTime = daysLeft + ' day(s)';
+                    remainingTime = (timeDifference / millisecondsInDay).toFixed(1) + ' day(s)';
                 }
                 const checkCell = document.createElement('td');
                 checkCell.innerHTML = "<span style='font-size: 18px;margin-top: 1px;' class='material-icons'> "+icon2+"</span>";

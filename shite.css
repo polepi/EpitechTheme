@@ -92,6 +92,7 @@ body {
 }
 .topbar>.inp2 {
     display: inline-block;
+    width: 110px;
 }
 
 .topbar>.inp>.material-icons-outlined {
@@ -241,10 +242,29 @@ body {
     border-radius: 5px 5px 0px 0px;
 }
 
+.info_badge_subtitle {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border-right: 1px solid #ccc;
+    padding: 12px 8px;
+    display: inline-block;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#sub_info_major, #sub_info_minor, #sub_info_info, #sub_info_fatal {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 10px;
+    width: 100%;
+}
+
 .info_badge_icon {
     display: inline-block;
-    width: 26px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     margin-right: 15px;
     margin-top: 5px;
     margin-left: 10px;
@@ -262,11 +282,6 @@ body {
     font-size: 14px;
     font-size: 16px;
     margin-bottom: 5px;
-}
-
-#sub_info_info, #sub_info_fatal, #sub_info_minor, #sub_info_fatal {
-    display: inline-block;
-    margin-top: -5px;
 }
 
 a {

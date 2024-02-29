@@ -1,6 +1,7 @@
 var header_auth;
 var last_check;
 var targ_year;
+var selected_shite;
 
 document.getElementById("filter_input").addEventListener("keyup", filterTableNames);
 function filterTableNames() {
@@ -89,7 +90,6 @@ function daysSince(inputDate) {
 }
 
 function get_correct_per(item) {
-    //console.log(item)
     var iscrashed = item["results"]["externalItems"];
     item = Object.values(item["results"]["skills"]);
     var len = item.length;
@@ -195,8 +195,6 @@ function print_details(det, url) {
     document.getElementById("sub_info_major").textContent = "0";
     document.getElementById("sub_info_info").textContent = "0";
     document.getElementById("sub_info_fatal").textContent = "0";
-
-    console.log("Data:",det)
 
     det["externalItems"].forEach((skill) => {
         if (skill["type"] == "banned") {
@@ -379,11 +377,13 @@ function print_details(det, url) {
 
 
 tab_shite_subject_back.addEventListener("click", function () {
+    selected_shite = null;
     document.getElementById("shite_details").style.display = "none";
     document.getElementById("shite_response").style.display = "block";
 });
 
 function open_details(id, url) {
+    selected_shite = id;
     document.getElementById('tab_shite_subject_details2').innerHTML = "";
     fetch('https://api.epitest.eu/me/details/'+id, {
         method: 'GET',
@@ -433,8 +433,6 @@ function load_subject_list(data) {
         new_tr_element.innerHTML = "<td title='Display info'><a title='Moulinette link' target='_blank' href='https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']+"'>"+item["project"]["name"]+"</a></td><td title='Mark as read to hide'>"+isnew+"</td><td style='text-align:right;width:165px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
         if (item["project"] && item["project"]["module"] && item["project"]["module"]["code"]) {
             new_tr_element.addEventListener("click", function () {
-                //const targetUrl = "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item["project"]["module"]["code"]+"/"+item["project"]["slug"]+"/"+item["results"]["testRunId"];
-                //window.open(targetUrl, '_blank');
                 open_details(item["results"]["testRunId"], "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']);
             });
         }
@@ -579,3 +577,20 @@ chrome.runtime.onInstalled.addListener(() => {
         addRules: [RULE],
     });
 });
+
+function go_fullscreen() {
+    if (!selected_shite)
+        window.open("shite.html", "_blank");
+    else
+        window.open("shite.html?sel="+selected_shite, "_blank");
+}
+
+document.getElementById("go_full_screen").addEventListener("click", go_fullscreen);
+document.getElementById("go_full_screen2").addEventListener("click", go_fullscreen);
+
+if (window.outerHeight > 800) {
+    document.getElementById("nv_main_bar").style.display = "none";
+    document.getElementById("go_full_screen").style.display = "none";
+    document.getElementById("go_full_screen2").style.display = "none";
+    document.getElementById("shite_det_direct_link").style.top = "12px";
+}
