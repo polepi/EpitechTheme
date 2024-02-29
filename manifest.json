@@ -23,7 +23,6 @@
     "tabs",
     "webRequest",
     "scripting",
-    "notifications",
     "declarativeNetRequest",
     "fileSystem"
   ],
