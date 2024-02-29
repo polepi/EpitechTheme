@@ -1,3 +1,6 @@
+- This extension is meant for Epitech in Barcelona students with access to the intranet.
+- This extension is still in development. You may experience bugs.
+
 # EpitechTheme
 
 Tired of getting flashbanged every time you open the Intranet? Feeling like personalizing a bit the intranet? Tired of the long loading times and confusing navigation of the intranet? Then consider trying out this extension!
