@@ -246,3 +246,9 @@ function filterTableNames() {
     }
     sortTable();
 }
+
+if (window.outerHeight > 800) {
+    document.getElementById("nv_overflow_data").style.height = "100vh";
+    document.getElementById("subtab_subjectList").style.height = "calc(100vh - 44px)";
+    document.getElementById("subtab_subjectList").style.maxHeight = "100vh";
+}

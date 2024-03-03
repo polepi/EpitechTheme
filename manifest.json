@@ -21,10 +21,8 @@
     "storage",
     "background",
     "tabs",
-    "webRequest",
     "scripting",
-    "declarativeNetRequest",
-    "fileSystem"
+    "declarativeNetRequest"
   ],
 "background": {
     "service_worker": "background.js"

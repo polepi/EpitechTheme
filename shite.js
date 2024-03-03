@@ -2,6 +2,7 @@ var header_auth;
 var last_check;
 var targ_year;
 var selected_shite;
+var selected_subject;
 
 document.getElementById("filter_input").addEventListener("keyup", filterTableNames);
 function filterTableNames() {
@@ -375,15 +376,17 @@ function print_details(det, url) {
     });
 }
 
-
 tab_shite_subject_back.addEventListener("click", function () {
     selected_shite = null;
+    selected_subject = null;
     document.getElementById("shite_details").style.display = "none";
     document.getElementById("shite_response").style.display = "block";
 });
 
-function open_details(id, url) {
+function open_details(id, url, url2) {
     selected_shite = id;
+    selected_subject = url;
+    document.getElementById("t_history_warn").style.display = "none";
     document.getElementById('tab_shite_subject_details2').innerHTML = "";
     fetch('https://api.epitest.eu/me/details/'+id, {
         method: 'GET',
@@ -412,7 +415,7 @@ function open_details(id, url) {
             new_tr_element.innerHTML = "<td>No data found</td>";
             document.getElementById('tab_shite_subject_details2').appendChild(new_tr_element);
         } else {
-            print_details(send_data, url);
+            print_details(send_data, "https://my.epitech.eu/index.html#d/"+url+"/"+url2);
         }
     })
     .catch(error => {
@@ -433,7 +436,7 @@ function load_subject_list(data) {
         new_tr_element.innerHTML = "<td title='Display info'><a title='Moulinette link' target='_blank' href='https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']+"'>"+item["project"]["name"]+"</a></td><td title='Mark as read to hide'>"+isnew+"</td><td style='text-align:right;width:165px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
         if (item["project"] && item["project"]["module"] && item["project"]["module"]["code"]) {
             new_tr_element.addEventListener("click", function () {
-                open_details(item["results"]["testRunId"], "https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']);
+                open_details(item["results"]["testRunId"], targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug'], item['results']['testRunId']);
             });
         }
         ulElement.appendChild(new_tr_element);
@@ -553,31 +556,6 @@ document.getElementById("btn_mark_read").addEventListener('click', function() {
     });
 });
 
-const iframeHosts = ['https://my.epitech.eu/*'];
-
-chrome.runtime.onInstalled.addListener(() => {
-    const RULE = {
-        id: 1,
-        condition: {
-            initiatorDomains: [chrome.runtime.id],
-            requestDomains: iframeHosts,
-            resourceTypes: ['sub_frame'],
-        },
-        action: {
-            type: 'modifyHeaders',
-            responseHeaders: [
-                {header: 'X-Frame-Options', operation: 'remove'},
-                {header: 'Frame-Options', operation: 'remove'},
-            ],
-        },
-    };
-
-    chrome.declarativeNetRequest.updateDynamicRules({
-        removeRuleIds: [RULE.id],
-        addRules: [RULE],
-    });
-});
-
 function go_fullscreen() {
     if (!selected_shite)
         window.open("shite.html", "_blank");
@@ -585,12 +563,68 @@ function go_fullscreen() {
         window.open("shite.html?sel="+selected_shite, "_blank");
 }
 
+function load_history() {
+    if (!selected_subject)
+        return;
+        document.getElementById("shite_details").style.display = "none";
+        document.getElementById("span_history_name").textContent = selected_subject;
+        document.getElementById("t_history_warn").style.display = "block";
+    fetch('https://api.epitest.eu/me/'+selected_subject, {
+        method: 'GET',
+        headers: {
+            'Accept': '*/*',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-GB,en;q=0.9',
+            'Authorization': `Bearer ${header_auth}`,
+            'Connection': 'keep-alive',
+            'DNT': '1',
+            'Host': 'api.epitest.eu',
+            'Origin': 'https://my.epitech.eu',
+            'Referer': 'https://my.epitech.eu/'
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        var send_data = data;
+        document.getElementById("t_logginset_warn").style.display = "none";
+        document.getElementById('t_notset_warn').style.display = 'none';
+        document.getElementById("iframe_login_shite_frame").style.display = "none";
+        document.getElementById("iframe_login_shite_frame").innerHTML = "";
+        if (data && data == "") {
+            const new_tr_element = document.createElement('tr');
+            new_tr_element.innerHTML = "<td>No data, try a different year</td>";
+            document.getElementById('shite_subject_list').appendChild(new_tr_element);
+        }
+        load_subject_list(send_data);
+        document.getElementById("shite_response").style.display = "block";
+    })
+    .catch(error => {
+        if (isTest == true) {
+            update_api();
+        } else {
+            document.getElementById("t_logginset_warn").style.display = "none";
+            document.getElementById('t_notset_warn').style.display = 'block';
+            console.error('Error:', error);
+        }
+    });
+}
+
+document.getElementById("open_history").addEventListener("click", load_history);
 document.getElementById("go_full_screen").addEventListener("click", go_fullscreen);
 document.getElementById("go_full_screen2").addEventListener("click", go_fullscreen);
 
+document.getElementById("btn_clear_history").addEventListener("click", function() {
+    location.reload();
+});
+
 if (window.outerHeight > 800) {
-    document.getElementById("nv_main_bar").style.display = "none";
     document.getElementById("go_full_screen").style.display = "none";
     document.getElementById("go_full_screen2").style.display = "none";
-    document.getElementById("shite_det_direct_link").style.top = "12px";
+    document.getElementById("tab_shite_subjects_table").style.height = "calc(100vh - 82px)";
+    document.getElementById("shite_overflow_data").style.height = "calc(100vh - 92px)";
 }

@@ -310,3 +310,7 @@ document.getElementById("btn_goto_schedule").addEventListener("click", function 
 document.getElementById("btn_goto_calendar").addEventListener("click", function () {
     window.location = "calendar.html";
 });
+
+if (window.outerHeight > 800) {
+    document.getElementById("nv_overflow_data").style.height = "100vh";
+}

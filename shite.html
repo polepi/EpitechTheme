@@ -26,6 +26,10 @@
         <span style="display: block;"  class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Log into the <a href="https://my.epitech.eu" target="_blank">moulinette</a> and <a href="shite.html">refresh</a> this page.</span>
         <br>
     </div>
+    <div id="t_history_warn" style="display: none;">
+        <span style="display: block;"  class="noselect info-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>update</span>&nbsp;&nbsp;Showing history for <b id="span_history_name"></b>&nbsp;&nbsp;<i id="btn_clear_history" style="cursor:pointer;float:right;font-size:16px;" title="Clear" class="material-icons">cancel</i></span>
+        <br>
+    </div>
     <div id="shite_response">
         <div>
             <div class="topbar">
@@ -53,9 +57,9 @@
     <div id="shite_details" style="display: none;width: 100%;">
         <div id="tab_shite_subject_details" style="width: 100%;">
             <div id="tab_shite_subject_info">
-                <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><div style="position: fixed;right:46px;top:53px;padding-right:4px;cursor:pointer;border-right:1px solid #bbb;padding-right:10px;" title="Open in a new window.." id="go_full_screen2" class="br" title="Fullscreen"><span id="is_reg_only" class="material-icons-outlined">fullscreen</span></div><a id="shite_det_direct_link" title="Open in moulinette.." style="position: fixed;right:16px;top:55px;" target="_blank"><span class="material-icons-outlined" style="font-size: 21px;color:#111;">open_in_new</span></a>
+                <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><div style="position: fixed;right:87px;top:53px;padding-right:4px;cursor:pointer;border-right:1px solid #bbb;padding-right:10px;" id="go_full_screen2" class="br" title="Fullscreen"><span id="is_reg_only" class="material-icons-outlined">fullscreen</span></div><div style="position: fixed;right:46px;top:54px;padding-right:4px;cursor:pointer;border-right:1px solid #bbb;padding-right:10px;" title="History" id="open_history" class="br"><span style="font-size: 22px;" class="material-icons-outlined">update</span></div><a id="shite_det_direct_link" title="Open in moulinette.." style="position: fixed;right:16px;top:55px;" target="_blank"><span class="material-icons-outlined" style="font-size: 21px;color:#111;">open_in_new</span></a>
             </div>
-            <div style="overflow-y:scroll;height: 350px;width:100%;">
+            <div id="shite_overflow_data" style="overflow-y:scroll;height: 350px;width:100%;">
                 <div class="block" style="padding: 6px 0px 0px 6px;">
                     <div id="info_badge_banned_functs">
                         <div class="info_badge_title">Banned functions</div>
