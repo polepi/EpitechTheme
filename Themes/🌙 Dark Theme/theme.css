@@ -31,6 +31,10 @@ body {
 	background-color: var(--colour-background) !important;
 }
 
+line.link {
+	stroke: #ddd !important;
+}
+
 a {
     color: var(--colour-text-s) !important;
 }
