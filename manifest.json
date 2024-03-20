@@ -8,7 +8,7 @@
     "https://my.epitech.eu/*",
     "https://api.epitest.eu/*"
   ],
-  "declarative_net_request": {
+  "declarativeNetRequest": {
     "rule_resources": [
         {
             "id": "net_rules",

@@ -200,6 +200,42 @@ function fetch_grades() {
     });
 }
 
+var has_user_warned_ddos = 0;
+function pass_ddos() {
+    if (has_user_warned_ddos)
+        return;
+    has_user_warned_ddos = true;
+    var warn_div = document.createElement('div');
+    warn_div.setAttribute("id", "t_failedlogin_warn")
+    warn_div.style = "position:absolute;top:120px;padding: 6px 10px;background-color: #f1f1f1;border:1px solid #ccc;border-radius:3px;color: #333;font-size:14px;"
+    var warn_btns = document.createElement('p');
+
+    var warn_notice = document.createElement('div');
+    warn_notice.innerHTML = `<span style="display: block;font-size:16px;padding:8px 10px;border-bottom:1px solid #ccc;margin-bottom:6px;" class="noselect">😭&nbsp;&nbsp;Unable to connect</span>
+    <span>We are experiencing issues while trying to reach the Intranet API: The intranet might be down, or you might be logged out!<br><br>
+    <span style="padding:8px 10px;background-color:#ddd;border-radius:3px;"><span style='font-size: 19px;margin-top: 0px;' class='material-icons-outlined'>info</span>&nbsp;<b>Possible fix:</b> Log into the intranet and try again!</span></span><br><br>`
+
+    var warn_btn_intra = document.createElement('a');
+    warn_btn_intra.target = "_blank";
+    warn_btn_intra.href = "https://intra.epitech.eu/";
+    warn_btn_intra.style = "padding: 6px 8px;border-radius:3px;background-color:#2d366e;cursor:pointer;color:#f1f1f1;text-decoration:none;";
+    warn_btn_intra.innerHTML = `<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>open_in_new</span>&nbsp;&nbsp;Open intranet`;
+
+    var warn_btn_diss = document.createElement('span');
+    warn_btn_diss.style = "margin-left:5px;padding: 6px 8px;border-radius:3px;background-color:#ddd;cursor:pointer;color:#333;text-decoration:none;";
+    warn_btn_diss.innerHTML = `<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>close</span>&nbsp;&nbsp;Dismiss`;
+    warn_btn_diss.addEventListener('click', () => {
+        warn_div.style.display = "none";
+    });
+
+    warn_btns.appendChild(warn_btn_intra);
+    warn_btns.appendChild(warn_btn_diss);
+    warn_div.appendChild(warn_notice);
+    warn_div.appendChild(warn_btns);
+    document.body.appendChild(warn_div);
+}
+
+
 function fetch_main() {
     const url_user_json = "https://intra.epitech.eu/user/"+userid+"/?format=json";
     fetch(url_user_json)
@@ -210,6 +246,8 @@ function fetch_main() {
         return response.json();
     })
     .then(data => {
+        if (document.getElementById("t_failedlogin_warn"))
+            document.getElementById("t_failedlogin_warn").style.display = "none";
         document.getElementById("p_info_credits").innerHTML = "<b>"+data.credits + "</b>&nbsp;<span style='color:#666;'>/ 60</span>";
         document.getElementById("p_info_gpa").innerHTML = "<b>"+data.gpa[0].gpa + "</b>&nbsp;<span style='color:#666;'>/ 4.00</span>";
         document.getElementById("p_info_mail").textContent = data.internal_email;
@@ -221,6 +259,9 @@ function fetch_main() {
         fetch_grades();
     })
     .catch(error => {
+        if (error.message.includes('Failed to fetch')) {
+            pass_ddos();
+        }
         console.error('Fetch error:', error);
         fetch_main();
     });

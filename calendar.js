@@ -116,6 +116,48 @@ function sortEvents() {
     });
 }
 
+function pass_verif() {
+    const element = document.createElement("iframe");
+    element.src = "https://intra.epitech.eu/";
+    document.appendChild(element);
+}
+
+var has_user_warned_ddos = 0;
+function pass_ddos() {
+    if (has_user_warned_ddos)
+        return;
+    has_user_warned_ddos = true;
+    var warn_div = document.createElement('div');
+    warn_div.setAttribute("id", "t_failedlogin_warn")
+    warn_div.style = "position:absolute;top:60px;padding: 6px 10px;background-color: #f1f1f1;border:1px solid #ccc;border-radius:3px;color: #333;font-size:14px;"
+    var warn_btns = document.createElement('p');
+
+    var warn_notice = document.createElement('div');
+    warn_notice.innerHTML = `<span style="display: block;font-size:16px;padding:8px 10px;border-bottom:1px solid #ccc;margin-bottom:6px;" class="noselect">😭&nbsp;&nbsp;Unable to connect</span>
+    <span>We are experiencing issues while trying to reach the Intranet API: The intranet might be down, or you might be logged out!<br><br>
+    <span style="padding:8px 10px;background-color:#ddd;border-radius:3px;"><span style='font-size: 19px;margin-top: 0px;' class='material-icons-outlined'>info</span>&nbsp;<b>Possible fix:</b> Log into the intranet and try again!</span></span><br><br>`
+
+    var warn_btn_intra = document.createElement('a');
+    warn_btn_intra.target = "_blank";
+    warn_btn_intra.href = "https://intra.epitech.eu/";
+    warn_btn_intra.style = "padding: 6px 8px;border-radius:3px;background-color:#2d366e;cursor:pointer;color:#f1f1f1;text-decoration:none;";
+    warn_btn_intra.innerHTML = `<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>open_in_new</span>&nbsp;&nbsp;Open intranet`;
+
+    var warn_btn_diss = document.createElement('span');
+    warn_btn_diss.style = "margin-left:5px;padding: 6px 8px;border-radius:3px;background-color:#ddd;cursor:pointer;color:#333;text-decoration:none;";
+    warn_btn_diss.innerHTML = `<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>close</span>&nbsp;&nbsp;Dismiss`;
+    warn_btn_diss.addEventListener('click', () => {
+        warn_div.style.display = "none";
+    });
+
+    warn_btns.appendChild(warn_btn_intra);
+    warn_btns.appendChild(warn_btn_diss);
+    warn_div.appendChild(warn_notice);
+    warn_div.appendChild(warn_btns);
+    document.body.appendChild(warn_div);
+}
+
+
 function fetch_schedule() {
     document.getElementById('is_grades_loading').style.display = "block";
     document.getElementById('table_calendar_view_div').style.display = "none";
@@ -132,6 +174,8 @@ function fetch_schedule() {
         return response.json();
     })
     .then(data => {
+        if (document.getElementById("t_failedlogin_warn"))
+            document.getElementById("t_failedlogin_warn").style.display = "none";
         data.forEach(event => {
             if (event.instance_location == user_loc && event.semester >= event_semester_min && event.semester <= event_semester_max) {
                 if (show_registred_only == 0 || event.event_registered == "registered") {
@@ -163,6 +207,9 @@ function fetch_schedule() {
     .catch(error => {
         console.log(error);
         document.getElementById('is_grades_loading').style.borderTop = '4px solid #682828';
+        if (error.message.includes('Failed to fetch')) {
+            pass_ddos();
+        }
         setTimeout(() => {
             document.getElementById('is_grades_loading').style.borderTop = '4px solid rgb(45, 54, 110);';
             fetch_schedule();
@@ -257,8 +304,6 @@ document.getElementById("stack_duplicated_btn").addEventListener("click", functi
     }
     fetch_schedule();
 });
-
-
 
 if (window.outerHeight > 800) {
     document.getElementById("nv_main_bar").style.display = "none";

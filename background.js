@@ -34,28 +34,11 @@ function add_to_calendar(title, endDate, link) {
     });
 }
 
-function listThemeFiles() {
-    const url = chrome.runtime.getURL('Themes/themes.json');
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            themes_list = data.themes;
-        })
-        .catch(error => {
-            console.error("Error loading themes:", error);
-        });
-}
-//listThemeFiles();
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'addEventToCalendar') {
         const { title, link, endDate } = message;
         add_to_calendar(title, endDate, link);
         sendResponse(true);
-        return true;
-    } else if (message.action === 'get_themes') {
-        listThemeFiles();
-        sendResponse({themes: themes_list});
         return true;
     }
     return false;
