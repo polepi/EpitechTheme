@@ -190,6 +190,9 @@ function pass_ddos() {
     warn_btn_diss.style = "margin-left:5px;padding: 6px 8px;border-radius:3px;background-color:#ddd;cursor:pointer;color:#333;text-decoration:none;";
     warn_btn_diss.innerHTML = `<span style='font-size: 18px;margin-top: 0px;' class='material-icons'>close</span>&nbsp;&nbsp;Dismiss`;
     warn_btn_diss.addEventListener('click', () => {
+        var new_window = window.open('https://intra.epitech.eu/');
+        new_window.blur();
+        window.focus();
         warn_div.style.display = "none";
     });
 

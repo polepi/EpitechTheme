@@ -1802,3 +1802,27 @@ h2 {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M14.59 8L12 10.59 9.41 8 8 9.41 10.59 12 8 14.59 9.41 16 12 13.41 14.59 16 16 14.59 13.41 12 16 9.41 14.59 8zM12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" style="fill: IndianRed;" /></svg>') !important;
 	text-shadow: none !important;
 }
+
+
+
+.datagrid .overflow table th.system {
+	max-width: 20px !important;
+}
+
+#board .bloc.main .datagrid .item .system .icon.invit {
+	display: none !important;
+}
+
+#board .bloc.main .datagrid .item.right-student.registered .system .icon {
+    background: none;
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM17.99 9l-1.41-1.42-6.59 6.59-2.58-2.57-1.42 1.41 4 3.99z" fill="White"/></svg>') !important;
+}
+
+#board .bloc.main .datagrid .item.right-student .system .icon {
+	background: none;
+	background-repeat: no-repeat !important;
+    background-position: 50%, 50% !important;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="Gray"/></svg>') !important;
+}
