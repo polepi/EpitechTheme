@@ -44,3 +44,31 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
     return false;
 });
+
+const iframeHosts = [
+    'https://my.epitech.eu/*',
+];
+
+/*
+chrome.runtime.onInstalled.addListener(() => {
+    const RULE = {
+      id: 1,
+      condition: {
+        initiatorDomains: [chrome.runtime.id],
+        requestDomains: iframeHosts,
+        resourceTypes: ['sub_frame'],
+      },
+      action: {
+        type: 'modifyHeaders',
+        responseHeaders: [
+          {header: 'X-Frame-Options', operation: 'remove'},
+          {header: 'Frame-Options', operation: 'remove'},
+        ],
+      },
+    };
+    chrome.declarativeNetRequest.updateDynamicRules({
+      removeRuleIds: [RULE.id],
+      addRules: [RULE],
+    });
+  });
+  */

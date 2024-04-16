@@ -4,6 +4,31 @@ var targ_year;
 var selected_shite;
 var selected_subject;
 
+const iframeHosts = ['https://my.epitech.eu/*'];
+
+chrome.runtime.onInstalled.addListener(() => {
+    const RULE = {
+        id: 1,
+        condition: {
+            initiatorDomains: [chrome.runtime.id],
+            requestDomains: iframeHosts,
+            resourceTypes: ['sub_frame'],
+        },
+        action: {
+            type: 'modifyHeaders',
+            responseHeaders: [
+                {header: 'X-Frame-Options', operation: 'remove'},
+                {header: 'Frame-Options', operation: 'remove'},
+            ],
+        },
+    };
+
+    chrome.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: [RULE.id],
+        addRules: [RULE],
+    });
+});
+
 document.getElementById("filter_input").addEventListener("keyup", filterTableNames);
 function filterTableNames() {
     var input, filter, table, tr, td, i, txtValue;
