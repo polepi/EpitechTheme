@@ -7,7 +7,8 @@ var targ_year = currentDate.getFullYear() - 1;
 var themes_list = {};
 
 function convertToEpoch(dateString) {
-    const dateParts = dateString.split(/[ ,\/:]+/);
+    console.log("The date is:", dateString);
+    const dateParts = dateString.split(/[ ,\/:-]+/);
     const day = parseInt(dateParts[0], 10);
     const month = parseInt(dateParts[1], 10) - 1;
     const year = parseInt(dateParts[2], 10);

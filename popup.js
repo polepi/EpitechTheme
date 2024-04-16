@@ -345,13 +345,6 @@ function createTaskList() {
                 document.getElementById("s_completed_badge").style.display = "none";
             }
             sortTable();
-        } else {
-            const noDataItem = document.createElement('tr');
-            const noDataCell = document.createElement('td');
-            noDataCell.textContent = 'No tasks added';
-            noDataCell.colSpan = 4;
-            noDataItem.appendChild(noDataCell);
-            taskTable.appendChild(noDataItem);
         }
 
         if (showCompletedTable == 1 && all_count != 0)
