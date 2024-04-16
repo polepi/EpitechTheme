@@ -164,6 +164,82 @@ function getSubjectInfo() {
     });
 }
 
+function get_roadblocks(data) {
+    var req_roadblocks = {
+        "Innovation & Professionalization": {
+            "min": 3,
+            "current": 0,
+            "source":["Epitech JAM", "KYT/CAT"]
+        },
+        "Soft Skills": {
+            "min": 3,
+            "current": 0,
+            "source":["Professional Communication", "Project Management", "PCP Development"]
+        },
+        "Technical Foundation": {
+            "min": 20,
+            "current": 0,
+            "source":["Unix & C Lab Seminar (Part I)", "Unix & C Lab Seminar (Part II)", "Elementary Programming in C (Part I)", "Unix System Programming", "Shell Programming", "Elementary programming in C"]
+        },
+        "Technical Supplement": {
+            "min": 8,
+            "current": 0,
+            "source":["B1 - C Graphical Programming", "B2 - C Graphical Programming", "B1 - Mathematics", "B2 - Mathematics",
+            "B1 - Networks and Systems Administration", "B2 - Introduction to A.I.", "B2 - Introduction to Web Development", "B2 - Introduction to Web Development",
+            "B2 - Introduction to Cyber Security", "B2 - Introduction to DevOps"]
+        }
+    }
+    data.modules.forEach(module => {
+        Object.keys(req_roadblocks).forEach(category => {
+            req_roadblocks[category].source.forEach(sourceItem => {
+                console.log(module);
+                if (module.title.includes(sourceItem) || module.title.includes(sourceItem)) {
+                    const new_el = document.createElement('p');
+                    const new_el2 = document.createElement('span');
+                    new_el2.style.float = "right";
+                    new_el.innerHTML = `${module.title}`;
+                    if (module.grade == 'Acquis' || (module.grade >= 'A' && module.grade <= 'D')) {
+                        new_el2.innerHTML += `<span class='rdbl_credit_outline'>${module.credits}/${module.credits}</span><span style='margin-left:5px;border-color:#26a324;background:#c3cfb4;' class='rdbl_credit_outline'>${module.grade}</span></span>`;
+                        req_roadblocks[category]["current"] += module.credits;
+                    } else if(module.grade == '-') {
+                        new_el2.innerHTML += `<span class='rdbl_credit_outline'>0/${module.credits}</span> <span title="Module ongoing" class='rdbl_credit_outline'><span class="material-icons-outlined" style="font-size: 16px;">update</span></span></span>`;
+                    } else {
+                        new_el2.innerHTML += `<span class='rdbl_credit_outline'>0/${module.credits}</span><span style='margin-left:5px;border-color:#ff4d00;background-color:#e0bfbc;' class='rdbl_credit_outline'>F</span></span>`;
+                    }
+                    new_el.appendChild(new_el2);
+                    document.getElementById(`rdbl_sect_${category}`).appendChild(new_el);
+                }
+            });
+        });
+    });
+
+    Object.keys(req_roadblocks).forEach(category => {
+        const data = req_roadblocks[category];
+        const max_size = 100.0;
+        var bar_colour = "green";
+        var colour_font = "#fff";
+        var barsize = Math.trunc((data.current/data.min) * 100);
+        if (barsize > max_size)
+            barsize = max_size;
+
+        if (barsize <= 33)
+            colour_font = "#333";
+        if (barsize > 10)
+            bar_colour = "#ff4d00";
+        if (barsize > 30)
+            bar_colour = "#ff9100";
+        if (barsize > 50)
+            bar_colour = "#e3d409";
+        if (barsize > 65)
+            bar_colour = "#90b31e";
+        if (barsize >= 100) {
+            bar_colour = "#a71ac4";
+        }
+        document.getElementById(`rdbl_sect_${category}`).parentNode.querySelector(".roadblock_header > span").innerHTML = `<span><span class="material-icons-outlined" style="margin-top: 2px;margin-right: 3px;font-size: 14px;">auto_awesome</span> ${data.current}/${data.min}</span><span style='width:${max_size+2}px;border-color:${bar_colour};'><span style='background-color:${bar_colour};color:${colour_font};width:${barsize}px;'>${barsize}%</span></span>`;
+    });
+    document.getElementById("is_road_loading").style.display = "none";
+}
+
 function fetch_grades() {
     document.getElementById('is_grades_loading').style.display = "block";
     const url_grades_json = "https://intra.epitech.eu/user/"+userid+"/notes?format=json";
@@ -178,7 +254,6 @@ function fetch_grades() {
     })
     .then(data => {
         data.modules.forEach(module => {
-            console.log(module);
             const new_tr_element = document.createElement('tr');
             new_tr_element.innerHTML = "<td>-</td><td>"+module.title+"</td><td>"+module.codemodule+"</td><td>"+module.credits+"</td><td class='td_tabl_grade'>"+gradeToText(module.grade)+"</td>";
             new_tr_element.addEventListener('click', () => {
@@ -188,6 +263,7 @@ function fetch_grades() {
             new_tr_element.setAttribute("id-code", module.codemodule);
             ulElement.appendChild(new_tr_element);
         });
+        get_roadblocks(data);
         getSubjectInfo();
         document.getElementById('is_grades_loading').style.display = "none";
     })

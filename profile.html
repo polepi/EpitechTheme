@@ -38,6 +38,7 @@
                 <button class="tablinks"  data-link="tab_global" title="General"><span class="material-icons-outlined" style="margin-top: -3px;">dashboard</span></button>
                 <button class="tablinks" data-link="tab_grades" title="Grades"><span class="material-icons-outlined" style="margin-top: -3px;">school</span></button>
                 <button class="tablinks" data-link="tab_hub" title="Hub"><span class="material-icons-outlined" style="margin-top: -3px;">device_hub</span></button>
+                <button class="tablinks" data-link="tab_road" title="Roadblocks"><svg style="width:24px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="#000000" d="M32 32C14.3 32 0 46.3 0 64V448c0 17.7 14.3 32 32 32s32-14.3 32-32V266.3L149.2 96H64V64c0-17.7-14.3-32-32-32zM405.2 96H330.8l-5.4 10.7L234.8 288h74.3l5.4-10.7L405.2 96zM362.8 288h74.3l5.4-10.7L533.2 96H458.8l-5.4 10.7L362.8 288zM202.8 96l-5.4 10.7L106.8 288h74.3l5.4-10.7L277.2 96H202.8zm288 192H576V448c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v53.7L490.8 288z"/></svg></button>
             </div>
             <div id="tab_global" class="tabcontent">
                 <div style="background-color: #f5f5f5;">
@@ -144,6 +145,37 @@
                         <p><span style="padding: 4px;border-radius: 3px;border: 1px solid #ccc;background-color: #ddd;">Feature In-Development</span></p>
                         <b>Disclaimer: </b>This is a prediction of your HUB Experience and Credits based on the HUB activities you have participated. This prediction could be wrong, you should still ask your teacher if you need to know for certain.<br>
                         <a href="info/hub.html" target="_blank">More information</a>
+                    </div>
+                </div>
+            </div>
+            <div id="tab_road" class="tabcontent">
+                <div class="loader" id="is_road_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+                <div id="subtab_subjectList" style="max-height: 360px;overflow-y: auto;">
+                    <div style="padding: 0px 10px;margin-bottom: 10px">
+                        <h2 style="margin: 10px 0px;padding-bottom: 7px; border-bottom: 1px solid #ddd;">Roadblocks</h2>
+                        <div style="border-bottom: 1px solid #ddd;margin-bottom: 5px;padding-bottom: 5px;">
+                            <div class="roadblock_section">
+                                <div class="roadblock_header" title='Roadblock Innovation & Professionalization'><b>Innovation & Professionalization</b><span style="float:right"></span></div>
+                                <div class="roadblock_content" id="rdbl_sect_Innovation & Professionalization">
+                                </div>
+                            </div>
+                            <div class="roadblock_section">
+                                <div class="roadblock_header" title='Roadblock Innovation & Professionalization'><b>Soft Skills</b><span style="float:right"></span></div>
+                                <div class="roadblock_content" id="rdbl_sect_Soft Skills">
+                                </div>
+                            </div>
+                            <div class="roadblock_section">
+                                <div class="roadblock_header" title='Roadblock Innovation & Professionalization'><b>Technical Foundation</b><span style="float:right"></span></div>
+                                <div class="roadblock_content" id="rdbl_sect_Technical Foundation">
+                                </div>
+                            </div>
+                            <div class="roadblock_section">
+                                <div class="roadblock_header" title='Roadblock Innovation & Professionalization'><b>Technical Supplement</b><span style="float:right"></span></div>
+                                <div class="roadblock_content" id="rdbl_sect_Technical Supplement">
+                                </div>
+                            </div>
+                            <b>Disclaimer: </b>This is a prediction of your roadblocks based on your grades. This prediction could be wrong, you should still ask your teacher if you need to know for certain.<br>
+                        </div>                        
                     </div>
                 </div>
             </div>

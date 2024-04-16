@@ -328,3 +328,71 @@ table tr td:first-child {
     padding: 8px 13px;
     background-color: #eee;
 }
+
+.roadblock_section {
+    display: block;
+    border: 1px solid #ddd;
+    color:#222;
+    margin-right: 2px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.roadblock_header {
+    border-bottom: 1px solid #ddd;
+    background-color: #eee;
+}
+
+.roadblock_content {
+    display: block;
+    color:#333;
+    margin-right: 2px;
+    border-radius: 3px;
+    padding: 0px 10px;
+}
+
+.roadblock_content > p {
+    padding: 8px 10px;
+    border-bottom: 1px dashed #ddd;
+}
+
+.roadblock_header > b {
+    display: inline-block;
+    padding: 12px 14px;
+}
+
+.roadblock_header > span {
+    display: block;
+    padding: 8px 13px;
+    float: right;
+}
+
+.roadblock_header > span > span:first-child {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 7px
+}
+
+.roadblock_header > span > span:nth-child(2) {
+    display: inline-block;
+    padding: 0px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.roadblock_header > span > span:nth-child(2) > span {
+    display: inline-block;
+    padding: 3px 6px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.rdbl_credit_outline {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px 6px;
+}

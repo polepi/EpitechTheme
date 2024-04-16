@@ -190,3 +190,14 @@ button:hover {
     margin-top:2px;
     margin-bottom:2px;
 }
+
+.update_btn {
+    padding: 12px 12px;
+    position: relative;
+    background-color: rgb(224, 169, 28);
+    color:#111;
+}
+
+a {
+    text-decoration: none;
+}
