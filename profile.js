@@ -174,26 +174,23 @@ function get_roadblocks(data) {
         "Soft Skills": {
             "min": 3,
             "current": 0,
-            "source":["Professional Communication", "Project Management", "PCP Development"]
+            "source":["B-PRO-100", "B-PRO-200", "B-PMP-100", "B-PMP-200", "B-PCP-000"]
         },
         "Technical Foundation": {
             "min": 20,
             "current": 0,
-            "source":["Unix & C Lab Seminar (Part I)", "Unix & C Lab Seminar (Part II)", "Elementary Programming in C (Part I)", "Unix System Programming", "Shell Programming", "Elementary programming in C"]
+            "source":["B-CPE-100", "B-CPE-101", "B-CPE-110", "B-PSU-100", "B-CPE-200", "B-PSU-200"]
         },
         "Technical Supplement": {
             "min": 8,
             "current": 0,
-            "source":["B1 - C Graphical Programming", "B2 - C Graphical Programming", "B1 - Mathematics", "B2 - Mathematics",
-            "B1 - Networks and Systems Administration", "B2 - Introduction to A.I.", "B2 - Introduction to Web Development", "B2 - Introduction to Web Development",
-            "B2 - Introduction to Cyber Security", "B2 - Introduction to DevOps"]
+            "source":["B-MUL-100", "B-MAT-100", "B-NSA-100", "B-MUL-200", "B-AIA-200", "B-WEB-200", "B-MAT-200", "B-SEC-200", "B-DOP-200"]
         }
     }
     data.modules.forEach(module => {
         Object.keys(req_roadblocks).forEach(category => {
             req_roadblocks[category].source.forEach(sourceItem => {
-                console.log(module);
-                if (module.title.includes(sourceItem) || module.title.includes(sourceItem)) {
+                if (module.title.includes(sourceItem) || module.codemodule.includes(sourceItem)) {
                     const new_el = document.createElement('p');
                     const new_el2 = document.createElement('span');
                     new_el2.style.float = "right";
@@ -213,6 +210,21 @@ function get_roadblocks(data) {
         });
     });
 
+    var hub_pred = document.getElementById("sub_hub_cred");
+    var hub_pred_creds = parseInt(hub_pred.querySelector("b").textContent);
+    if (hub_pred.textContent.split('/')[1] && hub_pred_creds > parseInt(hub_pred.textContent.split('/')[1]))
+        hub_pred_creds = parseInt(hub_pred.textContent.split('/')[1]);
+    console.log(hub_pred.querySelector("b").textContent);
+
+    const new_el = document.createElement('p');
+    const new_el2 = document.createElement('span');
+    new_el2.style.float = "right";
+    new_el.innerHTML = "HUB";
+    new_el2.innerHTML += `<span class='rdbl_credit_outline'>${hub_pred.querySelector("b").textContent}/${hub_pred.textContent.split('/')[1]}</span></span>`;
+    new_el.appendChild(new_el2);
+    document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
+    req_roadblocks["Innovation & Professionalization"]["current"] += hub_pred_creds;
+
     Object.keys(req_roadblocks).forEach(category => {
         const data = req_roadblocks[category];
         const max_size = 100.0;
@@ -224,8 +236,7 @@ function get_roadblocks(data) {
 
         if (barsize <= 33)
             colour_font = "#333";
-        if (barsize > 10)
-            bar_colour = "#ff4d00";
+        bar_colour = "#ff4d00";
         if (barsize > 30)
             bar_colour = "#ff9100";
         if (barsize > 50)
