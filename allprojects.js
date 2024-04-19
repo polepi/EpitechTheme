@@ -224,6 +224,8 @@ function fetch_projects() {
         if (document.getElementById("t_failedlogin_warn"))
             document.getElementById("t_failedlogin_warn").style.display = "none";
         data.board.projets.forEach(event => {
+            var timeline_starts = event.timeline_start;
+            var timeline_ends = event.timeline_end;
             if (event.title.substring(0, 9) == "[PROJECT]")
                 count_hubprojects += 1;
             if (event.title.substring(0, 12) == "Bootstrap - ")
@@ -235,7 +237,7 @@ function fetch_projects() {
                     if (show_completedprojects == 1 || gettimeepoch(event.timeline_end) > (new Date().getTime())) {
                         const new_tr_element = document.createElement('tr');
                         new_tr_element.setAttribute("data-time", gettimeepoch(event.timeline_end));
-                        new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(event.timeline_start, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(event.timeline_end, "Ends in", "Ended")+"</span></td>";
+                        new_tr_element.innerHTML = "<td>"+event.title+"</td><td><span>"+getDaysLeft(timeline_starts, "Starts in", "")+"</span></td><td><span>"+getDaysLeft(timeline_ends, "Ends in", "Ended")+"</span></td>";
                         new_tr_element.addEventListener("click", function () {
                             const targetUrl = "https://intra.epitech.eu"+event.title_link;
                             window.open(targetUrl, '_blank');

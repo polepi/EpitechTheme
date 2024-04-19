@@ -355,6 +355,10 @@ document.getElementById("btn_goto_calendar").addEventListener("click", function 
     window.location = "calendar.html";
 });
 
+document.getElementById("btn_goto_timeline").addEventListener("click", function () {
+    window.location = "timeline.html";
+});
+
 if (window.outerHeight > 800) {
     document.getElementById("nv_overflow_data").style.height = "100vh";
 }

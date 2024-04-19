@@ -294,6 +294,10 @@ document.getElementById("btn_goto_calendar").addEventListener("click", function 
     window.location = "calendar.html";
 });
 
+document.getElementById("btn_goto_timeline").addEventListener("click", function () {
+    window.location = "timeline.html";
+});
+
 document.getElementById("stack_duplicated_btn").addEventListener("click", function () {
     if (stack_duplicated == 1) {
         stack_duplicated = 0;

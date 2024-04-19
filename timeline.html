@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="timeline.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+    <script src="jquery/jquery.js"></script>
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="nv_main_bar">
+        <a href="popup.html">📋 Projects</a>
+        <a class="active" href="events.html">📅 Events</a>
+        <a href="profile.html">🎓 Profile</a>
+        <a href="shite.html">💩 Mouli</a>
+        <a class="navbar-tune" href="preferences.html"></a>
+        <!--<span id="navbar-expand"><span class="material-icons-outlined">more_horiz</span></span>--> 
+    </div>
+    <div>
+        <div class="topbar">
+            <div id="btn_goto_schedule" class="btn br">
+                <span class="material-icons-outlined" style="margin-right: 0px;">view_agenda</span>               
+            </div>
+            <div id="btn_goto_calendar" class="btn br">
+                <span class="material-icons-outlined" style="margin-right: 0px;">calendar_month</span><span><a href="https://intra.epitech.eu/planning/" target="_blank" class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;" title="Open Intranet's Calendar">open_in_new</a></span>
+            </div>
+            <div id="btn_goto_timeline" class="btn">
+                <span class="material-icons-outlined" style="margin-right: 0px;">timeline</span>
+            </div>
+            <div style="float: right;">
+                <select id="select_val_days">
+                    <option value=3>3 days</option>
+                    <option value=7>7 days</option>
+                    <option value=14 selected>14 days</option>
+                    <option value=30>1 month</option>
+                    <option value=60>2 month</option>
+                    <option value=84>3 months</option>
+                </select>
+            </div>
+            <div style="float:right;" class="btn br" id="list_settings_btn">
+                <span class="material-icons-outlined" id="icon_show_all">layers</span><span id="txt_show_all">Show all</span>
+            </div>
+            <div style="float:right;padding-right:4px;" id="go_full_screen" class="btn br" title="Fullscreen">
+                <span id="is_reg_only" class="material-icons-outlined">fullscreen</span>
+            </div>
+            <div style="float:right;" id="btn_show_reg" class="btn br" title="Show/Hide Non-registered tasks">
+                <span class="material-icons-outlined" id="icon_visibility">visibility</span><span>Registered</span>
+            </div>
+        </div>
+        <div style="overflow-y: auto;height: 350px;">
+            <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+            <div id="days_holder" style="position: relative;"></div>
+            <div id="timeline_holder"></div>
+        </div>
+    </div>
+    <script src="timeline.js"></script>
+</body>
+</html>
