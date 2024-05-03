@@ -1803,7 +1803,10 @@ h2 {
 	text-shadow: none !important;
 }
 
-
+#content #profil .bloc.top .rzone>span {
+	margin-top: 10px;
+	display:block !important;
+}
 
 .datagrid .overflow table th.system {
 	max-width: 20px !important;
