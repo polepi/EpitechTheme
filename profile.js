@@ -279,8 +279,8 @@ function fetch_grades() {
             });
             get_roadblocks(data);
             getSubjectInfo();
-            document.getElementById('is_grades_loading').style.display = "none";
         }
+        document.getElementById('is_grades_loading').style.display = "none";
     })
     .catch(error => {
         document.getElementById('is_grades_loading').style.borderTop = '4px solid #682828';
