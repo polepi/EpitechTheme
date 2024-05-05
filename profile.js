@@ -17,8 +17,8 @@ function open_tab(evt, tabname) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabname).style.display = "block";
-    if (evt)
-        evt.currentTarget.className += " active";
+    if (evt && evt.currentTarget)
+        evt.currentTarget.classList.add("active");
 }
 
 var tablinks = document.getElementsByClassName('tablinks');
@@ -251,6 +251,7 @@ function get_roadblocks(data) {
     document.getElementById("is_road_loading").style.display = "none";
 }
 
+var fetch_grades_cooldown = 0;
 function fetch_grades() {
     document.getElementById('is_grades_loading').style.display = "block";
     const url_grades_json = "https://intra.epitech.eu/user/"+userid+"/notes?format=json";
@@ -264,19 +265,22 @@ function fetch_grades() {
         return response.json();
     })
     .then(data => {
-        data.modules.forEach(module => {
-            const new_tr_element = document.createElement('tr');
-            new_tr_element.innerHTML = "<td>-</td><td>"+module.title+"</td><td>"+module.codemodule+"</td><td>"+module.credits+"</td><td class='td_tabl_grade'>"+gradeToText(module.grade)+"</td>";
-            new_tr_element.addEventListener('click', () => {
-                open_subjectInfo(module, data);
+        if (fetch_grades_cooldown == 0) {
+            fetch_grades_cooldown = 1;
+            data.modules.forEach(module => {
+                const new_tr_element = document.createElement('tr');
+                new_tr_element.innerHTML = "<td>-</td><td>"+module.title+"</td><td>"+module.codemodule+"</td><td>"+module.credits+"</td><td class='td_tabl_grade'>"+gradeToText(module.grade)+"</td>";
+                new_tr_element.addEventListener('click', () => {
+                    open_subjectInfo(module, data);
+                });
+                new_tr_element.setAttribute("id-sem", module.title.slice(1, 2))
+                new_tr_element.setAttribute("id-code", module.codemodule);
+                ulElement.appendChild(new_tr_element);
             });
-            new_tr_element.setAttribute("id-sem", module.title.slice(1, 2))
-            new_tr_element.setAttribute("id-code", module.codemodule);
-            ulElement.appendChild(new_tr_element);
-        });
-        get_roadblocks(data);
-        getSubjectInfo();
-        document.getElementById('is_grades_loading').style.display = "none";
+            get_roadblocks(data);
+            getSubjectInfo();
+            document.getElementById('is_grades_loading').style.display = "none";
+        }
     })
     .catch(error => {
         document.getElementById('is_grades_loading').style.borderTop = '4px solid #682828';
