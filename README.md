@@ -15,6 +15,7 @@ Adds a comfy to your eyes theme for the intra. A pop-up with all the important i
 🔗 Navigate easily to the intranet from the extension UI.<br>
 😅 A profile section with your GPA and Grades.<br>
 💼 HUB experience/credits calculator.<br>
+🚧 Keep track of your Roadblocks.<br>
 🚀 Auto-login for the Moulinette: Login button gets automatically pressed.<br>
 📋 A quick recap of Moulinette corrections.<br>
 🔔 See new moulinette corrections.<br>
