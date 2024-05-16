@@ -361,7 +361,7 @@ function print_details(det, url) {
             }
             
             skill["FullSkillReport"]["tests"].forEach((test) => {
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+`<span class='span_copy_box' data-copy=`+remove_specials(test[`name`])+`:\n`+remove_specials(test[`comment`])+`><span class='material-icons-outlined'>content_copy</span></span></div>`;
+                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+`<span class='span_copy_box' data-copy="`+remove_specials(test[`name`])+`:\n`+remove_specials(test[`comment`])+`"><span class='material-icons-outlined'>content_copy</span></span></div>`;
             });
         } else if (skill["BreakdownSkillReport"] && skill["BreakdownSkillReport"]["breakdown"]) {
             countItems = skill["BreakdownSkillReport"]["breakdown"].count;

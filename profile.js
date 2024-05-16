@@ -187,6 +187,7 @@ function get_roadblocks(data) {
             "source":["B-MUL-100", "B-MAT-100", "B-NSA-100", "B-MUL-200", "B-AIA-200", "B-WEB-200", "B-MAT-200", "B-SEC-200", "B-DOP-200"]
         }
     }
+
     data.modules.forEach(module => {
         Object.keys(req_roadblocks).forEach(category => {
             req_roadblocks[category].source.forEach(sourceItem => {
@@ -210,20 +211,30 @@ function get_roadblocks(data) {
         });
     });
 
-    var hub_pred = document.getElementById("sub_hub_cred");
-    var hub_pred_creds = parseInt(hub_pred.querySelector("b").textContent);
-    if (hub_pred.textContent.split('/')[1] && hub_pred_creds > parseInt(hub_pred.textContent.split('/')[1]))
-        hub_pred_creds = parseInt(hub_pred.textContent.split('/')[1]);
-    console.log(hub_pred.querySelector("b").textContent);
+    if (document.getElementById("sub_hub_cred") != null && document.getElementById("sub_hub_cred").querySelector("b") != null) {
+        var hub_pred = document.getElementById("sub_hub_cred");
+        var hub_pred_creds = parseInt(hub_pred.querySelector("b").textContent);
 
-    const new_el = document.createElement('p');
-    const new_el2 = document.createElement('span');
-    new_el2.style.float = "right";
-    new_el.innerHTML = "HUB";
-    new_el2.innerHTML += `<span class='rdbl_credit_outline'>${hub_pred.querySelector("b").textContent}/${hub_pred.textContent.split('/')[1]}</span></span>`;
-    new_el.appendChild(new_el2);
-    document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
-    req_roadblocks["Innovation & Professionalization"]["current"] += hub_pred_creds;
+        if (hub_pred.textContent.split('/')[1] && hub_pred_creds > parseInt(hub_pred.textContent.split('/')[1]))
+            hub_pred_creds = parseInt(hub_pred.textContent.split('/')[1]);
+        const new_el = document.createElement('p');
+        const new_el2 = document.createElement('span');
+        new_el2.style.float = "right";
+        new_el.innerHTML = "HUB";
+        new_el2.innerHTML += `<span class='rdbl_credit_outline'>${hub_pred.querySelector("b").textContent}/${hub_pred.textContent.split('/')[1]}</span></span>`;
+        new_el.appendChild(new_el2);
+        document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
+        req_roadblocks["Innovation & Professionalization"]["current"] += hub_pred_creds;
+    } else {
+        console.log("Not found");
+        const new_el = document.createElement('p');
+        const new_el2 = document.createElement('span');
+        new_el2.style.float = "right";
+        new_el.innerHTML = "HUB";
+        new_el2.innerHTML += `<span class='rdbl_credit_outline'>ERROR</span></span>`;
+        new_el.appendChild(new_el2);
+        document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
+    }
 
     Object.keys(req_roadblocks).forEach(category => {
         const data = req_roadblocks[category];
@@ -277,8 +288,10 @@ function fetch_grades() {
                 new_tr_element.setAttribute("id-code", module.codemodule);
                 ulElement.appendChild(new_tr_element);
             });
-            get_roadblocks(data);
             getSubjectInfo();
+            setTimeout(() => {
+                get_roadblocks(data);
+            }, 500);
         }
         document.getElementById('is_grades_loading').style.display = "none";
     })
@@ -345,6 +358,12 @@ function fetch_main() {
         document.getElementById("p_info_name").textContent = data.title;
         document.getElementById("p_info_loc").textContent = data.groups[0].name;
         document.getElementById("p_info_sem").textContent = data.semester_code;
+
+        document.getElementById("p_info_name").textContent =  data.title.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ');
+
         user_loc = data.location;
         user_year = data.scolaryear;
         fetch_grades();
