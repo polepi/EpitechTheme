@@ -403,3 +403,13 @@ if (window.outerHeight > 800) {
     document.getElementById("subtab_subjectList").style.height = "calc(100vh - 44px)";
     document.getElementById("subtab_subjectList").style.maxHeight = "100vh";
 }
+
+var url = new URL(window.location.href);
+var url_c = url.searchParams.get("t");
+if (url_c) {
+    document.getElementById('tab_global').style.display = "none";
+    document.getElementById('tab_grades').style.display = "none";
+    document.getElementById('tab_hub').style.display = "none";
+    document.getElementById('tab_road').style.display = "none";
+    document.getElementById(url_c).style.display = "block";
+}

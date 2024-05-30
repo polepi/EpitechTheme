@@ -49,6 +49,16 @@ a {
 	color: var(--colour-text-p);
 }
 
+#sidebar form.filter.course .datatree {
+	box-shadow: none !important;
+	margin-top: 3px !important;
+}
+
+#sidebar form.filter.course .datatree .expanded {
+	border-top: 1px solid #323232;
+	box-shadow: none !important;
+}
+
 #sidebar form.filter.course .datatree > dl dd {
     background: var(--colour-forms) !important;
 }
@@ -214,6 +224,10 @@ a {
 #wall #sidebar a {
 	padding: 12px 16px !important;
 	text-decoration: none !important;
+}
+
+#wall #sidebar #toggle-sidebar {
+	display: none !important;
 }
 
 #wall #sidebar li a .icon {
@@ -833,7 +847,7 @@ div.datagrid table thead th>div {
 
 #sidebar form.filter.course .button.expand-filters > span .icon {
 	background-repeat: no-repeat !important;
-    background-position: 8px, 50% !important;
+    background-position: 2px, 50% !important;
 	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/sort/round.png?raw=true') !important;
 }
 
@@ -1749,10 +1763,11 @@ h2 {
 	border: none !important;
 }
 
-#sidebar form.filter.course .datatree .expanded {
+#sidebar form.filter.course .datatree {
 	background-color: var(--colour-section) !important;
 	color: var(--colour-text-w) !important;
 	box-shadow: none !important;
+	border-right: 1px solid var(--colour-section) !important;
 }
 
 #sidebar form.filter.course .datatree dt.module {
@@ -1828,4 +1843,73 @@ h2 {
 	background-repeat: no-repeat !important;
     background-position: 50%, 50% !important;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="Gray"/></svg>') !important;
+}
+
+#sidebar form.filter.course .filters .resume {
+	display: none !important;
+}
+
+#sidebar form.filter.course .datatree>dl {
+	border: none !important;
+}
+
+#sidebar form.filter.course .datatree>dl>dt {
+	background-color: var(--colour-background) !important;
+}
+
+#sidebar form.filter.course .datatree>dl>dd {
+	border: none !important;
+}
+
+#sidebar form.filter.course .button.expand-filters {
+	margin: 0 !important;
+	border: none !important;
+	position: absolute !important;
+	right: 50px;
+	z-index: 10 !important;
+	margin-top: 8px !important;
+	height: 26px !important;
+	border-radius: 50px !important;
+	cursor: pointer;
+}
+
+#sidebar form.filter.course .button.expand-filters > span .icon {
+	height: 22px !important;
+	width: 22px !important;
+	margin: 0 !important;
+}
+
+#sidebar form.filter.course .button.expand-filters > span .label {
+	display: none !important;
+}
+
+#sidebar #toggle-sidebar {
+	height: auto !important;
+	width: auto !important;
+	color: transparent !important;
+	background-color: transparent !important;
+  	user-select: none !important;
+	  background-position: 0% 85% !important;
+	background-image: url("https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_left/baseline.png?raw=true");
+	background-repeat: no-repeat;
+}
+
+#sidebar form.filter.course .datatree > dl > dt.current .icon {
+	background: none !important;
+}
+
+#sidebar form.filter.course .datatree dt.module > a .icon:first-child {
+    margin-right: 10px !important;
+}
+
+#sidebar form.filter.course .datatree a .actions {
+	display: none !important;
+}
+
+#sidebar form.filter.course .datatree .module.current a {
+	text-decoration: none !important;
+}
+
+.datagrid table thead th {
+	background-color: none;
 }

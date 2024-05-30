@@ -125,6 +125,7 @@ table tr td:first-child {
     background-color: #ddd;
     border-right: 1px solid #ccc;
     height: 361px;
+    max-width: 48px;
 }
   
 .tab button {

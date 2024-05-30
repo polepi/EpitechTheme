@@ -458,3 +458,10 @@ window.onload = function() {
     update_showCompleted(false);
     createTaskList();
 };
+
+var url = new URL(window.location.href);
+var url_c = url.searchParams.get("t");
+if (url_c == "tab_allprojects") {
+    document.getElementById('tab_table').style.display = "none";
+    document.getElementById('tab_allprojects').style.display = "block";
+}

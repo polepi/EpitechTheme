@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="nv_main_bar">
+        <a class="active" href="start.html">📋 Projects</a>
+        <a href="events.html">📅 Events</a>
+        <a href="profile.html">🎓 Profile</a>
+        <a href="shite.html">💩 Mouli</a>
+        <a class="navbar-tune" href="preferences.html"></a>
+    </div>
+    <div class="topbar noselect">
+        <div class="btn br" id="tb_myprojects_btn">
+            <span class="material-icons-outlined">bookmark_border</span><span>My Projects</span>
+        </div>
+        <div class="btn br" id="tb_allprojects_btn">
+            <span class="material-icons-outlined">format_list_bulleted</span><span>All Projects</span>
+        </div>
+        <div class="btn br" id="tb_calprojects_btn">
+            <span class="material-icons-outlined">calendar_month</span><span>Calendar<a href="https://intra.epitech.eu/planning/" target="_blank" class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;" title="Open Intranet's Calendar">open_in_new</a></span>
+        </div>
+        <div class="btn" id="tb_intra_btn" title="Open Intranet" style="float:right;">
+            <span class="material-icons-outlined">open_in_new</span>
+        </div>
+    </div>
+    <div id="tab_table">
+        <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
+            <div id="s_add_btn" style="border-right: 1px solid #ccc;">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons' title="Create new event">add_box</span>
+            </div>
+            <div class="inp">
+                <span style="margin-top: 8px;" class="material-icons-outlined">search</span><input id="filter_input" style="padding-top: 10px;" type="text" placeholder="Filter name..">
+            </div>
+            <div id="s_tupload_btn" class="t_row_hide" style="float: right;" title="Upload to Trello (Export)">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_upload</span>
+            </div>
+            <div id="s_tdownload_btn" class="t_row_hide" style="float: right;margin-right: 3px;border-right: 1px solid #ccc;" title="Import from Trello (Merge)">
+                <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_download</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_completed_btn" title="Show/Hide completed tasks">
+                <span class="material-icons-outlined" id="s_completed_icon">visibility</span><span>Completed <span id="s_completed_badge"></span></span>
+            </div>
+        </div>
+        <table id ="taskTable">
+        
+        </table>
+        <div id="nothingToSee_div" style="display: block;">
+            <span style="font-size: 32px;display:block;margin-bottom: 16px;">🎉</span>
+            <span style="font-size: 20px;display:block;margin-bottom: 16px;">Nothing left to do!</span>
+            <span class="btn" id="s_add_btn2">New event</span>
+        </div>
+    </div>
+    <div id="tab_addevent">
+        <div class="s_top_task_title" style="border-bottom: 1px solid #ccc;">
+            <span id="s_canelEvent_btn" title="Return" style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span>
+            <span style='font-size: 18px;margin-top: 10px;margin-left: 12px;margin-right: 5px;' class='material-icons'>playlist_add</span><span style="margin-top:8px;margin-left: 10px;display:inline-block;">Create event</span>
+        </div>
+        <form id="createTask_form">
+            <input type="text" id="in_addtask_name" autocomplete="off" placeholder="Event name.." required minlength="3" maxlength="50">
+            <input type="url" id="in_addtask_url" autocomplete="off" placeholder="Event URL..">
+            <input type="datetime-local" id="in_addtask_due" placeholder="Due time" required>
+            <button id="s_addEvent_btn">
+                <span style='font-size: 18px;' class='material-icons'>add_circle_outline</span>&nbsp;&nbsp;<span>Create</span>
+            </button><a href="https://intra.epitech.eu/" target="_blank" id="add_from_dashboard" style="background-color: #ddd;">
+                <span style='font-size: 18px;' class='material-icons'>dashboard</span>&nbsp;&nbsp;<span>Dashboard</span>
+            </a>
+            <div style="padding:0px 5px;padding-top:4px;border-top:1px solid #ccc;background-color: #ddd;">Alternatively, add projects directly from the intranet by pressing <span class="material-icons-outlined">playlist_add</span> in the project page or the dashboard.</div>
+        </form>
+    </div>
+    <div id="tab_taskdesc">
+        <div class="s_top_task_title">
+            <span id="s_canelEvent_btn3" title="Return" style='font-size: 18px;margin-top: 0px;' class='material-icons'>chevron_left</span><span id="s_descEvent_save" title="Save changes"><span style='font-size: 18px;margin-top: 2px;margin-right: 11px;' class='material-icons'>save_as</span><span style="margin-right: 5px;font-size: 12px;">Apply</span></span>
+            <span title="Task name" style='font-size: 18px;margin-top: 10px;margin-left: 12px;margin-right: 5px;' class='material-icons'>sell</span><span id="info_taskName"></span>
+        </div>
+        <div class="cont">
+            <div style="display: block;">
+                <span class="date_infoEvent date_calendar_e" id="in_edittask_due_holder">
+                    <div style="border-right:1px solid #ddd;"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>event</span></div><div><input type="datetime-local" id="in_edittask_due"></div>
+                </span>
+                <span class="date_infoEvent" id="info_taskDaysIcon" style="margin-left: 5px;"></span>
+                <a class="date_infoEvent" id="info_taskCardUrl" target="_blank" style="margin-left: 3px;">
+                    <div style="border-right:1px solid #ddd;"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sticky_note_2</span></div><div>Trello</div>
+                </a>
+            </div>
+            <div id="info_taskLab"></div>
+            <textarea id="info_taskDesc"></textarea>
+            <div id="info_taskUrl"></div>
+            <div id="info_taskChecks"></div>
+        </div>
+    </div>
+    <div id="tab_allprojects" style="display: none;">
+        <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
+            <div class="inp">
+                <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_hub_proj_btn" title="Show/Hide HUB Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showhub_icon">visibility_off</span><span id="s_showhub_txt">HUB</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_boot_proj_btn" title="Show/Hide Bootstraps">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showboot_icon">visibility</span><span id="s_showboot_txt">Bootstraps</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_expired_proj_btn" title="Show/Hide Expired Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showexpired_icon">visibility_off</span><span id="s_showexpired_txt"><span>Expired</span>
+            </div>
+        </div>
+        <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+        <div style="height: 400px; width: 100%;overflow-y: auto;">
+            <table id ="table_proj_event_list"></table>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+    <script src="allprojects.js"></script>
+    <script src="trello.js"></script>
+</body>
+</html>

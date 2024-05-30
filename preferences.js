@@ -88,6 +88,18 @@ document.getElementById("themes_btn_goback2").addEventListener('click', () => {
   document.getElementById("tab_btns").style.display = "block";
 });
 
+document.getElementById("sett_startup").addEventListener('change', () => {
+  const sett_val_startup = document.getElementById("sett_startup").value;
+  chrome.storage.local.set({"OnStartUp": sett_val_startup});
+});
+
+chrome.storage.local.get("OnStartUp", function(data) {
+  var page = data["OnStartUp"] || "start.html";
+  if (page) {
+    document.getElementById("sett_startup").value = page;
+  }
+});
+
 function checkForUpdates() {
   fetch('https://raw.githubusercontent.com/polepi/EpitechTheme/main/version.txt')
       .then(response => response.text())
