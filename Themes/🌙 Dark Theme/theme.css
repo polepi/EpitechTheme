@@ -1,3 +1,5 @@
+/* Preferences */
+
 :root {
 	--colour-main: #2d366e;
 	--colour-background: #323232;
@@ -11,7 +13,11 @@
 	--colour-text-p: #f1f1f1;
 	--colour-text-s: #ddd;
 	--colour-text-w: #ddd;
+	--icon-filters: brightness(0) invert(1);
+	--icon-filters1: brightness(0) invert(1);
 }
+
+/* End of preferences */
 
 body {
 	background-color: var(--colour-background) !important;
@@ -246,33 +252,33 @@ a {
 }
 
 #wall #sidebar .module a .icon {
-	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/dashboard/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	background: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/dashboard/default/24px.svg') !important;
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .mark a .icon {
 	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/school/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .planning a .icon {
 	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/calendar_month/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .trombi a .icon {
 	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/menu_book/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .stage a .icon {
 	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/business_center/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .document a .icon {
 	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/folder_open/default/24px.svg') !important;
-	filter: brightness(0) invert(1);
+	filter: var(--icon-filters1);
 }
 
 #wall #sidebar .rzone .info span, #wall #sidebar .rzone .msg-alert {
@@ -349,13 +355,15 @@ a {
 #homeboard .final_render .projet>h2>span {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/category/round.png?raw=true') !important;
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/category/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 #homeboard .final_render .activite>h2>span {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/date_range/round.png?raw=true') !important;
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/date_range/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 #homeboard .final_render .module .articles {
@@ -365,20 +373,23 @@ a {
 #homeboard .final_render .module>h2>span {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/view_list/round.png?raw=true') !important;
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/view_list/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 #homeboard .final_render .susie>h2>span {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/record_voice_over/round.png?raw=true') !important;
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/record_voice_over/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 
 #homeboard .final_render .note>h2>span {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/school/round.png?raw=true') !important;
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/school/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 #language {
@@ -434,30 +445,35 @@ a {
 .header-wrapper>.navigation .planning>a>.icon {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
+	filter: var(--icon-filters);
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/event/round.png?raw=true') !important;
 }
 
 .header-wrapper>.navigation .module>a>.icon {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
+	filter: var(--icon-filters);
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/dashboard/round.png?raw=true') !important;
 }
 
 .header-wrapper>.navigation .user>a>.icon {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
+	filter: var(--icon-filters);
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/account_circle/round.png?raw=true') !important;
 }
 
 .header-wrapper>.navigation .e-learning>a>.icon {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
+	filter: var(--icon-filters);
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/cast_for_education/round.png?raw=true') !important;
 }
 
 .header-wrapper>.navigation .administration>a>.icon {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
+	filter: var(--icon-filters);
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/tune/round.png?raw=true') !important;
 }
 
@@ -561,7 +577,9 @@ a {
     background-position: 6px, 50% !important;
 	margin-right: 5px;
 	background-size: 18px 18px !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/home/round.png?raw=true') !important;
+    
+	background-image: url('https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsoutlined/home/default/24px.svg') !important;
+	filter: var(--icon-filters1) !important;
 }
 
 div.datagrid table tfoot {
@@ -1184,6 +1202,10 @@ rect {
 
 #content .rzone .item.message.register {
 	margin-top: 6px;
+}
+
+#planning .calendar .days .scroll .events .noevent .message {
+	background-color: var(--colour-main) !important;
 }
 
 .sep.ui-active {
@@ -1912,4 +1934,8 @@ h2 {
 
 .datagrid table thead th {
 	background-color: none;
+}
+
+.highcharts-container tspan {
+	fill: #ddd !important;
 }

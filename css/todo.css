@@ -1,0 +1,293 @@
+.sidebar-top-btn {
+    overflow: hidden;
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar-top-btn > div {
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-top-btn > div, .sidebar-top-btn > a {
+    padding: 8px 12px;
+    cursor: pointer;
+    flex: 1;
+    background-color: #eee;
+}
+
+.sidebar-top-btn > div:first-child {
+    flex: 0 0 40px;
+}
+
+.sidebar-top-btn > div:hover, .sidebar-top-btn > a:hover {
+    background-color: #ddd;
+}
+
+.sidebar-top-btn > a {
+    color: #222;
+    flex: 0 0 24px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.mar-right {
+    margin-right: 5px;
+}
+
+.svg_ico {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+
+    display: inline-flex;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none; 
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#s_editcard_save_btn {
+    background: none;
+	color: inherit;
+	border: none;
+	margin: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#lists_selection_wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+#lists_selection_wrapper > li {
+    padding: 8px 12px;
+    margin: 0;
+    background-color: #eee;
+    cursor: pointer;
+    position: relative;
+    list-style:none;
+}
+
+#lists_selection_wrapper > li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+#taskTable tr td:nth-child(1) {
+    width: 38.8px !important;
+    max-width: 38.8px !important;
+    padding: 7px 0px !important;
+    padding-top: 7px !important;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+
+#taskTable tr td:nth-child(2) {
+    padding-left: 16px;
+    padding: 9px 16px 12px 20px;
+    vertical-align: middle;
+}
+
+#taskTable tr td:nth-child(3), #taskTable tr td:nth-child(4) {
+    padding: 9px 18px 12px 10px;
+    vertical-align: middle;
+}
+
+#taskTable tr:hover .navbar_actions > span {
+    visibility: visible;
+}
+
+#taskTable .navbar_actions {
+    width: 36px;
+}
+
+#taskTable .navbar_actions > span {
+    visibility: hidden;
+}
+
+#taskTable .navbar_actions > span {
+    font-size: 16px;
+}
+
+#taskTable .navbar_actions > span:hover {
+    opacity: 0.7;
+}
+
+#taskTable tr td c_label:not(:first-child) {
+    margin-left: -5px;
+}
+
+#taskTable tr td c_label {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #fff;
+    border-radius: 100px;
+    margin-top: 2px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#form_create_new > div > input, #form_create_edit .edit_main input {
+    width: 100%;
+    display: block;
+    padding: 10px 16px;
+
+    border: none;
+    outline: none;
+
+    border-bottom: 1px solid #ddd;
+}
+
+#form_create_new > div > textarea, #form_create_edit .edit_main textarea {
+    width: 100%;
+    display: block;
+    padding: 10px 16px;
+
+    border: none;
+    outline: none;
+
+    resize: vertical;
+
+    border-bottom: 1px solid #ddd;
+}
+
+#in_filter_lists {
+    padding: 6px 6px;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.edit_main input[type="datetime-local"]::-webkit-inner-spin-button,
+.edit_main input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.in_open_link_btn, #edit_card_date_deco, #edit_card_date_due {
+    position: absolute;
+    right: 10px;
+    top: 11px;
+
+    color: #222;
+    background-color: #eee;
+    border: 1px solid #ddd;
+
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 100px;
+}
+
+.in_open_link_btn:hover, #edit_card_date_deco:hover, #edit_card_date_due:hover {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+}
+
+#form_create_new > div > label, .edit_main > div > label {
+    font-size: 10px;
+    color: #888;
+    left: 16px;
+    top: 6px;
+    position: absolute;
+}
+
+#form_create_new div > input, #form_create_new div > textarea, .edit_main div > input, .edit_main div > textarea {
+    padding-top: 24px !important;
+}
+
+#btn_change-list_trello {
+    flex: 0 0 90px;
+}
+
+#trello_change_content_wrapper {
+    width: 100%;
+}
+
+#trello_change_content_wrapper tr:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#trello_change_content_wrapper tr td {
+    padding: 6px 10px;
+}
+
+#tab_display_card_attachments > a {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    padding: 8px 16px;
+    border-bottom: 1px solid #f1f1f1;
+    color: #111;
+}
+
+#tab_display_card_attachments > a:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+#tab_display_card_attachments > a:hover {
+    opacity: 0.6;
+}
+
+#tab_display_card_labels {
+    padding: 6px 14px;
+}
+
+#tab_display_card_labels > span {
+    padding: 4px 8px;
+    border-radius: 0.7em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#tab_display_card_todos_wrap {
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+#tab_display_card_todos_wrap > h3 {
+    padding: 5px 10px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#tab_display_card_todos_wrap table {
+    width: 100%;
+}
+
+#tab_display_card_todos_wrap tr td:first-child {
+    text-align: center;
+    width: 30px;
+}
+
+#tab_display_card_todos_wrap tr td {
+    padding: 8px 6px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#edit_card_url_open_trello_link {
+    text-decoration: none;
+}
+
+#edit_card_url_open_trello_link > svg {
+    margin-right: 6px;
+}
+
+#edit_card_date_due > span > span:first-child {
+    margin-top: 0.5px !important;
+}

@@ -25,7 +25,7 @@
     "declarativeNetRequest"
   ],
 "background": {
-    "service_worker": "background.js"
+    "service_worker": "core/background.js"
 },
 "web_accessible_resources": [
   {
@@ -37,18 +37,18 @@
   {
     "matches": ["https://intra.epitech.eu/*"], 
     "js": ["script.js"],
-    "css": ["misc.css"],
+    "css": ["css/misc.css"],
     "all_frames": true
   },
   {
     "matches": ["https://intra.epitech.eu/*"], 
-    "js": ["theme_handler.js"],
+    "js": ["core/theme_handler.js"],
     "run_at": "document_start",
     "all_frames": true
   },
   {
     "matches": ["https://my.epitech.eu/*"], 
-    "js": ["mouli_script.js"],
+    "js": ["core/mouli_script.js"],
     "all_frames": true
   }
 ],

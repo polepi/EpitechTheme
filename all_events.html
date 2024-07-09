@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Projects - EpiTheme</title>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="nv_main_bar">
+        <a class="active" href="start.html">📋 Projects</a>
+        <a href="events.html">📅 Events</a>
+        <a href="profile.html">🎓 Profile</a>
+        <a href="shite.html">💩 Mouli</a>
+        <a class="navbar-tune" href="preferences.html"></a>
+    </div>
+    <div class="topbar noselect">
+        <div class="btn br" id="tb_myprojects_btn">
+            <span class="material-icons-outlined">bookmark_border</span><span>My Projects</span>
+        </div>
+        <div class="btn br" id="tb_allprojects_btn">
+            <span class="material-icons-outlined">category</span><span>All Projects</span>
+        </div>
+        <div class="btn br" id="tb_calprojects_btn">
+            <span class="material-icons-outlined">calendar_month</span><span>Calendar<a href="https://intra.epitech.eu/planning/" target="_blank" class="material-icons-outlined" style="margin-left:10px;margin-top:2px;font-size:14px;color:#666;" title="Open Intranet's Calendar">open_in_new</a></span>
+        </div>
+        <div class="btn" id="tb_intra_btn" title="Open Intranet" style="float:right;">
+            <span class="material-icons-outlined">open_in_new</span>
+        </div>
+    </div>
+    <div id="tab_allprojects">
+        <div class="navbar noselect" style="border-bottom: 1px solid #ccc;">
+            <div class="inp">
+                <span class="material-icons-outlined" style="margin-top: 8px;margin-left: 10px;">search</span><input id="inp_text_filter" style="padding: 10px 12px;" type="text" placeholder="Filter name..">
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_hub_proj_btn" title="Show/Hide HUB Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showhub_icon">visibility_off</span><span id="s_showhub_txt">HUB</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_boot_proj_btn" title="Show/Hide Bootstraps">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showboot_icon">visibility</span><span id="s_showboot_txt">Bootstraps</span>
+            </div>
+            <div style="float:right;border-right: 1px solid #ccc;" class="btn" id="s_expired_proj_btn" title="Show/Hide Expired Projects">
+                <span class="material-icons-outlined" style="font-size: 16px;margin-right: 10px;" id="s_showexpired_icon">visibility_off</span><span id="s_showexpired_txt"><span>Expired</span>
+            </div>
+        </div>
+        <div class="loader" id="is_grades_loading" style="margin-left: calc(50% - 24px);margin-top: 20%;"></div>
+        <div style="height: 400px; width: 100%;overflow-y: auto;">
+            <table id ="table_proj_event_list"></table>
+        </div>
+    </div>
+    <script src="js/allprojects.js"></script>
+</body>
+</html>

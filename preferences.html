@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Preferences - EpiTheme</title>
-    <link rel="stylesheet" type="text/css" href="preferences.css">
-    <link rel="stylesheet" type="text/css" href="navbar.css">
+    <link rel="stylesheet" type="text/css" href="css/preferences.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
     <meta charset="utf-8">
 </head>
@@ -18,14 +18,16 @@
     <div id="tab_btns" class="subtab_cont">
         <h3>EpiTheme</h3>
         <div class="sett_btn" id="sett_expand_sett"><i class="material-icons-outlined">tune</i><span class="text">Settings</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
-        <div class="sett_btn" id="sett_expand_trello"><i class="material-icons-outlined">ballot</i><span class="text">Trello</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
-        <div class="sett_btn" id="sett_expand_repo"><i class="material-icons-outlined">downloading</i><span class="text">EpiTheme Repo</span><i style="float:right" class="material-icons-outlined">open_in_new</i></div>
+        <div class="sett_btn" id="sett_expand_themes"><i class="material-icons-outlined">format_paint</i><span class="text">Themes</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+        <div class="sett_btn" id="sett_expand_trello"><svg style="margin-right:6px;width:16px;margin-right: 32px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z" /></svg><span class="text">Trello</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+        <div class="sett_btn" id="sett_expand_doc"><i class="material-icons-outlined">import_contacts</i><span class="text">Documentation</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+        <div class="sett_btn" id="sett_expand_repo"><svg style="margin-right:6px;width:16px;margin-right: 32px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg><span class="text">EpiTheme Repo</span><i style="float:right" class="material-icons-outlined">open_in_new</i></div>
     </div>
     <div id="tab_pref" style="display: none;">
         <div id="subtab_theme" class="subtab_cont">
             <h3 id="themes_btn_goback"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span>Intranet settings</h3>
-            <div class="sett_btn" id="sett_upload_set_theme"><i class="material-icons-outlined">translate</i><span class="text">Language</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
-            <div class="sett_btn"><i class="material-icons-outlined">home</i><span class="text">Startup Page</span>
+            <div class="sett_btn" title="Sets the language of the intranet" id="sett_upload_set_theme"><i class="material-icons-outlined">translate</i><span class="text">Language</span><i style="float:right" class="material-icons-outlined">chevron_right</i></div>
+            <div class="sett_btn" title="On open the extension window it will start on this page"><i class="material-icons-outlined">home</i><span class="text">Startup Page</span>
                 <select style="float:right;padding: 8px 6px;margin-top: -5px;border: none;outline: none;" id="sett_startup">
                     <option value="start.html">📋 My Projects</option>
                     <option value="start.html?t=tab_allprojects">📋 All Projects</option>
@@ -39,75 +41,21 @@
                     <option value="events.html">💩 Mouli</option>
                 </select>
             </div>
-        </div>
-        <div id="subtab_themes" class="subtab_cont" style="display: block;">
-            <h3><span class="material-icons-outlined" style="margin-right: 15px;display: none;">chevron_left</span>Themes</h3>
-            <div id="themes_list"></div>
-            <a href="gallery.html" style="margin: 10px 0px;display: block;" target="_blank"><div class="sett_btn" style="border-top: 1px solid #ccc;"><span class="text">How to create a Theme</span></div></a>
-        </div>
-    </div>
-    <div id="subtab_trello" style="display: none;" class="subtab_cont">
-        <h3 id="themes_btn_goback2"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span>Trello</h3>
-        <div class="cont">
-            <div id="t_notset_warn">
-                <span style="display: block;"  class="noselect warn-badge"><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>error_outline</span>&nbsp;&nbsp;Trello API not configured.</span>
-                <br>
-            </div>
-            <table id="t_infoTable">
-                <tr class="t_row_hide">
-                    <td>
-                        <button id="e_export_trello">
-                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_upload</span><span>Export</span>
-                        </button>
-                    </td>
-                    <td>Export your projects to your desired Trello list as individual cards. Existing cards will be updated.</td>
-                </tr>
-                <tr class="t_row_hide">
-                    <td>
-                        <button id="e_merge_trello">
-                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined'>file_download</span><span>Merge</span>
-                        </button>
-                    </td>
-                    <td>Imports cards from trello. Existing cards will be updated.</td>
-                </tr>
-                <tr class="t_row_hide">
-                    <td>
-                        <button id="e_replace_trello" class="danger">
-                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>sync_problem</span><span>Replace</span>
-                        </button>
-                    </td>
-                    <td>Replaces all your local projects with the ones in the Trello list.</td>
-                </tr>
-                <tr class="t_row_hide">
-                    <td>
-                        <button id="e_removeall_trello" class="danger">
-                            <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>delete</span><span>Delete</span>
-                        </button>
-                    </td>
-                    <td>Removes all the cards from the Trello List.</td>
-                </tr>
-                <tr class="t_row_hide" style="display: none;">
-                    <td style="text-align: right;">
-                        <input type="checkbox" id="t_pull_onstartup">
-                    </td>
-                    <td>Export to Trello onStartUp</td>
-                </tr>
-                <tr class="t_row_hide" style="display: none;">
-                    <td style="text-align: right;">
-                        <input type="checkbox" id="t_merge_onstartup">
-                    </td>
-                    <td>Merge from Trello onStartUp</td>
-                </tr>
-                
-            </table>
-            <div style="display: block;border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px;">
-                <button id="e_opsett_trello" style="width:100%">
-                    <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>webhook</span>&nbsp;&nbsp;<span>Configurate Trello</span>
-                </button>
+            <div class="sett_btn" title="If the API fails due to the captcha check, the intranet will open automatically"><i class="material-icons-outlined">sync_problem</i><span class="text">Open Intranet on API fail</span>
+                <input type="checkbox" style="float:right;margin-top: 4px;border: none;outline: none;height: 16px;width: 16px;" id="sett_force_open">
             </div>
         </div>
     </div>
-    <script src="trello_pref.js"></script>
-    <script src="preferences.js"></script>
+    <div id="tab_themes" style="display: none;" class="subtab_cont">
+        <h3 id="themes_btn_goback2"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span>Themes</h3>
+        <div id="themes_list"></div>
+        <a href="gallery.html" style="margin: 10px 0px;display: block;" target="_blank"><div class="sett_btn" style="border-top: 1px solid #ccc;"><span class="text">Browse themes</span></div></a>
+    </div>
+    <div id="seltab_theme" class="subtab_cont" style="display: none;">
+        <h3 id="themes_btn_goback3"><span class="material-icons-outlined" style="padding-right: 12px;margin-right: 15px;border-right: 1px solid #ccc;">chevron_left</span><span id="seltab_theme_info"></span></h3>
+        <h3 style="font-weight: 400;">🎨&nbsp;&nbsp;Colour palette</h3>
+        <div style="display: flexbox;" id="select_theme_colours"></div>
+    </div>
+    <script src="js/preferences.js"></script>
 </body>
 </html>

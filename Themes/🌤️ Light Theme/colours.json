@@ -1,0 +1,16 @@
+{
+    "Default": {
+        "--colour-main": "#2d366e",
+        "--colour-background": "#f9f9f9",
+        "--colour-sidebar": "#eee",
+        "--colour-span": "#ccc",
+        "--colour-section": "#ddd",
+        "--colour-forms": "#eee",
+        "--colour-borders": "#ccc",
+        "--colour-borders2": "#bbb",
+        "--colour-borders3": "#ddd",
+        "--colour-text-p": "#222",
+        "--colour-text-s": "#444",
+        "--colour-text-w": "#f1f1f1"
+    }
+}

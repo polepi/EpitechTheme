@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
     <style>
     body {font-family: Arial, Helvetica, sans-serif;}
     .modal {
@@ -65,6 +66,16 @@
     #form_trello_config {
         padding: 5px 20px;
     }
+    #trello_list_id table {
+        width: 100%;
+    }
+    #trello_list_id table tr:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+    #trello_list_id table td {
+        padding: 8px;
+    }
     </style>
     <title>EpiTheme: Configure Trello API</title>
 </head>
@@ -72,13 +83,16 @@
 <div class="modal">
   <div class="modal-content">
     <h3><span style='font-size: 18px;margin-top: 0px;' class='material-icons'>api</span>&nbsp;&nbsp;Trello API Configuration</h3>
-    <form id="form_trello_config">
+    <form id="form_trello_config" style="position: relative;">
         <label for="t_trello_apikey" href="https://trello.com/power-ups/admin/"><b>API Key</b></label>
         <input type="password" id="t_trello_apikey" placeholder="Trello API Key" required minlength="10">
         <label for="t_trello_token"><b>API Token</b></label>
         <input type="password" id="t_trello_token" placeholder="Trello Token" required minlength="10">
-        <label for="t_trello_lisid"><b>List ID</b></label>
-        <input type="password" id="t_trello_lisid" placeholder="Trello List ID" required minlength="10">
+        <div style="display: none;">
+            <label for="t_trello_lisid"><b>List</b></label>
+            <input type="text" id="t_trello_lisid" placeholder="Trello List ID">
+            <u id="u_easy_select" style="position: absolute;right:30px;margin-top: -36px;cursor: pointer;">🔍 Select</u>
+        </div>
         <button id="e_save_trello" class="btn" style="background-color:rgb(45, 54, 110);margin-top: -5px;">
             <span style='font-size: 18px;margin-top: 0px;' class='material-icons'>check</span>&nbsp;&nbsp;<span>Apply API Changes</span>
         </button>
@@ -91,6 +105,15 @@
     </form>
   </div>
 </div>
-<script src="trello2.js"></script>
+
+<div class="modal" id="modal_show_trello_list" style="display: none;">
+    <div class="modal-content">
+        <div id="trello_list_id">
+            <table></table>
+        </div>
+    </div>
+</div>
+<script src="js/trello_config/todo.js"></script>
+<script src="js/trello2.js"></script>
 </body>
 </html>
