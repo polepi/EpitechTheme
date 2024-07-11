@@ -41,9 +41,9 @@
             <span style='font-size: 18px;margin-top: 8px;margin-left: 7px;' class='material-icons'>search</span>
             <input type="text" id="in_filter_lists" placeholder="Search in list..">
             <div style="float:right;gap: 10px;display: flex;">
-                <a href="#" target="_blank" id="view_list_url_open_trello_link" style="color: #222;padding: 0px 10px;display: inline-block;border-right: 1px solid #ccc;" title="Open Trello Board">
+                <span href="#" target="_blank" id="view_list_url_open_trello_link" style="color: #222;padding: 0px 10px;display: inline-block;border-right: 1px solid #ccc;" title="Open Trello Board">
                     <svg class="svg_ico" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg>
-                </a>
+                </span>
                 <div id="s_togg_completed_btn" title="Show/Hide completed">
                     <span style='font-size: 18px;margin-top: 0px;' class='material-icons-outlined mar-right'>visibility</span>
                     <span>0</span>
@@ -58,6 +58,21 @@
             <span style="font-size: 32px;display:block;margin-bottom: 16px;">🎉</span>
             <span style="font-size: 20px;display:block;margin-bottom: 16px;">Nothing left to do!</span>
             <span class="btn" id="s_add_btn2">New event</span>
+        </div>
+    </div>
+    <div id="tab_trelloBoard_pref" style="display: none;">
+        <div class="navbar noselect" id="navbar" style="border-bottom: 1px solid #ccc;position: relative;">
+            <div id="s_editboard_ret_btn" style="border-right: 1px solid #ccc;" title="Return">
+                <span style='font-size: 18px;margin-top: 0px;' class="material-icons-round">chevron_left</span>
+            </div>
+            <input autocomplete="off" name="info_board_name" style="margin-left:15px;border:none;background:transparent;outline: none;">
+            <span name="info_board_destroy" class="material-icons-round" style="font-size: 18px;margin-top: 0px;color: #333;padding: 7px 10px;display: inline-block;border-left: 1px solid #ccc;position: absolute;right: 72px;cursor: pointer;" title="Remove board">delete</span>
+            <a href="#" target="_blank" name="info_board_url" style="text-decoration:none;color: #222;padding: 8px 10px;display: inline-block;border-left: 1px solid #ccc;position: absolute;right: 0px;" title="Open Trello Card">
+                <svg class="svg_ico" style="margin-right:8px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg>Open
+            </a>
+        </div>
+        <div>
+            <div name="info_board_labels"></div>
         </div>
     </div>
     <div id="tab_display_card" style="display: none;">

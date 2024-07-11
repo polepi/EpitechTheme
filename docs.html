@@ -17,6 +17,7 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #2e2e2e;
+            min-width: 523px;
         }
 
         .sidebar_wrapper {
@@ -33,7 +34,7 @@
             user-select: none;
         }
 
-        .sidebar_wrapper > #sidebar_content > span {
+        .sidebar_wrapper>#sidebar_content>span {
             background-color: #272727;
             display: block;
             cursor: pointer;
@@ -43,11 +44,11 @@
             color: white;
         }
 
-        .sidebar_wrapper > #sidebar_content > span:not(.active):hover {
+        .sidebar_wrapper>#sidebar_content>span:not(.active):hover {
             background-color: #222;
         }
 
-        .sidebar_wrapper > #sidebar_content > span.active {
+        .sidebar_wrapper>#sidebar_content>span.active {
             background-color: #333;
         }
 
@@ -161,15 +162,18 @@
             -ms-user-select: none;
             user-select: none;
         }
+
         .tab_content:not(.active) {
             display: none;
         }
+
         p.note {
             padding: 4px 8px;
             border-radius: 7px;
             border: 1px solid rgb(184, 56, 9);
             background-color: #FF6347;
         }
+
         .related_topics {
             margin-top: 10px;
             padding: 8px 6px;
@@ -177,7 +181,8 @@
             border-radius: 7px;
             background-color: #333;
         }
-        .related_topics > p:first-child {
+
+        .related_topics>p:first-child {
             border-bottom: 1px solid #282828;
             margin: 0;
             padding: 0px 0px 8px 8px;
@@ -185,7 +190,7 @@
             font-weight: bold;
         }
 
-        .related_topics > div {
+        .related_topics>div {
             padding: 0px 6px;
         }
 
@@ -197,16 +202,19 @@
                 margin-top: 5px;
                 position: relative;
             }
+
             .sidebar_wrapper {
                 width: calc(100% - 20px);
                 margin-left: 10px;
                 position: relative;
             }
-            .sidebar_wrapper > #sidebar_content > span {
+
+            .sidebar_wrapper>#sidebar_content>span {
                 margin-top: 0px;
                 display: inline-block;
             }
-            .sidebar_wrapper > h4 {
+
+            .sidebar_wrapper>h4 {
                 display: none;
             }
         }
@@ -254,8 +262,8 @@
                         information of the project automatically</p>
                 </span>
                 <p><b style="margin-right: 10px;">2</b>Trello list</p>
-                <p class="note">Requires Trello API connection (<a
-                    href="docs.html?t=trello" target="_blank">Docs</a>)</p>
+                <p class="note">Requires Trello API connection (<a href="docs.html?t=trello" target="_blank">Docs</a>)
+                </p>
                 <p>Links a list from Trello</p>
                 <span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;">
                     <p><u>Link a list</u></p>
@@ -277,9 +285,14 @@
             <h3>⚙️&nbsp;&nbsp;Settings</h3>
             <div class="info_frame" style="padding: 12px 20px;">
                 <p><u>Access from:</u> Epitech icon (top-right hand of the navbar) > Settings</p>
-                <p><b style="margin-right: 10px;">Language</b></p><p>Sets the language for the intranet</p>
-                <p><b style="margin-right: 10px;">Startup Page</b></p><p>Sets the launch page for whenever you open the extension</p>
-                <p><b style="margin-right: 10px;">Open Intranet on API fail</b></p><p>Whenever the API returns an Error (eg. DDOS thingy, you are logged out, intranet is down...), the intranet will be opened in a new window, if it's cauased by the DDOS protection or because you are logged out, then wait for it to validate you and re-open the extension window</p>
+                <p><b style="margin-right: 10px;">Language</b></p>
+                <p>Sets the language for the intranet</p>
+                <p><b style="margin-right: 10px;">Startup Page</b></p>
+                <p>Sets the launch page for whenever you open the extension</p>
+                <p><b style="margin-right: 10px;">Open Intranet on API fail</b></p>
+                <p>Whenever the API returns an Error (eg. DDOS thingy, you are logged out, intranet is down...), the
+                    intranet will be opened in a new window, if it's cauased by the DDOS protection or because you are
+                    logged out, then wait for it to validate you and re-open the extension window</p>
                 <div class="related_topics">
                     <p>📌 Related pages</p>
                     <div>
@@ -296,7 +309,8 @@
                 <p>- You should be able to see a notifications in the settings page whenever a new version is out.</p>
                 <p><b style="margin-right: 10px;">1</b>Clear the contents of the EpiTheme folder</p>
                 <p><b style="margin-right: 10px;">2</b>Drag and drop the contents of the github repo into the folder</p>
-                <p><b style="margin-right: 10px;">3</b>Reload the extension (chrome://extensions/ > EpiTheme > refresh) or refresh the browser</p>
+                <p><b style="margin-right: 10px;">3</b>Reload the extension (chrome://extensions/ > EpiTheme > refresh)
+                    or refresh the browser</p>
                 <div class="related_topics">
                     <p>📌 Related pages</p>
                     <div>
@@ -317,17 +331,31 @@
                     (Epitech icon, top-right hand) > Settings</p>
                 <p><b style="margin-right: 10px;">2</b>Under the Themes category, select a Theme</p>
                 <h4>Install themes</h4>
-            <p><b style="margin-right: 10px;">1</b>Download the Theme folder. (with theme.css file inside)</p>
-            <p><b style="margin-right: 10px;">2</b>Drag the folder inside the extension folder</p>
-            <p style="padding-left: 20px;"><span>🗃️ For unpacked extensions (github extension)</span></p>
-            <p style="padding-left: 20px;"><span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;">(Extension Folder)/Themes/</span></p>
-            <p style="padding-left: 20px;"><span>📦 For packed extensions (google extension marketplace)</span></p>
-            <p style="padding-left: 20px;"><span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;"><b>🟦 Windows</b><br><br>C:\Users\<u>(your username)</u>\AppData\Local\Google\Chrome\User Data\Default\Extensions\<u class="ext_id">(extension id)</u>\Themes\<br><br><b>🐧 Linux</b><br><br>~/.config/chromium/Default/Extensions/<u class="ext_id">(extension id)</u>/Themes/<br><br>🍎 macOS<br><br>Use a normal operational system, ty</span><br></p>
+                <p><b style="margin-right: 10px;">1</b>Download the Theme folder. (with theme.css file inside)</p>
+                <p><b style="margin-right: 10px;">2</b>Drag the folder inside the extension folder</p>
+                <p style="padding-left: 20px;"><span>🗃️ For unpacked extensions (github extension)</span></p>
+                <p style="padding-left: 20px;"><span
+                        style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;">(Extension
+                        Folder)/Themes/</span></p>
+                <p style="padding-left: 20px;"><span>📦 For packed extensions (google extension marketplace)</span></p>
+                <p style="padding-left: 20px;"><span
+                        style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;"><b>🟦
+                            Windows</b><br><br>C:\Users\<u>(your username)</u>\AppData\Local\Google\Chrome\User
+                        Data\Default\Extensions\<u class="ext_id">(extension id)</u>\Themes\<br><br><b>🐧
+                            Linux</b><br><br>~/.config/chromium/Default/Extensions/<u class="ext_id">(extension
+                            id)</u>/Themes/<br><br>🍎 macOS<br><br>Use a normal operational system, ty</span><br></p>
                 <h4>Create theme</h4>
                 <p>Allows users to create custom themes for the intranet.</p>
                 <p><b style="margin-right: 10px;">1</b>Create a new folder (Give it a creative name)</p>
-                <span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📦 Project folder<hr>📁 Theme_name/<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 theme.css<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 info.json<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 colours.json (optional)<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 readme.txt (optional)</span>
-                <br><span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📃 theme.css<hr>Contains the modifications for the intranet written in CSS <a href="https://www.w3schools.com/css/" target="_blank">Tutorial</a></span>
+                <span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📦 Project folder
+                    <hr>📁 Theme_name/<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 theme.css<br>&nbsp;&nbsp;&nbsp;&nbsp;📃
+                    info.json<br>&nbsp;&nbsp;&nbsp;&nbsp;📃 colours.json (optional)<br>&nbsp;&nbsp;&nbsp;&nbsp;📃
+                    readme.txt (optional)
+                </span>
+                <br><span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📃 theme.css
+                    <hr>Contains the modifications for the intranet written in CSS <a
+                        href="https://www.w3schools.com/css/" target="_blank">Tutorial</a>
+                </span>
                 <pre style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📃 info.json<hr>
 {
     "author_name": "your github username",
@@ -336,7 +364,7 @@
     "version": 1,
     "Licence": "MIT"
 }</pre>
-<pre style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📃 colours.json<hr>
+                <pre style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: block;">📃 colours.json<hr>
 /* Contains the information for the colour palettes, make sure you include a default state.
 This will replace all the CSS variables in the :root listed in this file
 according to the selected palette */
@@ -355,46 +383,50 @@ according to the selected palette */
     ...
 }
 </pre>
-                <p><b style="margin-right: 10px;">2</b>Modify <span style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;">theme.css</span> as you wish your theme to look like</p>
-                <p><b style="margin-right: 10px;">3</b>Follow the same steps as "Install themes" to install your theme</p>
-                <p><b style="margin-right: 10px;">Template</b>You can duplicate and modify the Dark/Light theme folders if you need a base for your Theme.</p>
+                <p><b style="margin-right: 10px;">2</b>Modify <span
+                        style="padding: 6px;background: #1a1a1a;border: 1px solid #111;display: inline-block;">theme.css</span>
+                    as you wish your theme to look like</p>
+                <p><b style="margin-right: 10px;">3</b>Follow the same steps as "Install themes" to install your theme
+                </p>
+                <p><b style="margin-right: 10px;">Template</b>You can duplicate and modify the Dark/Light theme folders
+                    if you need a base for your Theme.</p>
                 <h4>Share a theme</h4>
                 <p>Settings > Themes > <a href="gallery.html" target="_blank">Browse Themes</a></p>
                 <div class="related_topics">
                     <p>📌 Related pages</p>
-                        <div>
-                            <p>Documentation</p>
-                            <a href="?t=preferences">How to open settings</a>
-                            <p>EpiTheme</p>
-                            <a href="preferences.html">Preferences</a>, <a href="gallery.html">Browse Themes</a>
-                        </div>
+                    <div>
+                        <p>Documentation</p>
+                        <a href="?t=preferences">How to open settings</a>
+                        <p>EpiTheme</p>
+                        <a href="preferences.html">Preferences</a>, <a href="gallery.html">Browse Themes</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="tab_content" name="trello">
             <h3><svg style="margin-right:6px;width:16px;filter: invert(100%);" role="img" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z" />
-            </svg>&nbsp;&nbsp;Trello</h3>
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z" />
+                </svg>&nbsp;&nbsp;Trello</h3>
             <div class="info_frame" style="padding: 12px 20px;">
                 <h4>Trello Linking</h4>
-            <p>Allows you to connect your Trello account to EpiTheme, allowing you to link lists to your todo
-                projects.</p>
-            <p><b style="margin-right: 10px;">1</b>Go to <a href="trello.html" target="_blank">Trello
-                    Configuration</a>, or go to Settings (Epitech icon, top-right hand) > Trello</p>
-            <p><b style="margin-right: 10px;">2</b>Retrive your API Key and Token from Trello (<a
-                    href="https://trello.com/power-ups/admin/" target="_blank">Keys</a> | <a
-                    href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/"
-                    target="_blank">Docs</a>)</p>
-            <div class="related_topics">
-                <p>📌 Related pages</p>
+                <p>Allows you to connect your Trello account to EpiTheme, allowing you to link lists to your todo
+                    projects.</p>
+                <p><b style="margin-right: 10px;">1</b>Go to <a href="trello.html" target="_blank">Trello
+                        Configuration</a>, or go to Settings (Epitech icon, top-right hand) > Trello</p>
+                <p><b style="margin-right: 10px;">2</b>Retrive your API Key and Token from Trello (<a
+                        href="https://trello.com/power-ups/admin/" target="_blank">Keys</a> | <a
+                        href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/"
+                        target="_blank">Docs</a>)</p>
+                <div class="related_topics">
+                    <p>📌 Related pages</p>
                     <div>
                         <p>EpiTheme</p>
                         <a href="trello.html">Trello Configuration</a>
                         <p>Trello</p>
-                        <a href="https://trello.com/power-ups/admin/">API Keys</a>, <a href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/">Docs</a>
+                        <a href="https://trello.com/power-ups/admin/">API Keys</a>, <a
+                            href="https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/">Docs</a>
                     </div>
                 </div>
             </div>

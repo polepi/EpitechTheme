@@ -1,5 +1,74 @@
-function add_to_calendar(event) {
-    const article = event.target.parentElement;
+var listRendering = null;
+var is_style_added = false;
+
+function render_list_destroy() {
+    if (listRendering) {
+        listRendering.remove();
+        listRendering = null;
+    }
+}
+
+function render_list_btn(el_name, callback, origin) {
+    const new_btn = document.createElement("div");
+    new_btn.classList.add("list_item");
+    new_btn.innerHTML = `${el_name}`;
+    new_btn.title = `Add this project to ${el_name} (My Projects)`;
+    new_btn.addEventListener("click", function() {
+        callback(el_name, origin);
+    })
+    return new_btn;
+}
+
+function render_list_div(btn, callback, origin) {
+    if (listRendering) {
+        render_list_destroy();
+        return;
+    }
+
+    const pos = btn.getBoundingClientRect();
+    const pos_left = pos.left + window.scrollX;
+    const pos_top = pos.top + window.scrollY;
+
+    listRendering = document.createElement("div");
+    listRendering.style = `background-color:#272727;border:1px solid #151515;border-radius:0.5em;padding:6px;position:absolute;box-shadow: 1px 1px 8px #323232;max-height:200px;overflow-y: auto;`;
+    listRendering.style.top = (pos_top + 45)+"px";
+    listRendering.style.left = pos_left+"px";
+
+    chrome.runtime.sendMessage({
+        action: 'request_lists'
+    },
+    (res) => {
+        listRendering.innerHTML = "";
+        listRendering.id = "epiTheme_render_lists";
+        const json_array = Object.values(res["list"]);
+
+        if (is_style_added == false) {
+            is_style_added = true;
+
+            var style = document.createElement('style');
+            style.innerHTML = "#epiTheme_render_lists > .list_item {display:block;padding:6px 14px;cursor:pointer;color:white;} #epiTheme_render_lists > .list_item:hover {background-color: #353535;} #epiTheme_render_lists > .list_item:first-child {border-bottom: 1px solid #111;}";
+            document.getElementsByTagName('head')[0].appendChild(style);
+        }
+        
+        if (res["list"][res["sel"]]) {
+            listRendering.appendChild(render_list_btn(res["list"][res["sel"]]["name"], callback, origin));
+        }
+
+        for (let i = 0; i < json_array.length; i++) {
+            if (json_array[i]["name"] == res["list"][res["sel"]]["name"]) {
+                continue;
+            }
+            listRendering.appendChild(render_list_btn(json_array[i]["name"], callback, origin));
+        }
+
+        document.body.append(listRendering); 
+    });
+}
+
+function add_to_calendar(listName, origin) {
+    render_list_destroy();
+
+    const article = origin;
     const title = article.querySelector('h3').textContent;
     const endDate = article.querySelectorAll('span')[6].textContent;
     const link = article.querySelector('h3 a').href;
@@ -7,6 +76,7 @@ function add_to_calendar(event) {
         action: 'addEventToCalendar',
         title: title,
         link: link,
+        list: listName,
         endDate: endDate},
         (response) => {
             if (response == true) {
@@ -19,14 +89,18 @@ function add_to_calendar(event) {
     });
 }
 
-function add_to_calendar2(event) {
+function add_to_calendar2(listName) {
+    render_list_destroy();
+
     const title = document.querySelector('#project .bloc.top .data .item.title h1').textContent;
     const endDate = document.querySelector('.date_end.bulle').textContent;
     const link = window.location.href;
+
     chrome.runtime.sendMessage({
         action: 'addEventToCalendar',
         title: title,
         link: link,
+        list: listName,
         endDate: endDate},
         (response) => {
             if (response == true) {
@@ -44,8 +118,11 @@ const projButtonsContainer = document.querySelector('#project .bloc.top .data .b
 if (projButtonsContainer) {
     const button = document.createElement('div');
     button.classList.add('btn_add2');
+    button.title = "Add this project to an EpiTheme Todo";
     button.textContent = "";
-    button.addEventListener('click', add_to_calendar2);
+    button.addEventListener('click', function() {
+        render_list_div(button, add_to_calendar2);
+    });
     projButtonsContainer.appendChild(button);
 }
 
@@ -55,7 +132,10 @@ articles.forEach(article => {
     article.style.position = "relative";
     button.textContent = '';
     button.classList.add('btn_add');
-    button.addEventListener('click', add_to_calendar);
+    button.title = "Add this project to an EpiTheme Todo";
+    button.addEventListener('click', function(event) {
+        render_list_div(button, add_to_calendar, article);
+    });
     article.appendChild(button);
 });
 

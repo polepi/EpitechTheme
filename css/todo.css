@@ -291,3 +291,17 @@
 #edit_card_date_due > span > span:first-child {
     margin-top: 0.5px !important;
 }
+
+#tab_trelloBoard_pref div[name="info_board_labels"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px 6px;
+}
+
+#tab_trelloBoard_pref div[name="info_board_labels"] > span {
+    padding: 6px 8px;
+    border-radius: 0.5em;
+    color: white;
+    cursor: pointer;
+}
