@@ -61,7 +61,7 @@ async function load_lists_data(card_name, card_date, card_url) {
         data_lists = data["TodoLists"] || {
             "sel": "Todo",
             "list": {
-                "list1": {
+                "Todo": {
                     "name": "Todo",
                     "ctime": Date.now(),
                     "ltime": Date.now(),
@@ -135,7 +135,7 @@ const iframeHosts = [
 
 chrome.runtime.onInstalled.addListener(function(details){
     if (details.reason == "install") {
-        window.open("docs.html?t=new", "_blank")
+		chrome.tabs.create({url: "docs.html?t=new", active: true});
     }
 });
 

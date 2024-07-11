@@ -705,6 +705,8 @@ function list_render_local() {
 
     document.getElementById("trello_load_list_loader").style.display = "block";
 
+    console.log("->",data_lists)
+
     if (data_lists && data_lists["sel"])
         data_temp = data_lists["list"][data_lists["sel"]];
     else {
@@ -893,7 +895,7 @@ function load_lists_data() {
         data_lists = data["TodoLists"] || {
             "sel": "Todo",
             "list": {
-                "list1": {
+                "Todo": {
                     "name": "Todo",
                     "ctime": Date.now(),
                     "ltime": Date.now(),
