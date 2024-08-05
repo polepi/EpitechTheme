@@ -179,6 +179,12 @@ function fetch_schedule() {
     .then(data => {
         if (document.getElementById("t_failedlogin_warn"))
             document.getElementById("t_failedlogin_warn").style.display = "none";
+        if (!data || Object.keys(data).length == 0) {
+            document.getElementById('table_calendar_view_div').innerHTML = "<br><center><h2>❓ No events</h2></center><br>";
+            document.getElementById("table_calendar_view_div").style.display = "block";
+            document.getElementById('is_grades_loading').style.display = "none";
+            return;
+        }
         data.forEach(event => {
             if (event.instance_location == user_loc && (event.semester == 0 || (event.semester >= event_semester_min && event.semester <= event_semester_max))) {
                 if (show_registred_only == 0 || event.event_registered == "registered") {

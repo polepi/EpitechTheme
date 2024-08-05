@@ -705,11 +705,16 @@ function list_render_local() {
 
     document.getElementById("trello_load_list_loader").style.display = "block";
 
-    console.log("->",data_lists)
-
-    if (data_lists && data_lists["sel"])
+    if (data_lists && data_lists["sel"]) {
         data_temp = data_lists["list"][data_lists["sel"]];
-    else {
+        if (!data_temp) {
+            const temp_list_fix = Object.entries(data_lists["list"]);
+            if (temp_list_fix.length > 0) {
+                data_lists["sel"] = temp_list_fix[0][0];
+                data_temp = data_lists["list"][data_lists["sel"]];
+            }
+        }
+    }else {
         console.log("No list selected");
         list_table_todos.innerHTML = "<p>Error loading a list.</p>";
         return;

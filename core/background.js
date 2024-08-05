@@ -56,12 +56,12 @@ async function create_add_new_trello_card(id, card_name, card_due, card_url) {
 
 // --- TASK LOCALSTORAGE --- //
 
-async function load_lists_data(card_name, card_date, card_url) {
+async function load_lists_data(card_name, card_date, card_url, list_card) {
     await chrome.storage.local.get("TodoLists", function(data) {
         data_lists = data["TodoLists"] || {
             "sel": "Todo",
             "list": {
-                "Todo": {
+                "list1": {
                     "name": "Todo",
                     "ctime": Date.now(),
                     "ltime": Date.now(),
@@ -81,7 +81,11 @@ async function load_lists_data(card_name, card_date, card_url) {
             }
         }
 
-		const list_selected = data_lists["list"][data_lists["sel"]];
+		var list_selected = data_lists["list"][data_lists["sel"]];
+
+		if (list_card && data_lists["list"][list_card]) {
+			list_selected = data_lists["list"][list_card];
+		}
 
 		if (!list_selected) {
 			console.log("Error: No list found..\nTry to manually select a new list");
@@ -114,16 +118,34 @@ async function load_lists_data(card_name, card_date, card_url) {
 
 // --- NEW TASK HANDLING --- //
 
-async function add_to_calendar(title, endDate, link) {
-	const res = await load_lists_data(title, convertToEpoch(endDate), link);
+async function add_to_calendar(title, endDate, link, list) {
+	const res = await load_lists_data(title, convertToEpoch(endDate), link, list);
 	return;
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 	if (message.action === 'addEventToCalendar') {
-		const { title, link, endDate } = message;
-		add_to_calendar(title, endDate, link);
+		const { title, link, endDate, list } = message;
+		add_to_calendar(title, endDate, link, list);
 		sendResponse(true);
+		return true;
+	} else if (message.action === 'request_lists') {
+		chrome.storage.local.get("TodoLists", function(data) {
+			const data_lists = data["TodoLists"] || {
+				"sel": "Todo",
+				"list": {
+					"list1": {
+						"name": "Todo",
+						"ctime": Date.now(),
+						"ltime": Date.now(),
+						"is_fav": 0,
+						"is_hid": 0,
+						"cards": []
+					}
+				}
+			};
+			sendResponse(data_lists);
+		});
 		return true;
 	}
 	return false;
@@ -135,7 +157,7 @@ const iframeHosts = [
 
 chrome.runtime.onInstalled.addListener(function(details){
     if (details.reason == "install") {
-		chrome.tabs.create({url: "docs.html?t=new", active: true});
+        window.open("docs.html?t=new", "_blank")
     }
 });
 

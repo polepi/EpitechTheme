@@ -30,7 +30,7 @@ function render_list_div(btn, callback, origin) {
     const pos_top = pos.top + window.scrollY;
 
     listRendering = document.createElement("div");
-    listRendering.style = `background-color:#272727;border:1px solid #151515;border-radius:0.5em;padding:6px;position:absolute;box-shadow: 1px 1px 8px #323232;max-height:200px;overflow-y: auto;`;
+    listRendering.style = `z-index:100;background-color:#272727;border:1px solid #151515;border-radius:0.5em;padding:6px;position:absolute;box-shadow: 1px 1px 8px #323232;max-height:200px;overflow-y: auto;`;
     listRendering.style.top = (pos_top + 45)+"px";
     listRendering.style.left = pos_left+"px";
 

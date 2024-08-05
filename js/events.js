@@ -209,6 +209,11 @@ function fetch_schedule() {
         if (document.getElementById("t_failedlogin_warn"))
             document.getElementById("t_failedlogin_warn").style.display = "none";
         table_event_list.innerHTML = "";
+        if (!data || Object.keys(data).length == 0) {
+            table_event_list.innerHTML = "<tr><td>No events</td></tr>";
+            document.getElementById('is_grades_loading').style.display = "none";
+            return;
+        }
         data.forEach(event => {
             if (event.instance_location == user_loc && (event.semester == 0 || (event.semester >= event_semester_min && event.semester <= event_semester_max))) {
                 const new_tr_element = document.createElement('tr');
