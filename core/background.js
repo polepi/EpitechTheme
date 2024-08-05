@@ -61,7 +61,7 @@ async function load_lists_data(card_name, card_date, card_url, list_card) {
         data_lists = data["TodoLists"] || {
             "sel": "Todo",
             "list": {
-                "list1": {
+                "Todo": {
                     "name": "Todo",
                     "ctime": Date.now(),
                     "ltime": Date.now(),
@@ -134,7 +134,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			const data_lists = data["TodoLists"] || {
 				"sel": "Todo",
 				"list": {
-					"list1": {
+					"Todo": {
 						"name": "Todo",
 						"ctime": Date.now(),
 						"ltime": Date.now(),
