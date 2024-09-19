@@ -52,6 +52,7 @@ async function userData_fetch() {
         console.log("userData_cache");
         return userData_cache;
     }
+    console.log("Getting data..")
     
     return fetch(url)
     .then(response => {
@@ -61,7 +62,7 @@ async function userData_fetch() {
         return response.json();
     })
     .then(data => {
-        const returnData = {
+        let returnData = {
             "UserId": data.internal_email,
             "UserName": data.title,
             "UserPicture": data.picture,
@@ -70,10 +71,10 @@ async function userData_fetch() {
             "UserLocation": data.location,
             "UserSemester": data.semester,
             "UserCredits": data.credits,
-            "UserGpa": data.gpa[0].gpa,
+            "UserGpa": data.gpa[0].gpa || 0,
             "UserCourse": data.studentyear
         };
-        chrome.storage.session.set({userData: returnData});
+        //chrome.storage.session.set({userData: returnData});
         userData_cache = returnData;
         return returnData;
     })

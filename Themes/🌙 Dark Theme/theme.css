@@ -2,6 +2,7 @@
 
 :root {
 	--colour-main: #2d366e;
+	--colour-main2: #282f5b;
 	--colour-background: #323232;
 	--colour-sidebar: #252525;
 	--colour-span: #111;
@@ -30,6 +31,7 @@ body {
 #header .intra {
 	background: none !important;
 	background-color: var(--colour-main) !important;
+	height: 60px !important;
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
 }
 
@@ -281,6 +283,11 @@ a {
 	filter: var(--icon-filters1);
 }
 
+#wall #sidebar .alert a .icon {
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M840-440h-80q-17 0-28.5-11.5T720-480q0-17 11.5-28.5T760-520h80q17 0 28.5 11.5T880-480q0 17-11.5 28.5T840-440ZM664-288q10-14 26-16t30 8l64 48q14 10 16 26t-8 30q-10 14-26 16t-30-8l-64-48q-14-10-16-26t8-30Zm120-424-64 48q-14 10-30 8t-26-16q-10-14-8-30t16-26l64-48q14-10 30-8t26 16q10 14 8 30t-16 26ZM200-360h-40q-33 0-56.5-23.5T80-440v-80q0-33 23.5-56.5T160-600h160l139-84q20-12 40.5 0t20.5 35v338q0 23-20.5 35t-40.5 0l-139-84h-40v120q0 17-11.5 28.5T240-200q-17 0-28.5-11.5T200-240v-120Zm240-22v-196l-98 58H160v80h182l98 58Zm120 36v-268q27 24 43.5 58.5T620-480q0 41-16.5 75.5T560-346ZM300-480Z"/></svg>') !important;
+	filter: var(--icon-filters1);
+}
+
 #wall #sidebar .rzone .info span, #wall #sidebar .rzone .msg-alert {
 	padding: 8px 16px !important;
 	background-color: var(--colour-span);
@@ -392,6 +399,13 @@ a {
 	filter: var(--icon-filters1) !important;
 }
 
+#homeboard .final_render .stage>h2>span {
+	background-repeat: no-repeat !important;
+    background-position: 0%, 50% !important;
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Zm400 360H600v40q0 17-11.5 28.5T560-280H400q-17 0-28.5-11.5T360-320v-40H160v160h640v-160Zm-360 0h80v-80h-80v80Zm-280-80h200v-40q0-17 11.5-28.5T400-520h160q17 0 28.5 11.5T600-480v40h200v-200H160v200Zm320 40Z"/></svg>') !important;
+	filter: var(--icon-filters1) !important;
+}
+
 #language {
 	display: none !important;
 }
@@ -418,109 +432,69 @@ a {
 	background: none !important;
 }
 
-#notification>.pedago>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chat_bubble_outline/outline.png?raw=true') !important;
-}
-
-#notification>.message>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications/outline.png?raw=true') !important;
-}
-
-#notification>.news>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications_active/round.png?raw=true') !important;
-}
-
-#notification>.rdv>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/schedule/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation .planning>a>.icon {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-	filter: var(--icon-filters);
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/event/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation .module>a>.icon {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-	filter: var(--icon-filters);
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/dashboard/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation .user>a>.icon {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-	filter: var(--icon-filters);
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/account_circle/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation .e-learning>a>.icon {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-	filter: var(--icon-filters);
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/cast_for_education/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation .administration>a>.icon {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-	filter: var(--icon-filters);
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/tune/round.png?raw=true') !important;
-}
-
-.header-wrapper>.navigation>table {
-	height: 75px !important;
-}
-
-.header-wrapper>.navigation td>a>.icon {
-	line-height: 57px !important;
-}
-
-.header-wrapper>.navigation td>a>.icon {
-	display: inline-block !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	width: 24px !important;
-	height: 45px !important;
-}
-
-.header-wrapper>.navigation td>a>.label {
-	display: inline-block !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	margin-left: 6px !important;
-	background-color: transparent !important;
-	text-align: left !important;
-	position: static !important;
-}
-
 .header-wrapper>.navigation {
-    margin-left: 230px !important;
-	max-width: 650px !important;
+	border: 1px solid var(--colour-main) !important;
 }
 
-#header>.intra {
-	height: 75px !important;
+#header .intra .navigation tr td {
+	padding: 0px 4px !important;
+}
+
+#header .intra .navigation tr td .button .label {
+	background: none !important;
+	border: none !important;
+	padding: 13px 4px !important;
+	border-radius: 0.75em !important;
+	color: #f1f1f1 !important;
+}
+
+#header .intra .navigation tr td .button .label > i {
+	margin-right: 5px;
+}
+
+#header .intra .navigation tr td .button .label:hover {
+	border: 1px solid var(--colour-main2) !important;
+	color: var(--colour-text-p) !important;
+}
+
+#header .intra .navigation tr .ui-active .button .label {
+	border: 1px solid var(--colour-main2) !important;
+	background-color: var(--colour-main2) !important;
+	color: var(--colour-text-p) !important;
 }
 
 .second-column>.infos {
 	background: none !important;
+	position: relative;
 }
 
+@media only screen and (max-width: 1200px) {
+    #identification {
+		min-width: 60px !important;
+		max-width: 60px !important;
+	}
+}
+
+#identification {
+	min-width: 80px !important;
+	max-width: 80px !important;
+}
+
+.navigation .switch .button.ui-active span {
+	background: var(--colour-borders) !important;
+}
 
 .second-column>.infos>.picture {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) !important;
+	width: 32px !important;
+	height: 32px !important;
+	border-radius: 100px !important;
+	background-position: center center !important;
 	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/log_out/round.png?raw=true') !important;
+	background-size: cover !important;
 }
 
 .second-column>.infos>.title {

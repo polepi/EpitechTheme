@@ -446,11 +446,11 @@ function card_add_new(form) {
     chrome.storage.local.set({"TodoLists": data_lists});
 }
 
-document.getElementById("form_create_new").addEventListener("submit", function(e) {
+document.getElementById("form_create_new").addEventListener("submit", async function(e) {
     e.preventDefault();
     if (boardData && data_lists["sel"] && data_lists["list"][data_lists["sel"]]
         && data_lists["list"][data_lists["sel"]]["trello_id"]) {
-        card_add_new_trello(document.getElementById("form_create_new"));
+        await card_add_new_trello(document.getElementById("form_create_new"));
         location.reload();
     } else {
         card_add_new(document.getElementById("form_create_new"));
@@ -473,14 +473,17 @@ document.getElementById("form_create_edit").addEventListener("submit", function(
     var d_due = form.querySelector("[name='duetime']").value;
     const d_desc = form.querySelector("[name='desc']").value;
 
-    if (d_name == "" || !d_due)
+    if (d_name == "" || !d_due) {
+        console.log("No name or due date");
         return;
+    }
 
     if (Date.parse(d_due)) {
         d_due = Date.parse(d_due);
     }
 
     if (data_lists["list"][data_lists["sel"]] && data_lists["list"][data_lists["sel"]]["trello_id"] && card_sel) {
+        console.log("Trello request");
         trello_card_update(card_sel, {
             "name": d_name,
             "due": d_due,

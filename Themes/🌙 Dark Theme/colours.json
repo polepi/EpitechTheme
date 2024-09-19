@@ -1,6 +1,7 @@
 {
     "Default": {
         "--colour-main": "#2d366e",
+        "--colour-main2": "#282f5b",
         "--colour-background": "#323232",
         "--colour-sidebar": "#252525",
         "--colour-span": "#111",
@@ -15,6 +16,7 @@
     },
     "Dark": {
         "--colour-main": "#1e1e1e",
+        "--colour-main2": "#222",
         "--colour-background": "#121212",
         "--colour-sidebar": "#1a1a1a",
         "--colour-span": "#0d0d0d",
@@ -29,6 +31,7 @@
     },
     "Solarized": {
         "--colour-main": "#142b36",
+        "--colour-main2": "#282f5b",
         "--colour-background": "#002b36",
         "--colour-sidebar": "#073642",
         "--colour-span": "#586e75",
@@ -115,6 +118,7 @@
     },
     "Monochrome": {
         "--colour-main": "#1a1a1a",
+        "--colour-main2": "#222",
         "--colour-background": "#0d0d0d",
         "--colour-sidebar": "#121212",
         "--colour-span": "#1a1a1a",

@@ -25,6 +25,34 @@ body {
 	background: none !important;
 	background-color: var(--colour-main) !important;
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+	height: 60px !important;
+}
+
+#header .intra .navigation tr td {
+	padding: 0px 4px !important;
+}
+
+#header .intra .navigation tr td .button .label {
+	background: none !important;
+	border: none !important;
+	padding: 13px 4px !important;
+	border-radius: 0.75em !important;
+	color: #f1f1f1 !important;
+}
+
+#header .intra .navigation tr td .button .label > i {
+	margin-right: 5px;
+}
+
+#header .intra .navigation tr td .button .label:hover {
+	border: 1px solid var(--colour-main2) !important;
+	color: var(--colour-text-p) !important;
+}
+
+#header .intra .navigation tr .ui-active .button .label {
+	border: 1px solid var(--colour-main2) !important;
+	background-color: var(--colour-main2) !important;
+	color: var(--colour-text-p) !important;
 }
 
 .wall {
@@ -383,28 +411,16 @@ a {
 	background: none !important;
 }
 
-#notification>.pedago>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chat_bubble_outline/outline.png?raw=true') !important;
-}
-
-#notification>.message>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications/outline.png?raw=true') !important;
+#header #notification .dropdown.rdv .logo:before,
+#header #notification .dropdown.message .logo:before,
+#header #notification .dropdown.pedago .logo:before {
+	color: var(--colour-text-w) !important;
 }
 
 #notification>.news>a>.logo {
 	background-repeat: no-repeat !important;
     background-position: 0%, 50% !important;
     background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/notifications_active/round.png?raw=true') !important;
-}
-
-#notification>.rdv>a>.logo {
-	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/schedule/round.png?raw=true') !important;
 }
 
 .header-wrapper>.navigation .planning>a>.icon {
@@ -468,23 +484,38 @@ a {
 	max-width: 650px !important;
 }
 
-#header>.intra {
-	height: 75px !important;
-}
-
 .second-column>.infos {
 	background: none !important;
+	position: relative;
 }
 
-
 .second-column>.infos>.picture {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) !important;
+	width: 32px !important;
+	height: 32px !important;
+	border-radius: 100px !important;
+	background-position: center center !important;
 	background-repeat: no-repeat !important;
-    background-position: 0%, 50% !important;
-    background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/log_out/round.png?raw=true') !important;
+	background-size: cover !important;
 }
 
 .second-column>.infos>.title {
 	display: none !important;
+}
+
+@media only screen and (max-width: 1200px) {
+    #identification {
+		min-width: 60px !important;
+		max-width: 60px !important;
+	}
+}
+
+#identification {
+	min-width: 80px !important;
+	max-width: 80px !important;
 }
 
 #breadcrumb {
