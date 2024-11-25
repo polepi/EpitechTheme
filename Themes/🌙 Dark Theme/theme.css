@@ -442,7 +442,7 @@ a {
 
 #header .intra .navigation tr td .button .label {
 	background: none !important;
-	border: none !important;
+	border: 1px solid var(--colour-main) !important;
 	padding: 13px 4px !important;
 	border-radius: 0.75em !important;
 	color: #f1f1f1 !important;
@@ -871,14 +871,6 @@ div.datagrid .overflow {
     background-position: 2px, 50% !important;
 }
 
-.navigation .switch .prev > span {
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_left/round.png?raw=true') !important;
-}
-
-.navigation .switch .next > span {
-	background-image: url('https://github.com/material-icons/material-icons-png/blob/master/png/white/chevron_right/round.png?raw=true') !important;
-}
-
 .transparency {
 	display: none !important;
 }
@@ -1072,6 +1064,11 @@ div.datagrid {
 rect {
     fill: rgb(30, 30, 30);
     color: var(--colour-text-p);
+}
+
+rect[fill='rgb(192,192,192)'] {
+	stroke: rgb(20, 192, 89);
+	fill: rgb(20, 192, 89) !important;
 }
 
 .btn_add {

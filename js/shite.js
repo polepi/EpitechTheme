@@ -557,7 +557,10 @@ function update_api() {
 function get_stored_data() {
     var currentDate = new Date();
     document.getElementById("date_input").value = targ_year;
-    document.getElementById("date_input").max = user_data_cache.UserYear || currentDate.getFullYear();
+    if (user_data_cache && user_data_cache.UserYear)
+        document.getElementById("date_input").max = user_data_cache.UserYear;
+    else
+        document.getElementById("date_input").max = currentDate.getFullYear();
     document.getElementById("date_input").addEventListener('blur', function() {
         if (targ_year != document.getElementById("date_input").value) {
             targ_year = document.getElementById("date_input").value;
