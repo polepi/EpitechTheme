@@ -11,16 +11,35 @@
           border-collapse: collapse;
           border-spacing: 0;
           width: 100%;
-          border: 1px solid #ddd;
+          border: 1px solid #f1f1f1;
         }
         
         th, td {
           text-align: left;
           padding: 16px;
         }
-        
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
+
+        td a {
+            color: #222;
+        }
+        td span.title-badge {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 10px;
+            gap: 5px;
+        }
+        .title-badge .inner-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 7px;
+            padding: 3px 6px;
+        }
+        #table_hub_recipt tr {
+            background-color: #f9f9f9 !important;
         }
         </style>
 </head>
@@ -42,11 +61,11 @@
             </div>
             <div id="tab_global" class="tabcontent">
                 <div style="background-color: #f5f5f5;">
-                    <div id="p_info_name" style="padding: 12px 18px;border-bottom: 1px dashed #ccc; font-weight: bold;"></div>
+                    <div id="p_info_name" style="padding: 12px 18px;border-bottom: 1px solid #ddd; font-weight: bold;"></div>
                     <a href="https://intra.epitech.eu/user/" target="_blank" title="Open profile.." style="position: absolute; right: 15px;margin-top: -33px;color:#111;"><span class="material-icons-outlined" style="font-size: 20px;margin-top: 2px;">open_in_new</span></a>
                     <div style="padding: 12px 18px;"><span style="font-size: 16px;margin-right: 24px;margin-top: 2px;" class="material-icons-outlined">alternate_email</span><span id="p_info_mail"></span></div>
                 </div>
-                <table>
+                <table style="border-top: 1px solid #ddd;">
                     <tr>
                         <td><span class="material-icons-outlined" style="font-size: 20px;margin-top: 2px;margin-left: 2px;">cottage</span></td>
                         <td>Location</td>
@@ -127,21 +146,12 @@
                     <div style="padding: 0px 10px;margin-bottom: 10px">
                         <h2 style="margin: 10px 0px;padding-bottom: 7px; border-bottom: 1px solid #ddd;">Hub</h2>
                         <div style="border-bottom: 1px solid #ddd;margin-bottom: 5px;padding-bottom: 5px;">
-                            <div class="hub_btn" title='HUB Experience'><b style="width: 155px;">HUB Experience</b><span id="sub_hub_exp"></span></div>
+                            <div class="hub_btn" title='HUB Experience'><b style="width: 155px;">HUB Hours</b><span id="sub_hub_exp"></span></div>
                             <div class="hub_btn" title='HUB Credits'><b style="width: 195px;">HUB Credits</b><span id="sub_hub_cred"></span></div>
-                        </div>
-                        <div style="margin-bottom: 5px;">
-                            <div class="hub_btn" title='2 xp/session'><b>Workshop</b><span id="filterBtn_hubWork"></span></div>
-                            <div class="hub_btn" title='1 xp/session'><b>Talk</b><span id="filterBtn_hubTalk"></span></div>
-                            <div class="hub_btn" title='6 xp/session'><b>Hackathon</b><span id="filterBtn_hubHack"></span></div>
-                            <div class="hub_btn" title='3 xp/session'><b>Experience</b><span id="filterBtn_hubExp"></span></div>
                         </div>
                         
                     </div>
-                    <div class="info-badge" style="border-top: 1px solid #ddd;">
-                        <b>Found activities</b>
-                    </div>
-                    <table id="table_hub_recipt"></table>
+                    <table id="table_hub_recipt" style="border-top: 1px solid #ddd;"></table>
                     <div class="info-badge">
                         <p><span style="padding: 4px;border-radius: 3px;border: 1px solid #ccc;background-color: #ddd;">Feature In-Development</span></p>
                         <b>Disclaimer: </b>This is a prediction of your HUB Experience and Credits based on the HUB activities you have participated. This prediction could be wrong, you should still ask your teacher if you need to know for certain.<br>

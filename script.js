@@ -442,8 +442,6 @@ async function toggleSearch(restart) {
                     is_registered = "<span title='Registred' style='color: #2c9f20;'>⬢&nbsp;&nbsp;</span>";
                 else if (item["event_registered"])
                     is_registered = "<span title='Registred to the event, but not to the module' style='color: #9f2020;'>❕⬢&nbsp;&nbsp;</span>";
-                
-                console.log(item)
                 new_dataWrapper.innerHTML += `<a title='${get_itemTitle(item)}' href="https://intra.epitech.eu/module/${item["scolaryear"]}/${item["codemodule"]}/${item["codeinstance"]}/${item["codeacti"]}" data-module="${item["codemodule"]}" data-title="${item["acti_title"]}">${is_registered}${item["acti_title"]} <span style='margin-left: auto;'>${item["codemodule"]} · ${date_convert}</span></a>`;
             } catch (error) {
                 console.error("Error processing item:", error, item);
@@ -541,10 +539,8 @@ async function toggleSearch(restart) {
     }
 }
 
-
-
 document.addEventListener("keypress", async function (e) {
-    const activeElement = document.activeElement;
+    const activeElement = document.activeElement.toUpperCase();
     if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA' && activeElement.contentEditable !== 'true'
         && e.key === keyword) {
         toggleSearch();
@@ -559,6 +555,7 @@ if (document.getElementById("notification")) {
     new_el.addEventListener("click", function () {
         toggleSearch();
     });
+    new_el.id = "epiTheme_searchBtn";
     new_el.style = "gap: 10px;display: flex; position: absolute;top: 50%; left: 0;transform: translate(-100%, -50%);cursor: pointer;"
     document.getElementById("notification").appendChild(new_el);
 }

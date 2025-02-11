@@ -4,6 +4,7 @@
     <title>Schedule - EpiTheme</title>
     <link rel="stylesheet" type="text/css" href="css/shite.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
+    <script src="js/diff_match_patch.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
     <meta charset="utf-8">
 </head>
@@ -60,7 +61,17 @@
                 <span id="tab_shite_subject_back"><span class="material-icons-outlined">chevron_left</span><span id="shite_details_name"></span></span><div style="position: fixed;right:4px;top:53px;padding-right:4px;cursor:pointer;padding-right:10px;" id="go_full_screen2" title="Fullscreen"><span id="is_reg_only" class="material-icons-outlined">fullscreen</span></div><div style="position: fixed;right:46px;top:54px;padding-left:9px;cursor:pointer;border-right:1px solid #bbb;padding-right:10px;border-left:1px solid #bbb;" title="History" id="open_history" class="br"><span style="font-size: 22px;" class="material-icons-outlined">update</span></div><a id="shite_det_direct_link" title="Open in moulinette.." style="position: fixed;right:102px;top:55px;" target="_blank"><span class="material-icons-outlined" style="font-size: 21px;color:#111;">open_in_new</span></a>
             </div>
             <div id="shite_overflow_data" style="overflow-y:scroll;height: 350px;width:100%;">
-                <div class="block" style="padding: 6px 0px 0px 6px;">
+                <div class="headerResult_wrapper">
+                    <div class="headerResult_btn" data-headerResultsOpen="results">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m680-264-76 76q-11 11-28 11t-28-11q-11-11-11-28t11-28l76-76-76-76q-11-11-11-28t11-28q11-11 28-11t28 11l76 76 76-76q11-11 28-11t28 11q11 11 11 28t-11 28l-76 76 76 76q11 11 11 28t-11 28q-11 11-28 11t-28-11l-76-76Zm-26-369 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L683-548q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57ZM120-360h280q17 0 28.5 11.5T440-320q0 17-11.5 28.5T400-280H120q-17 0-28.5-11.5T80-320q0-17 11.5-28.5T120-360Zm0-320h280q17 0 28.5 11.5T440-640q0 17-11.5 28.5T400-600H120q-17 0-28.5-11.5T80-640q0-17 11.5-28.5T120-680Z"/></svg>
+                        <span>Results</span>
+                    </div>
+                    <div class="headerResult_btn" data-headerResultsOpen="trace">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M120-104v-752q0-7 6-9.5t11 2.5l29 29q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l32-32q6-6 14-6t14 6l32 32q6 6 14 6t14-6l29-29q5-5 11-2.5t6 9.5v752q0 7-6 9.5T823-97l-29-29q-6-6-14-6t-14 6l-32 32q-6 6-14 6t-14-6l-32-32q-6-6-14-6t-14 6l-32 32q-6 6-14 6t-14-6l-32-32q-6-6-14-6t-14 6l-32 32q-6 6-14 6t-14-6l-32-32q-6-6-14-6t-14 6l-32 32q-6 6-14 6t-14-6l-32-32q-6-6-14-6t-14 6l-32 32q-6 6-14 6t-14-6l-32-32q-6-6-14-6t-14 6l-29 29q-5 5-11 2.5t-6-9.5Zm160-176h400q17 0 28.5-11.5T720-320q0-17-11.5-28.5T680-360H280q-17 0-28.5 11.5T240-320q0 17 11.5 28.5T280-280Zm0-160h400q17 0 28.5-11.5T720-480q0-17-11.5-28.5T680-520H280q-17 0-28.5 11.5T240-480q0 17 11.5 28.5T280-440Zm0-160h400q17 0 28.5-11.5T720-640q0-17-11.5-28.5T680-680H280q-17 0-28.5 11.5T240-640q0 17 11.5 28.5T280-600Zm-80 404h560v-568H200v568Zm0-568v568-568Z"/></svg>
+                        <span>Trace</span>
+                    </div>
+                </div>
+                <div class="block" style="padding: 0px 0px 0px 6px;">
                     <div id="info_badge_banned_functs">
                         <div class="info_badge_title">Banned functions</div>
                         <div style="padding: 6px 0px;">
@@ -99,4 +110,4 @@
         </div>
     </div>
 </body>
-<script src="js/shite.js" type="module"></script>
+<script src="js/shite.js" type="module" defer></script>

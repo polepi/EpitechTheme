@@ -141,21 +141,25 @@ function get_roadblocks(data) {
             "Innovation & Professionalization": {
                 "min": 3,
                 "current": 0,
+                "name": "Innovation & Professionalization",
                 "source":["Epitech JAM", "KYT/CAT"]
             },
             "Soft Skills": {
                 "min": 3,
                 "current": 0,
+                "name": "Soft Skills",
                 "source":["B-PRO-100", "B-PRO-200", "B-PMP-100", "B-PMP-200", "B-PCP-000"]
             },
             "Technical Foundation": {
                 "min": 20,
                 "current": 0,
+                "name": "Technical Foundation",
                 "source":["B-CPE-100", "B-CPE-101", "B-CPE-110", "B-PSU-100", "B-CPE-200", "B-PSU-200"]
             },
             "Technical Supplement": {
                 "min": 8,
                 "current": 0,
+                "name": "Technical Supplement",
                 "source":["B-MUL-100", "B-MAT-100", "B-NSA-100", "B-MUL-200", "B-AIA-200", "B-WEB-200", "B-MAT-200", "B-SEC-200", "B-DOP-200"]
             }
         },
@@ -163,22 +167,26 @@ function get_roadblocks(data) {
             "Innovation & Professionalization": {
                 "min": 4,
                 "current": 0,
-                "source":["Epitech JAM", "KYT/CAT"]
+                "name": "Innovation & Acculturation",
+                "source":["G-INN-401", "G-INN-410", "G-INN-420", "G-INN-430", "G-CUS-400", "G-CUS-410"]
             },
             "Soft Skills": {
-                "min": 3,
+                "min": 4,
                 "current": 0,
-                "source":["B-PRO-100", "B-PMP-400", "B-PCP-000"]
+                "name": "Personal and Collective Development",
+                "source":["B-ENG-400", "B-PRO-400", "G-PCP-400", "B-PMP-400"]
             },
             "Technical Foundation": {
                 "min": 13,
                 "current": 0,
-                "source":["B-NWP-400", "B-OOP-400", "B-PDG-300", "B-CCP-400", "B-YEP-400"]
+                "name": "Technical Foundation",
+                "source":["B-YEP-400", "B-OOP-400", "B-NWP-400", "B-CCP-400", "B-PDG-300"]
             },
             "Technical Supplement": {
                 "min": 6,
                 "current": 0,
-                "source": ["B-FUN-400", "B-CNA-410", "B-MAT-400", "B-DOP-400", "B-SEC-400", "B-ASM-400", "B-PSU-400"]
+                "name": "Technical Supplement",
+                "source": ["B-FUN-400", "B-CNA-400", "B-MAT-400", "B-DOP-400", "B-SEC-400", "B-ASM-400", "B-PSU-400"]
             }
         }
     };
@@ -190,6 +198,7 @@ function get_roadblocks(data) {
 
     data.modules.forEach(module => {
         Object.keys(req_roadblocks[tek_y]).forEach(category => {
+            document.getElementById(`rdbl_sect_${category}`).parentElement.querySelector(".roadblock_header > b").textContent = req_roadblocks[tek_y][category]["name"];
             req_roadblocks[tek_y][category].source.forEach(sourceItem => {
                 if (module.title.includes(sourceItem) || module.codemodule.includes(sourceItem)) {
                     const new_el = document.createElement('p');
@@ -207,13 +216,16 @@ function get_roadblocks(data) {
                         new_el2.innerHTML += `<span class='rdbl_credit_outline'>0/${module.credits}</span><span style='margin-left:5px;border-color:#ff4d00;background-color:#e0bfbc;' class='rdbl_credit_outline'>F</span></span>`;
                     }
                     new_el.appendChild(new_el2);
-                    document.getElementById(`rdbl_sect_${category}`).appendChild(new_el);
+                    if (document.getElementById(`rdbl_sect_${category}`)) {
+                        document.getElementById(`rdbl_sect_${category}`).appendChild(new_el);
+                    }
                 }
             });
         });
     });
 
-    if (document.getElementById("sub_hub_cred") != null && document.getElementById("sub_hub_cred").querySelector("b") != null) {
+    /* TODO: Redo the hub system, as it's been changed */
+    /* if (document.getElementById("sub_hub_cred") != null && document.getElementById("sub_hub_cred").querySelector("b") != null) {
         var hub_pred = document.getElementById("sub_hub_cred");
         var hub_pred_creds = parseInt(hub_pred.querySelector("b").textContent);
 
@@ -228,7 +240,6 @@ function get_roadblocks(data) {
         document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
         req_roadblocks[tek_y]["Innovation & Professionalization"]["current"] += hub_pred_creds;
     } else {
-        console.log("Not found");
         const new_el = document.createElement('p');
         const new_el2 = document.createElement('span');
         new_el2.style.float = "right";
@@ -236,7 +247,7 @@ function get_roadblocks(data) {
         new_el2.innerHTML += `<span class='rdbl_credit_outline'>ERROR</span></span>`;
         new_el.appendChild(new_el2);
         document.getElementById("rdbl_sect_Innovation & Professionalization").appendChild(new_el);
-    }
+    } */
 
     Object.keys(req_roadblocks[tek_y]).forEach(category => {
         const data = req_roadblocks[tek_y][category];

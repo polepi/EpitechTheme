@@ -29,7 +29,7 @@
 },
 "web_accessible_resources": [
   {
-    "resources": ["*.css", "Themes/*.json"],
+    "resources": ["*.css", "Themes/*"],
     "matches": ["<all_urls>"]
   }
 ],

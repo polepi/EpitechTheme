@@ -20,8 +20,8 @@ chrome.runtime.onInstalled.addListener(() => {
         action: {
             type: 'modifyHeaders',
             responseHeaders: [
-                {header: 'X-Frame-Options', operation: 'remove'},
-                {header: 'Frame-Options', operation: 'remove'},
+                { header: 'X-Frame-Options', operation: 'remove' },
+                { header: 'Frame-Options', operation: 'remove' },
             ],
         },
     };
@@ -48,7 +48,7 @@ function filterTableNames() {
             } else {
                 tr[i].style.display = "none";
             }
-        }       
+        }
     }
     sortTable();
 }
@@ -67,7 +67,7 @@ function sortTable() {
     var table = document.getElementById('shite_subject_list');
     var rows = Array.from(table.rows)
 
-    rows.sort(function(a, b) {
+    rows.sort(function (a, b) {
         var dateA = parseInt(a.getAttribute('date-index'), 10);
         var dateB = parseInt(b.getAttribute('date-index'), 10);
         return dateB - dateA;
@@ -75,7 +75,7 @@ function sortTable() {
     while (table.rows.length > 1) {
         table.deleteRow(1);
     }
-    rows.forEach(function(row) {
+    rows.forEach(function (row) {
         table.appendChild(row);
     });
 }
@@ -140,7 +140,7 @@ function get_correct_per(item) {
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage == 0)
             return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Crashed</span></span>";
         if (iscrashed[i]["type"] == "crash" && iscrashed[i]["value"] > 0 && completionPercentage > 0)
-            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>"+completionPercentage+"% (Crash)</span></span>";
+            return "<span title='Why are we still here.. just to suffer..' style='margin-right:10px;font-size:18px;;text-align:left;'>😭</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>" + completionPercentage + "% (Crash)</span></span>";
         if (iscrashed[i]["type"] == "banned")
             return "<span title='I still don`t understand why printf is banned..' style='margin-right:10px;font-size:18px;;text-align:left;'>😒</span><span style='text-align:left;width:104px;border: 1px solid #bbb;padding: 1px;border-radius: 6px; display: inline-block;'><span class='legendary_result' style='color:#111;display:inline-block;width:100px;background-color:#ccc;'>Banned</span></span>";
         if (iscrashed[i]["type"] == "coding-style-fail")
@@ -185,7 +185,7 @@ function get_correct_per(item) {
         emoji_font = "🔥";
         emoji_tooltip = "Oustanding job! No more pain from THIS project?";
     }
-    return "<span title='"+emoji_tooltip+"' style='margin-right:10px;font-size:18px;text-align:left;'>"+emoji_font+"</span><span style='text-align:left;width:104px;border: 1px solid "+colour_bar+";padding: 1px;border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span>";
+    return "<span title='" + emoji_tooltip + "' style='margin-right:10px;font-size:18px;text-align:left;'>" + emoji_font + "</span><span style='text-align:left;width:104px;border: 1px solid " + colour_bar + ";padding: 1px;border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span>";
 }
 
 function get_result_label(info) {
@@ -214,16 +214,59 @@ function did_crash(is_crashed) {
 
 function remove_specials(str) {
     return str.replace(/&/g, "&amp;")
-              .replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/"/g, "&quot;")
-              .replace(/'/g, "&#x27;")
-              .replace(/\//g, "&#x2F;");
-  }
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#x27;")
+        .replace(/\//g, "&#x2F;");
+}
+
+const dmp = new diff_match_patch();
+
+function handleOutputTests(text) {
+    let res = '';
+    const instances_got = [...text.matchAll(/# Got:\n([\s\S]*?)\n# But expected:/g)];
+    const instances_got_res = instances_got.map(match => match[1].trim());
+
+    const instances_expected = [...text.matchAll(/# But expected:\n([\s\S]*?)\n# Test failed: /g)];
+    const instances_expected_res = instances_expected.map(match => match[1].trim());
+    
+    
+    for (let i = 0; i < instances_got_res.length; i++) {
+        const diffs = dmp.diff_main(instances_got_res[i], instances_expected_res[i]);
+        dmp.diff_cleanupSemantic(diffs);
+        const diffHtml = dmp.diff_prettyHtml(diffs); 
+
+        res += `<div class="section">
+            <div>
+                <b class='title'>Got</b><span>${instances_got_res[i]}</span>
+            </div>
+            <div>
+                <b class='title'>Expected</b><span>${diffHtml}</span>
+            </div>
+        </div>`;
+    }
+
+    if (res == '' && text.includes('# Build failed.')) {
+        const instances_crashed = [...text.matchAll(/# Building...([\s\S]*?)\n# Build failed/g)];
+        const instances_crashed_res = instances_crashed.map(match => match[1].trim());
+        return `<div class="section-warning"><b class='title'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="20px" fill="#222"><path d="M480-79q-16 0-30.5-6T423-102L102-423q-11-12-17-26.5T79-480q0-16 6-31t17-26l321-321q12-12 26.5-17.5T480-881q16 0 31 5.5t26 17.5l321 321q12 11 17.5 26t5.5 31q0 16-5.5 30.5T858-423L537-102q-11 11-26 17t-31 6Zm0-80 321-321-321-321-321 321 321 321Zm-40-281h80v-240h-80v240Zm40 120q17 0 28.5-11.5T520-360q0-17-11.5-28.5T480-400q-17 0-28.5 11.5T440-360q0 17 11.5 28.5T480-320Zm0-160Z"/></svg>Failure to compile</b><span>${instances_crashed_res[0]}</span></div>`;
+    }
+
+    return `<div class='compareSection'>${res}</div>`
+}
 
 function print_details(det, url) {
+    console.log(det);
     const new_tr_element = document.createElement('div');
-    document.getElementById("shite_details_name").textContent = det["instance"]["projectName"]; 
+    new_tr_element.id = "data-results";
+    const new_tr_trace = document.createElement('div');
+    new_tr_trace.id = 'data-trace';
+    new_tr_trace.style.whiteSpace = "pre-wrap";
+    new_tr_trace.classList.add("code-block");
+    new_tr_trace.style.display = "none";
+
+    document.getElementById("shite_details_name").textContent = det["instance"]["projectName"];
     document.getElementById("shite_response").style.display = "none";
     document.getElementById("info_badge_banned_functs").style.display = "none";
     document.getElementById("shite_details").style.display = "block";
@@ -233,6 +276,7 @@ function print_details(det, url) {
     document.getElementById("sub_info_major").textContent = "0";
     document.getElementById("sub_info_info").textContent = "0";
     document.getElementById("sub_info_fatal").textContent = "0";
+    let logTraceData;
 
     det["externalItems"].forEach((skill) => {
         if (skill["type"] == "banned") {
@@ -240,10 +284,21 @@ function print_details(det, url) {
             document.getElementById("info_badge_banned_functs").style.display = "inline-block";
         }
         if (skill["type"] == "no-test-passed") {
-            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>assignment_late</span> No tests passed.</span></div></div>";
+            new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>assignment_late</span> No tests passed.</span></div></div>";
         }
         if (skill["type"] == "coding-style-fail") {
-            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>warning</span> Coding style failure.</span></div></div>";
+            new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'><span class='material-icons-outlined' style='margin-right:4px;font-size:18px;margin-top:2px;'>warning</span> Coding style failure.</span></div></div>";
+        }
+        if (skill["type"] == "trace-pool") {
+            const outputCompare = handleOutputTests(skill["comment"]);
+            if (outputCompare)
+                new_tr_trace.innerHTML += outputCompare;
+
+            const lines = skill["comment"].split('\n');
+
+            lines.forEach((line) => {
+                new_tr_trace.innerHTML += `<span>${line}</span>`;
+            });
         }
     });
 
@@ -358,13 +413,13 @@ function print_details(det, url) {
                 colour_bar = "#26a324";
             if (completionPercentage >= 100) {
                 colour_bar = "#a71ac4";
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(is_crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
             } else {
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["FullSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(is_crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
             }
-            
+
             skill["FullSkillReport"]["tests"].forEach((test) => {
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>"+test["name"]+"</b>"+proccess_result(test["comment"])+"</div>"+get_result_label(test)+`<span class='span_copy_box' data-copy="`+remove_specials(test[`name`])+`:\n`+remove_specials(test[`comment`])+`"><span class='material-icons-outlined'>content_copy</span></span></div>`;
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><b style='font-size:14px;display:block;margin-bottom:5px;color:#111;'>" + test["name"] + "</b>" + proccess_result(test["comment"]) + "</div>" + get_result_label(test) + `<span class='span_copy_box' data-copy="` + remove_specials(test[`name`]) + `:\n` + remove_specials(test[`comment`]) + `"><span class='material-icons-outlined'>content_copy</span></span></div>`;
             });
         } else if (skill["BreakdownSkillReport"] && skill["BreakdownSkillReport"]["breakdown"]) {
             countItems = skill["BreakdownSkillReport"]["breakdown"].count;
@@ -384,22 +439,23 @@ function print_details(det, url) {
                 colour_bar = "#26a324";
             if (completionPercentage >= 100) {
                 colour_bar = "#a71ac4";
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["BreakdownSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
             } else {
-                new_tr_element.innerHTML = new_tr_element.innerHTML+"<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>"+skill["BreakdownSkillReport"]["name"]+"<span style='position:absolute;right:5px;top:5px;'>"+did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed)+"<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>"+completedItems+"/"+countItems+"</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: "+colour_font+";display:inline-block;width:"+completionPercentage+"px;background-color:"+colour_bar+";'>"+completionPercentage+"%</b></span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
             }
-            new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><i style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>This part has no tests to be displayed.</i></div><span class='span_copy_box' data-copy='No tests'><span class='material-icons-outlined'>content_copy</span></span></div>";
+            new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><i style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>This part has no tests to be displayed.</i></div><span class='span_copy_box' data-copy='No tests'><span class='material-icons-outlined'>content_copy</span></span></div>";
         }
     });
     if (tot_itms == 0) {
-        new_tr_element.innerHTML = new_tr_element.innerHTML+"<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>No tests to be displayed.</span></div></div>";
+        new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><span style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>No tests to be displayed.</span></div></div>";
     }
     document.getElementById("tab_shite_subject_details2").appendChild(new_tr_element);
+    document.getElementById("tab_shite_subject_details2").appendChild(new_tr_trace);
 
     // Assign copy_btn //
 
-    document.querySelectorAll('.span_copy_box').forEach(function(element) {
-        element.addEventListener('click', function() {
+    document.querySelectorAll('.span_copy_box').forEach(function (element) {
+        element.addEventListener('click', function () {
             var textToCopy = this.getAttribute('data-copy');
             var textarea = document.createElement('textarea');
             textarea.value = textToCopy;
@@ -420,12 +476,22 @@ tab_shite_subject_back.addEventListener("click", function () {
     document.getElementById("shite_response").style.display = "block";
 });
 
+document.querySelector('[data-headerResultsOpen="results"]').addEventListener('click', function () {
+    document.getElementById("data-trace").style.display = "none";
+    document.getElementById("data-results").style.display = "block";
+});
+
+document.querySelector('[data-headerResultsOpen="trace"]').addEventListener('click', function () {
+    document.getElementById("data-results").style.display = "none";
+    document.getElementById("data-trace").style.display = "block";
+});
+
 function open_details(id, url, url2) {
     selected_shite = id;
     selected_subject = url;
     document.getElementById("t_history_warn").style.display = "none";
     document.getElementById('tab_shite_subject_details2').innerHTML = "";
-    fetch('https://api.epitest.eu/me/details/'+id, {
+    fetch('https://api.epitest.eu/me/details/' + id, {
         method: 'GET',
         headers: {
             'Accept': '*/*',
@@ -439,27 +505,27 @@ function open_details(id, url, url2) {
             'Referer': 'https://my.epitech.eu/'
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        var send_data = data;
-        if (data && data == "") {
-            const new_tr_element = document.createElement('tr');
-            new_tr_element.innerHTML = "<td>No data found</td>";
-            document.getElementById('tab_shite_subject_details2').appendChild(new_tr_element);
-        } else {
-            print_details(send_data, "https://my.epitech.eu/index.html#d/"+url+"/"+url2);
-        }
-    })
-    .catch(error => {
-        document.getElementById("t_logginset_warn").style.display = "none";
-        document.getElementById('t_notset_warn').style.display = 'block';
-        console.error('Error:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            var send_data = data;
+            if (data && data == "") {
+                const new_tr_element = document.createElement('tr');
+                new_tr_element.innerHTML = "<td>No data found</td>";
+                document.getElementById('tab_shite_subject_details2').appendChild(new_tr_element);
+            } else {
+                print_details(send_data, "https://my.epitech.eu/index.html#d/" + url + "/" + url2);
+            }
+        })
+        .catch(error => {
+            document.getElementById("t_logginset_warn").style.display = "none";
+            document.getElementById('t_notset_warn').style.display = 'block';
+            console.error('Error:', error);
+        });
 }
 
 function load_subject_list(data) {
@@ -470,20 +536,20 @@ function load_subject_list(data) {
         const isnew = is_object_new(item["date"]);
 
         new_tr_element.setAttribute('date-index', Date.parse(item["date"]));
-        new_tr_element.innerHTML = "<td title='Display info'><a title='Moulinette link' target='_blank' href='https://my.epitech.eu/index.html#d/"+targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug']+'/'+item['results']['testRunId']+"'>"+item["project"]["name"]+"</a></td><td title='Mark as read to hide'>"+isnew+"</td><td style='text-align:right;width:165px;padding-right:25px;'>"+get_correct_per(item)+"</td><td>"+daysSince(item["date"])+"</td>";
+        new_tr_element.innerHTML = "<td title='Display info'><a title='Moulinette link' target='_blank' href='https://my.epitech.eu/index.html#d/" + targ_year + "/" + item['project']['module']['code'] + "/" + item['project']['slug'] + '/' + item['results']['testRunId'] + "'>" + item["project"]["name"] + "</a></td><td title='Mark as read to hide'>" + isnew + "</td><td style='text-align:right;width:165px;padding-right:25px;'>" + get_correct_per(item) + "</td><td>" + daysSince(item["date"]) + "</td>";
         if (item["project"] && item["project"]["module"] && item["project"]["module"]["code"]) {
             new_tr_element.addEventListener("click", function () {
-                open_details(item["results"]["testRunId"], targ_year+"/"+item['project']['module']['code']+"/"+item['project']['slug'], item['results']['testRunId']);
+                open_details(item["results"]["testRunId"], targ_year + "/" + item['project']['module']['code'] + "/" + item['project']['slug'], item['results']['testRunId']);
             });
         }
         ulElement.appendChild(new_tr_element);
     });
     sortTable();
 }
-    
+
 function get_shite_data(isTest) {
     document.getElementById("info_badge_text").textContent = "Awaiting Moulinette...";
-    fetch('https://api.epitest.eu/me/'+targ_year, {
+    fetch('https://api.epitest.eu/me/' + targ_year, {
         method: 'GET',
         headers: {
             'Accept': '*/*',
@@ -497,38 +563,38 @@ function get_shite_data(isTest) {
             'Referer': 'https://my.epitech.eu/'
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        var send_data = data;
-        document.getElementById("t_logginset_warn").style.display = "none";
-        document.getElementById('t_notset_warn').style.display = 'none';
-        document.getElementById("iframe_login_shite_frame").style.display = "none";
-        document.getElementById("iframe_login_shite_frame").innerHTML = "";
-        if (data && data == "") {
-            const new_tr_element = document.createElement('tr');
-            new_tr_element.innerHTML = "<td>No data, try a different year</td>";
-            document.getElementById('shite_subject_list').appendChild(new_tr_element);
-        }
-        load_subject_list(send_data);
-    })
-    .catch(error => {
-        if (isTest == true) {
-            update_api();
-        } else {
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            var send_data = data;
             document.getElementById("t_logginset_warn").style.display = "none";
-            document.getElementById('t_notset_warn').style.display = 'block';
-            console.error('Error:', error);
-        }
-    });
+            document.getElementById('t_notset_warn').style.display = 'none';
+            document.getElementById("iframe_login_shite_frame").style.display = "none";
+            document.getElementById("iframe_login_shite_frame").innerHTML = "";
+            if (data && data == "") {
+                const new_tr_element = document.createElement('tr');
+                new_tr_element.innerHTML = "<td>No data, try a different year</td>";
+                document.getElementById('shite_subject_list').appendChild(new_tr_element);
+            }
+            load_subject_list(send_data);
+        })
+        .catch(error => {
+            if (isTest == true) {
+                update_api();
+            } else {
+                document.getElementById("t_logginset_warn").style.display = "none";
+                document.getElementById('t_notset_warn').style.display = 'block';
+                console.error('Error:', error);
+            }
+        });
 }
 
 function get_header_auth(isTest) {
-    chrome.storage.local.get('shite-key', function(data) {
+    chrome.storage.local.get('shite-key', function (data) {
         header_auth = data["shite-key"];
         header_auth = header_auth.substring(1, header_auth.length - 1);
         get_shite_data(isTest);
@@ -547,7 +613,7 @@ function force_login_shite() {
 function update_api() {
     document.getElementById("info_badge_text").textContent = "Attemping to log into the Moulinette...";
     document.getElementById("iframe_login_shite_frame").style.display = "block";
-    setTimeout(function(){
+    setTimeout(function () {
         document.getElementById("iframe_login_shite_frame").style.display = "none";
         document.getElementById("iframe_login_shite_frame").innerHTML = "";
         get_header_auth(false);
@@ -561,19 +627,19 @@ function get_stored_data() {
         document.getElementById("date_input").max = user_data_cache.UserYear;
     else
         document.getElementById("date_input").max = currentDate.getFullYear();
-    document.getElementById("date_input").addEventListener('blur', function() {
+    document.getElementById("date_input").addEventListener('blur', function () {
         if (targ_year != document.getElementById("date_input").value) {
             targ_year = document.getElementById("date_input").value;
-            chrome.storage.local.set({'curr_year': targ_year}, () => {
+            chrome.storage.local.set({ 'curr_year': targ_year }, () => {
                 location.reload();
             });
         }
     });
-    chrome.storage.local.get('last_time', function(data) {
+    chrome.storage.local.get('last_time', function (data) {
         last_check = data["last_time"];
         if (last_check == null) {
             last_check = new Date().getTime();
-            chrome.storage.local.set({'last_time': last_check});
+            chrome.storage.local.set({ 'last_time': last_check });
         }
         last_check = new Date(last_check);
         document.getElementById("info_badge_text").textContent = "Loading...";
@@ -582,7 +648,7 @@ function get_stored_data() {
     });
 }
 
-chrome.storage.local.get('curr_year', function(data) {
+chrome.storage.local.get('curr_year', function (data) {
     targ_year = data["curr_year"] || null;
 
     core.userData_get().then(data2 => {
@@ -595,9 +661,9 @@ chrome.storage.local.get('curr_year', function(data) {
     });
 });
 
-document.getElementById("btn_mark_read").addEventListener('click', function() {
+document.getElementById("btn_mark_read").addEventListener('click', function () {
     last_check = new Date().getTime();
-    chrome.storage.local.set({'last_time': last_check}, () => {
+    chrome.storage.local.set({ 'last_time': last_check }, () => {
         location.reload();
     });
 });
@@ -606,16 +672,16 @@ function go_fullscreen() {
     if (!selected_shite)
         window.open("shite.html", "_blank");
     else
-        window.open("shite.html?sel="+selected_shite, "_blank");
+        window.open("shite.html?sel=" + selected_shite, "_blank");
 }
 
 function load_history() {
     if (!selected_subject)
         return;
-        document.getElementById("shite_details").style.display = "none";
-        document.getElementById("span_history_name").textContent = selected_subject;
-        document.getElementById("t_history_warn").style.display = "block";
-    fetch('https://api.epitest.eu/me/'+selected_subject, {
+    document.getElementById("shite_details").style.display = "none";
+    document.getElementById("span_history_name").textContent = selected_subject;
+    document.getElementById("t_history_warn").style.display = "block";
+    fetch('https://api.epitest.eu/me/' + selected_subject, {
         method: 'GET',
         headers: {
             'Accept': '*/*',
@@ -629,42 +695,42 @@ function load_history() {
             'Referer': 'https://my.epitech.eu/'
         },
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        var send_data = data;
-        document.getElementById("t_logginset_warn").style.display = "none";
-        document.getElementById('t_notset_warn').style.display = 'none';
-        document.getElementById("iframe_login_shite_frame").style.display = "none";
-        document.getElementById("iframe_login_shite_frame").innerHTML = "";
-        if (data && data == "") {
-            const new_tr_element = document.createElement('tr');
-            new_tr_element.innerHTML = "<td>No data, try a different year</td>";
-            document.getElementById('shite_subject_list').appendChild(new_tr_element);
-        }
-        load_subject_list(send_data);
-        document.getElementById("shite_response").style.display = "block";
-    })
-    .catch(error => {
-        if (isTest == true) {
-            update_api();
-        } else {
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            var send_data = data;
             document.getElementById("t_logginset_warn").style.display = "none";
-            document.getElementById('t_notset_warn').style.display = 'block';
-            console.error('Error:', error);
-        }
-    });
+            document.getElementById('t_notset_warn').style.display = 'none';
+            document.getElementById("iframe_login_shite_frame").style.display = "none";
+            document.getElementById("iframe_login_shite_frame").innerHTML = "";
+            if (data && data == "") {
+                const new_tr_element = document.createElement('tr');
+                new_tr_element.innerHTML = "<td>No data, try a different year</td>";
+                document.getElementById('shite_subject_list').appendChild(new_tr_element);
+            }
+            load_subject_list(send_data);
+            document.getElementById("shite_response").style.display = "block";
+        })
+        .catch(error => {
+            if (isTest == true) {
+                update_api();
+            } else {
+                document.getElementById("t_logginset_warn").style.display = "none";
+                document.getElementById('t_notset_warn').style.display = 'block';
+                console.error('Error:', error);
+            }
+        });
 }
 
 document.getElementById("open_history").addEventListener("click", load_history);
 document.getElementById("go_full_screen").addEventListener("click", go_fullscreen);
 document.getElementById("go_full_screen2").addEventListener("click", go_fullscreen);
 
-document.getElementById("btn_clear_history").addEventListener("click", function() {
+document.getElementById("btn_clear_history").addEventListener("click", function () {
     location.reload();
 });
 
