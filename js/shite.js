@@ -230,12 +230,12 @@ function handleOutputTests(text) {
 
     const instances_expected = [...text.matchAll(/# But expected:\n([\s\S]*?)\n# Test failed: /g)];
     const instances_expected_res = instances_expected.map(match => match[1].trim());
-    
-    
+
+
     for (let i = 0; i < instances_got_res.length; i++) {
         const diffs = dmp.diff_main(instances_got_res[i], instances_expected_res[i]);
         dmp.diff_cleanupSemantic(diffs);
-        const diffHtml = dmp.diff_prettyHtml(diffs); 
+        const diffHtml = dmp.diff_prettyHtml(diffs);
 
         res += `<div class="section">
             <div>
@@ -256,8 +256,21 @@ function handleOutputTests(text) {
     return `<div class='compareSection'>${res}</div>`
 }
 
-function print_details(det, url) {
-    console.log(det);
+function did_improve(item_name, count_now, old_data) {
+    if (!old_data || old_data == null || !old_data["results"] || !old_data["results"]["skills"][item_name])
+        return "";
+    if (count_now > old_data["results"]["skills"][item_name]["passed"]) {
+        return `<span style="border-radius:7px;display:flex;background:#b8d7b4;padding:5px 7px;margin-right:6px;border:1px solid #adc4a5;" title="${count_now - old_data["results"]["skills"][item_name]["passed"]} more tests passed from the lastest mouli"><svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#111"><path d="M108-255q-12-12-11.5-28.5T108-311l211-214q23-23 57-23t57 23l103 104 208-206h-64q-17 0-28.5-11.5T640-667q0-17 11.5-28.5T680-707h160q17 0 28.5 11.5T880-667v160q0 17-11.5 28.5T840-467q-17 0-28.5-11.5T800-507v-64L593-364q-23 23-57 23t-57-23L376-467 164-255q-11 11-28 11t-28-11Z"/></svg></span>`;
+    } else if (count_now < old_data["results"]["skills"][item_name]["passed"]) {
+        return `<span style="border-radius:7px;display:flex;background:#d7b8bb;padding:5px 7px;margin-right:6px;border:1px solid #a77478;" title="${old_data["results"]["skills"][item_name]["passed"] - count_now} less tests passed from the lastest mouli"><svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#111"><path d="M744-320 536-526 433-423q-23 23-57 23t-57-23L108-636q-11-11-11.5-27.5T108-692q11-11 28-11t28 11l212 212 103-103q23-23 57-23t57 23l207 207v-64q0-17 11.5-28.5T840-480q17 0 28.5 11.5T880-440v160q0 17-11.5 28.5T840-240H680q-17 0-28.5-11.5T640-280q0-17 11.5-28.5T680-320h64Z"/></svg></span>`;
+    }
+    return "";
+}
+
+
+
+function print_details(det, url, old_data) {
+    console.log(det, old_data);
     const new_tr_element = document.createElement('div');
     new_tr_element.id = "data-results";
     const new_tr_trace = document.createElement('div');
@@ -413,9 +426,9 @@ function print_details(det, url) {
                 colour_bar = "#26a324";
             if (completionPercentage >= 100) {
                 colour_bar = "#a71ac4";
-                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;display:flex;align-items:center;'>"+ did_improve(skill["FullSkillReport"]["name"], completedItems, old_data) + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
             } else {
-                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["FullSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;display:flex;align-items:center;'>"+ did_improve(skill["FullSkillReport"]["name"], completedItems, old_data) + did_crash(is_crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
             }
 
             skill["FullSkillReport"]["tests"].forEach((test) => {
@@ -439,9 +452,9 @@ function print_details(det, url) {
                 colour_bar = "#26a324";
             if (completionPercentage >= 100) {
                 colour_bar = "#a71ac4";
-                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;display:flex;align-items:center;'>" + did_improve(skill["BreakdownSkillReport"]["name"], completedItems, old_data) + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'><span class='material-icons-outlined' style='margin-right:4px;font-size:16px;'>done_all</span>100%</span></span></div>";
             } else {
-                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;'>" + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
+                new_tr_element.innerHTML = new_tr_element.innerHTML + "<div style='padding:12px 16px;margin:5px;border-radius:5px;margin-bottom:0px;background:#ddd;border:1px solid #ccc;position:relative;'>" + skill["BreakdownSkillReport"]["name"] + "<span style='position:absolute;right:5px;top:5px;display:flex;align-items:center;'>" + did_improve(skill["BreakdownSkillReport"]["name"], completedItems, old_data) + did_crash(skill["BreakdownSkillReport"]["breakdown"].crashed) + "<span style='border-radius:7px;display:inline-block;background:#eee;padding:5px 7px;margin-right:6px;border:1px solid #ccc;'>" + completedItems + "/" + countItems + "</span><span style='width:104px;background:#eee;border: 1px solid #ccc;padding: 1px; border-radius: 6px; display: inline-block;'><b class='legendary_result' style='color: " + colour_font + ";display:inline-block;width:" + completionPercentage + "px;background-color:" + colour_bar + ";'>" + completionPercentage + "%</b></span></span></div>";
             }
             new_tr_element.innerHTML = new_tr_element.innerHTML + "<div class='tr_test_global' style='position:relative;'><div class='tr_test_desc'><i style='font-size:14px;display:block;margin-bottom:5px;color:#444;'>This part has no tests to be displayed.</i></div><span class='span_copy_box' data-copy='No tests'><span class='material-icons-outlined'>content_copy</span></span></div>";
         }
@@ -485,8 +498,8 @@ document.querySelector('[data-headerResultsOpen="trace"]').addEventListener('cli
     document.getElementById("data-results").style.display = "none";
     document.getElementById("data-trace").style.display = "block";
 });
-
 function open_details(id, url, url2) {
+
     selected_shite = id;
     selected_subject = url;
     document.getElementById("t_history_warn").style.display = "none";
@@ -511,14 +524,33 @@ function open_details(id, url, url2) {
             }
             return response.json();
         })
-        .then(data => {
+        .then(async data => {
             var send_data = data;
             if (data && data == "") {
                 const new_tr_element = document.createElement('tr');
                 new_tr_element.innerHTML = "<td>No data found</td>";
                 document.getElementById('tab_shite_subject_details2').appendChild(new_tr_element);
             } else {
-                print_details(send_data, "https://my.epitech.eu/index.html#d/" + url + "/" + url2);
+                let old_data = await fetch(`https://api.epitest.eu/me/${url}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': '*/*',
+                        'Accept-Encoding': 'gzip, deflate, br',
+                        'Accept-Language': 'en-GB,en;q=0.9',
+                        'Authorization': `Bearer ${header_auth}`,
+                        'Connection': 'keep-alive',
+                        'DNT': '1',
+                        'Host': 'api.epitest.eu',
+                        'Origin': 'https://my.epitech.eu',
+                        'Referer': 'https://my.epitech.eu/'
+                    }
+                });
+                old_data = await old_data.json();
+                if (old_data && old_data.length >= 2)
+                    old_data = old_data[old_data.length - 2];
+                else
+                    old_data = null;
+                print_details(send_data, "https://my.epitech.eu/index.html#d/" + url + "/" + url2, old_data);
             }
         })
         .catch(error => {

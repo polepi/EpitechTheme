@@ -540,7 +540,9 @@ async function toggleSearch(restart) {
 }
 
 document.addEventListener("keypress", async function (e) {
-    const activeElement = document.activeElement.toUpperCase();
+    const activeElement = document.activeElement;
+    if (!activeElement)
+        return;
     if (activeElement.tagName !== 'INPUT' && activeElement.tagName !== 'TEXTAREA' && activeElement.contentEditable !== 'true'
         && e.key === keyword) {
         toggleSearch();

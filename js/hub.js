@@ -15,13 +15,40 @@ const hub_data = {
         "expHour": 1,
         "expHost": 3,
         "expCredit": 10,
+        "max_credits": {
+            "1": 4,
+            "2": 6,
+            "3": 4,
+            "4": 4,
+        },
     },
     "G0 - Talks & Conferences": {
         "expHour": 1,
         "expHost": 2,
         "expCredit": 10,
+        "max_credits": {
+            "1": 1,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+        },
     },
-    "G0 - Hackathon": {},
+    "G0 - Hackathon": {
+        "max_credits": {
+            "1": 2,
+            "2": 3,
+            "3": 3,
+            "4": 4,
+        },
+    },
+    "G0 - Free Projects": {
+        "max_credits": {
+            "1": 4,
+            "2": 6,
+            "3": 4,
+            "4": 4,
+        },
+    },
 }
 
 async function fetch_hubAPI(user_data) {
@@ -106,7 +133,7 @@ function getExpectedEXP(hub) {
         const infoRow = hubTable.querySelector(`[data-cell="${mod}_rowValue"]`);
         total_credits += Math.trunc(tempHours / 10);
         if (infoRow) {
-            infoRow.innerHTML = `<span class='title-badge'><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>timer</span> ${tempHours}</span><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>auto_awesome</span> ${Math.trunc(tempHours / 10)}</span></span>`;
+            infoRow.innerHTML = `<span class='title-badge'><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>timer</span> ${tempHours}</span><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>auto_awesome</span> ${Math.trunc(tempHours / 10)} / ${hub_data[mod]["max_credits"][user_data_cache["UserCourse"]]}</span></span>`;
         }
     });
 
@@ -123,7 +150,7 @@ function getExpectedEXP(hub) {
     const infoRow = hubTable.querySelector(`[data-cell="${mod}_rowValue"]`);
     total_credits += Math.trunc(tempHours / 2);
     if (infoRow) {
-        infoRow.innerHTML = `<span class='title-badge'><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>auto_awesome</span> ${Math.trunc(tempHours / 2)}</span></span>`;
+        infoRow.innerHTML = `<span class='title-badge'><span class='inner-badge'><span class='material-icons-outlined' style='font-size: 16px;'>auto_awesome</span> ${Math.trunc(tempHours / 2)} / ${hub_data[mod]["max_credits"][user_data_cache["UserCourse"]]}</span></span>`;
     }
 
     document.getElementById("sub_hub_cred").innerHTML = "<span class='material-icons-outlined' style='margin-top: 2px;margin-right: 10px;font-size: 16px;'>auto_awesome</span><b>" + total_credits + "</b>";
@@ -166,3 +193,26 @@ core.userData_get().then(data => {
     user_data_cache = data;
     fetch_hubAPI(data);
 });
+
+/* 
+Tek1
+User gr : 4
+Talks : 1
+Hack : 2
+Free : 4
+Tek 2 
+User gr : 6
+Talks : 2
+hack : 3
+Free : 6
+Tek 3 
+User gr : 4
+talks : 1
+hack : 3
+Free : 4
+Tek4 :
+User gr : 4
+talks : 1
+hack : 4
+Free : 4
+*/
